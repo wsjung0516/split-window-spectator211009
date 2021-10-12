@@ -6,6 +6,8 @@ import {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting
 } from '@angular/platform-browser-dynamic/testing';
+import {defineGlobalsInjections} from "@ngneat/spectator";
+import {MatButtonModule} from "@angular/material/button";
 
 declare const require: {
   context(path: string, deep?: boolean, filter?: RegExp): {
@@ -24,4 +26,9 @@ getTestBed().initTestEnvironment(
 // Then we find all the tests.
 const context = require.context('./', true, /\.spec\.ts$/);
 // And load the modules.
+defineGlobalsInjections({
+  imports:[
+    MatButtonModule
+  ]
+})
 context.keys().map(context);

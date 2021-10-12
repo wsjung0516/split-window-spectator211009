@@ -1,0 +1,514 @@
+{
+  results [
+  {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Animal_diversity.png/230px-Animal_diversity.png',
+    source: 'https://ko.wikipedia.org/wiki/%EB%8F%99%EB%AC%BC',
+    title: '동물 - 위키백과, 우리 모두의 백과사전'
+  },
+  {
+    url: 'https://media.wired.com/photos/593261cab8eb31692072f129/master/pass/85120553.jpg',
+    source: 'https://www.wired.com/2015/04/find-mesmerizing-creatures-web/',
+    title: 'Where to Find the Cutest, Most Amazing Animals on the Web | WIRED'
+  },
+  {
+    url: 'https://images-na.ssl-images-amazon.com/images/I/9175xxLdypS.jpg',
+    source: 'https://www.amazon.com/Big-Animal-Book-Board-Books/dp/0312511078',
+    title: 'Amazon.com: My Big Animal Book (My Big Board Books): 9780312511074: Priddy,  Roger: Books'
+  },
+  {
+    url: 'https://i.natgeofe.com/k/c02b35d2-bfd7-4ed9-aad4-8e25627cd481/komodo-dragon-head-on_2x1.jpg',
+    source: 'https://kids.nationalgeographic.com/animals',
+    title: 'Animals'
+  },
+  {
+    url: 'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/Animal_kingdom_nzwbda.jpg',
+    source: 'https://www.dkfindout.com/us/animals-and-nature/animal-kingdom/',
+    title: 'The Animal World | The Animal Kingdom | DK Find Out'
+  },
+  {
+    url: 'https://merriam-webster.com/assets/mw/images/gallery/gal-home-edpick-lg/image2036561122-4501-1af8d152bc404d672097bf340cf7a9bf@1x.jpg',
+    source: 'https://www.merriam-webster.com/words-at-play/anthropomorphic-animal-names-for-humans',
+    title: 'The Human Animal: Beastly Names for People | Merriam-Webster'
+  },
+  {
+    url: 'https://image.freepik.com/free-vector/set-of-wild-animals_1308-25671.jpg',
+    source: 'https://kr.freepik.com/free-vector/set-of-wild-animals_4317342.htm',
+    title: '야생 동물 세트 | 무료 벡터'
+  },
+  {
+    url: 'https://aldf.org/wp-content/uploads/2018/05/lamb-iStock-665494268-16x9-e1559777676675-1200x675.jpg',
+    source: 'https://aldf.org/article/laws-that-protect-animals/',
+    title: 'Laws that Protect Animals - Animal Legal Defense Fund'
+  },
+  {
+    url: 'https://earimediaprodweb.azurewebsites.net/Api/v1/Multimedia/2f580178-1a29-401b-9f9e-4e1e70e44b2b/Rendition/low-res/Content/Public',
+    source: 'https://www.eurekalert.org/news-releases/712139',
+    title: 'Genomic analysis reveals many animal species | EurekAlert!'
+  },
+  {
+    url: 'https://media.istockphoto.com/vectors/animals-alphabet-vector-id538781218',
+    source: 'https://www.istockphoto.com/kr/%EB%B2%A1%ED%84%B0/%EB%8F%99%EB%AC%BC-%EC%95%8C%ED%8C%8C%EB%B2%B3-gm538781218-95889081',
+    title: '동물 알파벳 갈매기에 대한 스톡 벡터 아트 및 기타 이미지 - iStock'
+  },
+  {
+    url: 'https://m.economictimes.com/thumb/msid-75715437,width-1200,height-900,resizemode-4,imgsize-624920/the-special-will-see-dave-salmoni-animal-planets-big-cat-expert-talking-to-a-number-of-ex
+    perts-to-find-out-how-covid-19-is-affecting-animals-and-what-pet-owners-can-do-to-safeguard-them-.jpg',
+    source: 'https://economictimes.indiatimes.com/magazines/panache/animal-planets-new-documentary-will-explore-effects-of-coronavirus-on-animals/articleshow/75715213.cms',
+    title: "Animal Planet: Animal Planet's new documentary will explore effects of  coronavirus on animals - The Economic Times"
+  },
+  {
+    url: 'https://media.self.com/photos/5e8e2b54f77fc200080d4122/2:1/w_5760,h_2880,c_limit/pandas-eating-bamboo.jpg',
+    source: 'https://www.self.com/story/wildlife-animal-livestreams',
+    title: '14 Wildlife Cameras of Animals That Have No Idea the World Is in Crisis  Right Now | SELF'
+  },
+  {
+    url: 'https://www.dartmoorzoo.org.uk/wp-content/uploads/2021/01/Tiger-1.jpg',
+    source: 'https://www.dartmoorzoo.org.uk/animals/',
+    title: 'Animals - Dartmoor Zoo'
+  },
+  {
+    url: 'https://www.thetimes.co.uk/imageserver/image/%2Fmethode%2Ftimes%2Fprod%2Fweb%2Fbin%2Fe319536c-8d82-11eb-a1a3-928d43a3bbc1.jpg?crop=2278%2C1281%2C180%2C254&resize=1200',
+    source: 'https://www.thetimes.co.uk/article/youtube-bans-fake-animal-rescue-videos-l5vwtnxls',
+    title: 'YouTube bans fake animal rescue videos | News | The Times'
+  },
+  {
+    url: 'https://i.pinimg.com/originals/6f/7a/1e/6f7a1e0b49e9b112aebcfba465882733.jpg',
+    source: 'https://in.pinterest.com/pin/546624473522942069/',
+    title: 'List of Animals: A Big Lesson of Animals Names with the Pictures! | Animals  name in english, Animal flashcards, Wild animals list'
+  },
+  {
+    url: 'https://m.media-amazon.com/images/I/81Z-X7OjlvL._SL1500_.jpg',
+    source: 'https://www.amazon.in/Realistic-Children-Educational-Birthday-Classrooms/dp/B075F7T2MT',
+    title: 'Buy Animal Toy, 64 Pack Mini Wild Plastic Animals Models Toys Kit, Funcorn  Toys Jungle Realistic Animal Figure Set for Children Kids Boy Girl Party  Favors Educational Toy Birthday Gam
+    e Classrooms Rewards'
+  },
+  {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Speciesism.jpg/1200px-Speciesism.jpg',
+    source: 'https://ko.wikipedia.org/wiki/%EC%A2%85%EC%B0%A8%EB%B3%84%EC%A3%BC%EC%9D%98',
+    title: '종차별주의 - 위키백과, 우리 모두의 백과사전'
+  },
+  {
+    url: 'https://www.iata.org/contentassets/d7c512eb9a704ba2a8056e3186a31921/cargo_live_animals_parrot.jpg?w=330&h=200&mode=crop&scale=both&v=20191213012337',
+    source: 'https://www.iata.org/en/programs/cargo/live-animals/',
+    title: 'IATA - Live Animals'
+  },
+  {
+    url: 'https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2020/05/pjimage-14-1589363766.jpg',
+    source: 'https://www.indiatvnews.com/entertainment/tv/animal-planet-s-new-documentary-about-effects-of-covid-19-on-animals-616858',
+    title: "Animal Planet's new documentary about effects of COVID-19 on animals | Tv  News – India TV"
+  },
+  {
+    url: 'https://dkt6rvnu67rqj.cloudfront.net/cdn/ff/T8cy0-640W8sartvA9TWmv08NbGPFxsVvf8gFtBDE08/1577112797/public/styles/600x400/public/media/int_files/elephant_in_tanzania.jpg?h=f507d761&itok=Ei
+    8OXcGi',
+    source: 'https://www.worldanimalprotection.org/newsletter/signup',
+    title: 'Join our global community | World Animal Protection'
+  },
+  {
+    url: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-168504892-1568303467.png?crop=0.754xw:0.911xh;0.191xw,0.0454xh&resize=640:*',
+    source: 'https://www.goodhousekeeping.com/life/travel/g4412/the-50-cutest-native-animals-in-every-state/',
+    title: 'The 50 Cutest Native Animals in Every State'
+  },
+  {
+    url: 'https://i.natgeofe.com/k/bdae4b07-8472-4d41-983a-21275fa95ebd/a-8-animal-group-names-glaring-of-cats_4x3.jpg',
+    source: 'https://kids.nationalgeographic.com/awesome-8/article/animal-group-names',
+    title: 'Awesome 8 Animal Group Names'
+  },
+  {
+    url: 'https://ichef.bbci.co.uk/news/640/cpsprodpb/14632/production/_111860538_gettyimages-1129310243.jpg',
+    source: 'https://www.bbc.co.uk/newsround/51977924',
+    title: 'Coronavirus: Animals take over cities during self-isolation - CBBC Newsround'
+  },
+  {
+    url: 'https://static.scientificamerican.com/sciam/cache/file/A877CD80-393A-4F4A-BFFE33C99131B3AD_source.jpg',
+    source: 'https://www.scientificamerican.com/article/march-mammal-madness-brings-simulated-animal-fights-to-huge-audiences1/',
+    title: "March Mammal Madness' Brings Simulated Animal Fights to Huge Audiences -  Scientific American"
+  },
+  {
+    url: 'https://images.ctfassets.net/81iqaqpfd8fy/19LB2o36j82ia0uCcUuemC/10e260b00869f72813444fc31a4baaa8/circus_animal_abuse.jpg?w=1200&h=1200&fm=jpg&fit=fill',
+    source: 'https://www.dosomething.org/facts/11-facts-about-circus-animal-abuse',
+    title: '11 Facts About Circus Animal Abuse | DoSomething.org'
+  },
+  {
+    url: 'https://www.apa.org/images/2020-03-feature-giraffe_tcm7-269465.png',
+    source: 'https://www.apa.org/monitor/2020/03/feature-talk-animals',
+    title: 'If I could talk to the animals'
+  },
+  {
+    url: 'https://navs.org/wp-content/uploads/bb-plugin/cache/bunny-landscape.jpg',
+    source: 'https://navs.org/',
+    title: 'Homepage | National Anti-Vivisection Society'
+  },
+  {
+    url: 'https://lsj.com.au/wp-content/uploads/2021/04/Legal-updates_Animal-law.jpg',
+    source: 'https://lsj.com.au/articles/animal-law-update-positive-changes-for-animals-in-2021/',
+    title: 'Animal law update: Positive changes for animals in 2021 - Law Society  Journal'
+  },
+  {
+    url: 'https://media.wired.com/photos/59822d6fbc944559d607e43a/master/pass/PeacockHP-691483428.jpg',
+    source: 'https://www.wired.com/story/evolution-color-vision/',
+    title: 'How Color Vision Came to the Animals | WIRED'
+  },
+  {
+    url: 'https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=3219511968102085',
+    source: 'https://ko-kr.facebook.com/gaia.be/videos/',
+    title: 'GAIA - Global Action in the Interest of Animals - 동영상 | Facebook'
+  },
+  {
+    url: 'https://cdn.theatlantic.com/media/img/photo/2020/05/animals-tk/a02_1221266391/main_1500.jpg',
+    source: 'https://www.theatlantic.com/photo/2020/05/photos-animals-during-pandemic/611260/',
+    title: 'Photos: Animals During the Pandemic - The Atlantic'
+  },
+  {
+    url: 'https://www.msd-animal-health.co.kr/wp-content/uploads/sites/37/2020/01/MAH-Home-Cattle.jpg',
+    source: 'https://www.msd-animal-health.co.kr/',
+    title: '회사 홈페이지 - MSD Animal Health 대한민국'
+  },
+  {
+    url: 'https://cdn.mos.cms.futurecdn.net/jACFdMxaismCLAARwDsndh.jpg',
+    source: 'https://www.livescience.com/do-animals-laugh.html',
+    title: 'Do animals laugh? | Live Science'
+  },
+  {
+    url: 'https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=10158757906623375',
+    source: 'https://fr-fr.facebook.com/AnimalPlanet/',
+    title: 'Animal Planet - Accueil | Facebook'
+  },
+  {
+    url: 'https://images.squarespace-cdn.com/content/v1/56414515e4b09cc0ade81d5f/1614270439548-KAUVJFWX4U2PGWK9CVYP/10960451_10155301199335151_1404095633128093730_o.jpg',
+    source: 'https://www.sthuberts.org/',
+    title: "St. Hubert's Animal Welfare Center"
+  },
+  {
+    url: 'https://amcdocs.com/wp-content/uploads/2020/05/somerset-pa-veterinarian.jpg',
+    source: 'https://amcdocs.com/',
+    title: 'Veterinarian in Somerset | High Quality Vet Care | Local Animal Hospital'
+  },
+  {
+    url: 'https://cdn.britannica.com/w:1100/80/140480-131-28E57753/Dromedary-camels.jpg',
+    source: 'https://www.britannica.com/quiz/ultimate-animals-quiz',
+    title: 'Ultimate Animals Quiz | Britannica'
+  },
+  {
+    url: 'https://api.timeforkids.com/wp-content/uploads/2020/08/animalVoting.jpg',
+    source: 'https://www.timeforkids.com/g34/animals-decide/',
+    title: 'TIME for Kids | Animals Decide'
+  },
+  {
+    url: 'https://i.ytimg.com/vi/Ss5S3yiGxg8/maxresdefault.jpg',
+    source: 'https://www.youtube.com/watch?v=Ss5S3yiGxg8',
+    title: 'The Greatest Fights In The Animal Kingdom | Top 5 | BBC Earth - YouTube'
+  },
+  {
+    url: 'https://static.independent.co.uk/s3fs-public/thumbnails/image/2015/07/07/12/rexfeatures_748923a.jpg?width=982&height=726&auto=webp&quality=75',
+    source: 'https://www.independent.co.uk/life-style/health-and-families/features/do-animals-feel-pain-same-way-humans-do-10371800.html',
+    title: 'Do animals feel pain in the same way as humans do? | The Independent | The  Independent'
+  },
+  {
+    url: 'https://img.freepik.com/free-vector/happy-funny-cartoon-animals-set_74855-5855.jpg?size=626&ext=jpg&ga=GA1.2.1908636980.1633478400',
+    source: 'https://kr.freepik.com/free-photos-vectors/animal',
+    title: '동물이미지 | 무료 벡터, 스톡 사진 및 PSD'
+  },
+  {
+    url: 'https://bestlifeonline.com/wp-content/uploads/sites/3/2018/02/Crocodile-Eye.jpg?quality=82&strip=all',
+    source: 'https://bestlifeonline.com/animal-facts/',
+    title: '75 Animal Facts That Will Change the Way You View the Animal Kingdom'
+  },
+  {
+    url: 'https://images.theconversation.com/files/285143/original/file-20190722-11355-1peled7.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip',
+    source: 'https://theconversation.com/five-animals-that-could-help-us-beat-human-diseases-120703',
+    title: 'Five animals that could help us beat human diseases'
+  },
+  {
+    url: 'https://www.markham.ca/wps/wcm/connect/markham/e8207dd4-e7ed-46f0-b782-d40a87405424/Fox+Portal.png?MOD=AJPERES&CACHEID=ROOTWORKSPACE.Z18_2QD4H901OGV160QC8BLCRJ1001-e8207dd4-e7ed-46f0-b782
+    -d40a87405424-nLvvlrg',
+    source: 'https://www.markham.ca/wps/portal/home/permits-licenses-taxes/animal-services/Wildlife',
+    title: 'Markham Wildlife'
+  },
+  {
+    url: 'https://www.activityvillage.co.uk/sites/default/files/images/images2/animals_av2.jpg',
+    source: 'https://www.activityvillage.co.uk/animals',
+    title: 'Animal Activities for Kids'
+  },
+  {
+    url: 'https://www.cambridgema.gov/-/media/Images/sharedphotos/departmentphotos/animal.jpg?mw=1920',
+    source: 'https://www.cambridgema.gov/Departments/animalcommission',
+    title: 'Animal Commission - City of Cambridge, MA'
+  },
+  {
+    url: 'https://media.nature.com/lw800/magazine-assets/d41586-020-00548-w/d41586-020-00548-w_17726712.jpg',
+    source: 'https://www.nature.com/articles/d41586-020-00548-w',
+    title: 'Mystery deepens over animal source of coronavirus'
+  },
+  {
+    url: 'https://www.timeoutdubai.com/public/images/2020/12/22/things-to-do.jpg',
+    source: 'https://www.timeoutdubai.com/kids/432334-17-places-the-kids-can-see-animals-in-the-uae',
+    title: '17 places the kids can see animals in the UAE | Kids, Things To Do Kids |  Time Out Dubai'
+  },
+  {
+    url: 'https://a-z-animals.com/media/2021/01/Wild-Chameleon-Reptile-With-Beautiful-Colors-400x300.jpg',
+    source: 'https://a-z-animals.com/',
+    title: 'Animals - Facts, Pictures and Resources - AZ Animals'
+  },
+  {
+    url: 'https://api.timeforkids.com/wp-content/uploads/2020/09/back-page-k1-animal-colors.jpg?w=1024',
+    source: 'https://www.timeforkids.com/k1/sections/animals/',
+    title: 'TIME for Kids | Animals'
+  },
+  {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Animals_png_set_by_mossi889-d4uye4q.png/1200px-Animals_png_set_by_mossi889-d4uye4q.png',
+    source: 'https://commons.wikimedia.org/wiki/File:Animals_png_set_by_mossi889-d4uye4q.png',
+    title: 'File:Animals png set by mossi889-d4uye4q.png - Wikimedia Commons'
+  },
+  {
+    url: 'https://static.toiimg.com/photo/86504568/86504568.jpg?v=3',
+    source: 'https://timesofindia.indiatimes.com/life-style/spotlight/web-stories/what-this-animal-has-survived-for-centuries-without-having-sex/photostory/86504531.cms',
+    title: 'WHAT! This animal has survived for centuries without having sex | Times of  India'
+  },
+  {
+    url: 'https://www.almanac.com/sites/default/files/styles/primary_image_in_article/public/image_nodes/penguins-429128_1920.jpg?itok=rtlC_a2m',
+    source: 'https://www.almanac.com/kids/animal-group-names',
+    title: "Animal Group Names | The Old Farmer's Almanac for Kids"
+  },
+  {
+    url: 'https://www.mdpi.com/animals/animals-11-02463/article_deploy/html/images/animals-11-02463-g001-550.jpg',
+    source: 'https://www.mdpi.com/journal/animals',
+    title: 'Animals | An Open Access Journal from MDPI'
+  },
+  {
+    url: 'https://media-exp1.licdn.com/dms/image/C4E1BAQHcJjfzLGNL6g/company-background_10000/0/1539867650391?e=2159024400&v=beta&t=Fv1CeBWTxyUz8ZHdtbdyQau0VtWAjDtIhib1QvBKJnE',
+    source: 'https://kr.linkedin.com/company/world-animal-protection',
+    title: 'World Animal Protection | LinkedIn'
+  },
+  {
+    url: 'https://w.namu.la/s/09f2178add6eafd2c25cd8cb98ff115e7d5add9989c976a2bb4ce2f0f23c5bc6ef0a90b1788120cb326339c05e62060e04d35fbb302478486cada6403552117c22d4809784b1163aaef9f59733ed36ab',
+    source: 'https://namu.wiki/w/Animal%20Revolt%20Battle%20Simulator',
+    title: 'Animal Revolt Battle Simulator - 나무위키'
+  },
+  {
+    url: 'https://cdn.vox-cdn.com/thumbor/6S34LwI4uPFuoCwOSX365nfJf_0=/0x0:3504x2336/1400x1050/filters:focal(1236x1025:1796x1585):no_upscale()/cdn.vox-cdn.com/uploads/chorus_image/image/65816344/pi
+    g_GettyImages_131967915.0.jpg',
+    source: 'https://www.vox.com/future-perfect/2019/12/3/20992185/animal-welfare-best-charities-factory-farming',
+    title: 'The best charities for helping animals - Vox'
+  },
+  {
+    url: 'https://www.oie.int/app/uploads/2021/04/doruk-yemenici-frjamio-tb0-unsplash.jpg',
+    source: 'https://www.oie.int/en/what-we-do/animal-health-and-welfare/animal-welfare/',
+    title: 'Animal Welfare - OIE - World Organisation for Animal Health'
+  },
+  {
+    url: 'https://wdh01.azureedge.net/-/media/hidden-hearing/uk/shared/images/blog/best-hearing-animals-1200x640-min.jpg,qrev=3E62,ala=en-GB,ahash=7F4C05A8AD2FC460173285092DAD2024.pagespeed.ce.IHr0
+    skVhF8.jpg',
+    source: 'https://www.hiddenhearing.co.uk/blog/2018/the-top-10-animals-with-the-best-hearing',
+    title: 'The top 10 animals with the best hearing'
+  },
+  {
+    url: 'https://www.eaza.net/assets/Uploads/Events/AWF20/Maki-1300x800b.jpg',
+    source: 'http://kopa.or.kr/Rights-Understanding-and-Bridging-the-Divide/142084.shtml',
+    title: 'Ecology Nature & Ecology Understanding and Bridging the Divide Animal  Advocacy and Environmentalism Animal Rights kopa.or.kr'
+  },
+  {
+    url: 'https://cdn.akamai.steamstatic.com/steam/apps/1215390/ss_2bd978eecc1c4293d54fb494200c4901ff55a5ba.1920x1080.jpg?t=1625492507',
+    source: 'https://store.steampowered.com/app/1215390/Animal_Revolt_Battle_Simulator/?l=koreana&snr=1_1050_curatorsreviewing__suggested-curator-recommended&curator_clanid=34657877',
+    title: 'Steam의 Animal Revolt Battle Simulator'
+  },
+  {
+    url: 'https://www.fodors.com/wp-content/uploads/2020/10/AnimalsInIndia__HERO_shutterstock_1703666200.jpg',
+    source: 'https://www.fodors.com/world/asia/india/experiences/news/11-incredible-animals-youll-only-find-in-india',
+    title: 'What Are the Most Unique Animals in India?'
+  },
+  {
+    url: 'https://decalcomanie.netlify.app/img/title.webp',
+    source: 'https://decalcomanie.netlify.app/',
+    title: '데칼코마니 동물 테스트'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1484406566174-9da000fda645?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YW5pbWFsfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80',
+    source: 'https://unsplash.com/s/photos/animal',
+    title: '750+ Animal Pictures [HD] | Download Free Images on Unsplash'
+  },
+  {
+    url: 'https://ichef.bbci.co.uk/news/976/cpsprodpb/1F8C/production/_116067080_gettyimages-77534560.jpg',
+    source: 'https://www.bbc.com/news/science-environment-55309269',
+    title: 'First case of coronavirus detected in wild animal - BBC News'
+  },
+  {
+    url: 'https://yt3.ggpht.com/ytc/AKedOLQHSQwuq-XCdLzsB9uI7obIRKuJzCKb2LUbtMt2Dw=s900-c-k-c0x00ffffff-no-rj',
+    source: 'https://www.youtube.com/channel/UCAhKKbDO9-ymWZ_7iAFLBQQ',
+    title: 'KBS animal TV : animal4u - YouTube'
+  },
+  {
+    url: 'https://static01.nyt.com/newsgraphics/2021/01/17/animals/assets/images/topper-05-2000_x2.png',
+    source: 'https://www.nytimes.com/interactive/2021/01/12/magazine/animal-tracking-icarus.html',
+    title: "How Far Does Wildlife Roam? Ask the 'Internet of Animals' - The New York  Times"
+  },
+  {
+    url: 'https://www.europarl.europa.eu/resources/library/images/20200625PHT82014/20200625PHT82014_original.jpg',
+    source: 'https://www.europarl.europa.eu/news/en/headlines/society/20200624STO81911/animal-welfare-and-protection-eu-laws-explained-videos',
+    title: 'Animal welfare and protection: EU laws explained (videos) | News | European  Parliament'
+  },
+  {
+    url: 'https://www.ibric.org/upload/geditor/202010/0.57823200_1603014346.jpg',
+    source: 'https://www.ibric.org/myboard/read.php?Board=news&id=323052',
+    title: "실험동물들, 실험 후 '소리도 없이' 사라지다 > BRIC"
+  },
+  {
+    url: 'https://www.humanesociety.org/sites/default/files/styles/1240x698/public/2018/08/neglected-horse-49265_0.jpg?h=3907dd0b&itok=BFDuYu95',
+    source: 'https://www.humanesociety.org/resources/report-animal-cruelty',
+    title: 'Report animal cruelty | The Humane Society of the United States'
+  },
+  {
+    url: 'https://media.nature.com/lw1024/magazine-assets/d41586-021-00531-z/d41586-021-00531-z_18907454.jpg',
+    source: 'https://www.nature.com/articles/d41586-021-00531-z',
+    title: 'The search for animals harbouring coronavirus — and why it matters'
+  },
+  {
+    url: 'https://static.wixstatic.com/media/e7d918_157450b79f8041029f90558bb8db2799~mv2_d_2000_1333_s_2.jpg/v1/fill/w_640,h_474,al_c,q_80,usm_0.66_1.00_0.01/e7d918_157450b79f8041029f90558bb8db2799
+    ~mv2_d_2000_1333_s_2.webp',
+    source: 'https://www.eara.eu/',
+    title: 'Home| European Animal Research Association | London, England'
+  },
+  {
+    url: 'https://www.treehugger.com/thmb/WBQ4k_3ACZl7StaxRhw7RAA6JkI=/3300x2382/filters:fill(auto,1)/__opt__aboutcom__coeus__resources__content_migration__mnn__images__2014__11__burrowing-owls-par
+    liament-3575595a91a646eda3e215f1f4b679e5.jpg',
+    source: 'https://www.treehugger.com/strange-collective-animal-names-4868835',
+    title: '99 Strange Animal Group Names'
+  },
+  {
+    url: 'https://www.animalsasia.org/us/assets/components/phpthumbof/cache/Website_programmes_banner-304x135-CAW-20201109.e120967fec140b806bf9a9a3a2e1659a.jpg',
+    source: 'https://www.animalsasia.org/',
+    title: 'Home'
+  },
+  {
+    url: 'https://media-cdn.tripadvisor.com/media/photo-p/19/17/b8/cf/animal-calle-9-5-55.jpg',
+    source: 'https://www.tripadvisor.com/Restaurant_Review-g294074-d18593685-Reviews-Animal-Bogota.html',
+    title: 'ANIMAL, Bogota - La Candelaria - Menu, Prices & Restaurant Reviews -  Tripadvisor'
+  },
+  {
+    url: 'http://theanimaladventurepark.com/images/logo.png',
+    source: 'https://theanimaladventurepark.com/',
+    title: 'Animal Adventure Park | Home'
+  },
+  {
+    url: 'https://www.dictionary.com/e/wp-content/uploads/2021/03/20210301_lemur_1000x700-790x310.jpg',
+    source: 'https://www.dictionary.com/e/strange-animal-groups-listicle/',
+    title: 'List of 13 Fun Animal Group Names | Dictionary.com'
+  },
+  {
+    url: 'https://i.natgeofe.com/k/c02b35d2-bfd7-4ed9-aad4-8e25627cd481/komodo-dragon-head-on_3x4.jpg',
+    source: 'https://kids.nationalgeographic.com/animals',
+    title: 'Animals'
+  },
+  {
+    url: 'https://willoughbyohio.com/wp-content/uploads/2019/08/animal-control-banner.jpg',
+    source: 'https://willoughbyohio.com/department/service/animal-control/',
+    title: 'Animal Control - City of Willoughby, Ohio'
+  },
+  {
+    url: 'https://www.pirbright.ac.uk/files/styles/column_width__cropped_3x2/public/quick_media/Pig%20Pirbright%20straw.jpg?itok=9aoWawSk',
+    source: 'https://www.pirbright.ac.uk/our-animal-research',
+    title: 'Animal research at Pirbright | The Pirbright Institute'
+  },
+  {
+    url: 'https://www.bloomingtonmn.gov/sites/default/files/styles/800x456/public/images/coyote.png?h=082bf1d4&itok=plM8_2f4',
+    source: 'https://www.bloomingtonmn.gov/pd/animal-control-unit',
+    title: 'Animal Control Unit | City of Bloomington'
+  },
+  {
+    url: 'https://www.bruker.com/ko/applications/food-analysis-and-agriculture/animal-feed/_jcr_content/root/overviewstage/desktopImage.coreimg.82.1920.jpeg/1597679264828/animal-feed-pet-food.jpeg'
+  ,
+    source: 'https://www.bruker.com/ko/applications/food-analysis-and-agriculture/animal-feed.html',
+    title: 'Animal Feed & Pet Food | Bruker'
+  },
+  {
+    url: 'https://news.seoul.go.kr/welfare/files/2012/07/1-1.jpg',
+    source: 'https://news.seoul.go.kr/welfare/archives/216216',
+    title: '서울동물복지지원센터 < 복지 < 서울특별시'
+  },
+  {
+    url: 'https://awionline.org/sites/default/files/styles/homepage_header_rotator/public/slide/image/bcpsa.jpg?itok=RlPsdpoT',
+    source: 'https://awionline.org/',
+    title: 'Animal Welfare Institute'
+  },
+  {
+    url: 'https://www.smchealth.org/sites/main/files/imagecache/medium/main-images/deer_closeup_tall_grass.jpg?1578406232',
+    source: 'https://www.smchealth.org/report-problem-animals-and-pests',
+    title: 'Report a Problem: Animals and Pests - San Mateo County Health'
+  },
+  {
+    url: 'https://files.worldwildlife.org/wwfcmsprod/images/A_Pangolin_hunting_for_ants./story_full_width/4fcx4mrl0e_shutterstock_380478340.jpg',
+    source: 'https://www.worldwildlife.org/stories/what-is-a-pangolin',
+    title: 'What is a pangolin? | Stories | WWF'
+  },
+  {
+    url: 'https://s.abcnews.com/images/International/apaporis-caiman-hatchling-ht-jc-191223_hpMain_16x9_992.jpg',
+    source: 'https://abcnews.go.com/US/back-abyss-animal-species-resurfaced-2019-feared-lost/story?id=67886215',
+    title: 'Back from the abyss: These are the animal species that resurfaced in 2019  after they were feared lost - ABC News'
+  },
+  {
+    url: 'https://www.animalrescuecumbria.co.uk/wp-content/themes/twentyseventeen-child/custome/images/img-1.jpg',
+    source: 'https://www.animalrescuecumbria.co.uk/',
+    title: 'Animal Rescue Cumbria'
+  },
+  {
+    url: 'https://idsb.tmgrup.com.tr/ly/uploads/images/2020/11/25/74702.jpg',
+    source: 'https://www.dailysabah.com/politics/legislation/turkey-updates-billon-animal-rights-plans-to-enact-in-coming-days',
+    title: 'Turkey updates bill on animal rights, plans to enact in coming days | Daily  Sabah'
+  },
+  {
+    url: 'https://d18lkz4dllo6v2.cloudfront.net/cumulus_uploads/entry/35852/animal%20fights%20header.jpg',
+    source: 'https://today.yougov.com/topics/lifestyle/articles-reports/2021/05/13/lions-and-tigers-and-bears-what-animal-would-win-f',
+    title: 'Rumble in the jungle: what animals would win in a fight? | YouGov'
+  },
+  {
+    url: 'https://www.cbc.ca/kidscbc2/content/the_feed/_848/animalsleep_header.jpg',
+    source: 'https://www.cbc.ca/kidscbc2/the-feed/these-8-animals-have-completely-aced-sleeptime',
+    title: 'These 8 animals have completely aced sleep time! | Explore | Awesome  Activities & Fun Facts | CBC Kids'
+  },
+  {
+    url: 'https://ichef.bbci.co.uk/news/640/cpsprodpb/1011A/production/_114381856_photo_2020-09-15_11-58-09.jpg',
+    source: 'https://www.bbc.com/korean/international-54174759',
+    title: "야생동물: 잃어버렸던 스마트폰에서 '원숭이 셀카'가 나왔다 - BBC News 코리아"
+  },
+  {
+    url: 'https://media.istockphoto.com/vectors/vector-collection-of-zoo-animals-set-of-cute-cartoon-animals-vector-id605980910',
+    source: 'https://www.istockphoto.com/vector/vector-collection-of-zoo-animals-set-of-cute-cartoon-animals-gm605980910-103895025',
+    title: 'Vector Collection Of Zoo Animals Set Of Cute Cartoon Animals Stock  Illustration - Download Image Now - iStock'
+  },
+  {
+    url: 'https://media1.s-nbcnews.com/i/newscms/2019_34/2980096/190821-panda-animal-news-collection-cs-159p_d2264e9cc95ecd16dbef26bdf396ca15.jpg',
+    source: 'https://www.nbcnews.com/animal-news',
+    title: 'Animal News | NBC News'
+  },
+  {
+    url: 'https://i.natgeofe.com/n/5506954d-6e0f-444c-aa83-a24adbe874e1/reptiles-hero_square.jpg',
+    source: 'https://www.nationalgeographic.com/animals/topic/facts-pictures',
+    title: 'Animal Pictures and Facts'
+  },
+  {
+    url: 'https://images.squarespace-cdn.com/content/v1/56a7b73b69492e157388750d/1546551287681-OX78188NF5D4J61S7525/JDUB0178-abby+%281%29.jpg',
+    source: 'http://www.bdar.org/',
+    title: 'Black Dog Animal Rescue'
+  },
+  {
+    url: 'https://assets.publishing.service.gov.uk/government/uploads/system/uploads/image_data/file/102783/s960_pexels-frans-van-heerden-802112.jpg',
+    source: 'https://www.gov.uk/government/news/coronavirus-100m-zoo-animals-fund-opens-for-applications',
+    title: 'Coronavirus: £100m Zoo Animals Fund opens for applications - GOV.UK'
+  },
+  {
+    url: 'https://brockton.ma.us/wp-content/uploads/2018/09/animal-control_c.jpg',
+    source: 'https://brockton.ma.us/city-departments/animal-control/',
+    title: 'Animal Control - City of Brockton'
+  },
+  {
+    url: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Wildlife_at_Maasai_Mara_%28Lion%29.jpg',
+    source: 'https://en.wikipedia.org/wiki/Wildlife',
+    title: 'Wildlife - Wikipedia'
+  },
+  {
+    url: 'https://magazine.ucsf.edu/sites/default/files/2020-12/astonishing-animals-komodo-dragon-featured.jpg',
+    source: 'https://magazine.ucsf.edu/astonishing-animals-illuminate-human-health',
+    title: 'Astonishing Animals That Illuminate Human Health | UCSF Magazine'
+  }
+]
+
+}

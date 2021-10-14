@@ -17,21 +17,6 @@ describe('ImageService', () => {
   it('should...', () => {
     expect(spectator.service).toBeTruthy();
   });
-  xit('should get the image from cached images', ()=>{
-    const imageBlob = new Blob(["Hello, world!"], {type: 'text/plain'});
-    const _response = {queryUrl, imageBlob};
-    const _expected = URL.createObjectURL(_response.imageBlob);
-
-    const response = cold('-a|',{a: _response });
-    const expected = cold('-b|', {b: _expected });
-    const http = spectator.inject(HttpClient);
-    const service = spectator.inject(ImageService);
-    spyOn( http,'get').and.returnValues(response);
-    expect(service.getImage(queryUrl)).toBeObservable(expected);
-    expect(http.get).toHaveBeenCalledWith(
-      API_PATH
-    )
-  })
   const _response = { data: [{
       url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Animal_diversity.png/230px-Animal_diversity.png",
       source: "https://ko.wikipedia.org/wiki/%EB%8F%99%EB%AC%BC",
@@ -43,17 +28,35 @@ describe('ImageService', () => {
     "source": "https://ko.wikipedia.org/wiki/%EB%8F%99%EB%AC%BC",
     "title": "동물 - 위키백과, 우리 모두의 백과사전"
   }];
+  const json_url = 'assets/json/animal.json';
 
-  it('http.get getTotalImageList()', () => {
+  fit('http.get getTotalImageList()', () => {
     const response = cold('-a|',{a: _response });
     const expected = cold('-b|', {b: _expected });
     const http = spectator.inject(HttpClient);
     const service = spectator.inject(ImageService);
     spyOn( http,'get').and.returnValues(response);
-    expect(service.getTotalImageList(queryUrl)).toBeObservable(expected);
+    expect(service.getTotalImageList(json_url)).toBeObservable(expected);
     expect(http.get).toHaveBeenCalledWith(
       API_PATH
     )
   })
+  const cachedUrls = [
+    'aaaaa',
+    'bbbbb'
+  ]
+  const expected = [
+    'aaaaa',
+    'bbbbb',
+    'ccccc'
+  ]
+  const added = 'ccccc';
 
+  it(' Should add image urls', () => {
+    const service = spectator.service;
+    service.setCacheUrls(cachedUrls);
+    service.setCacheUrls([added]);
+    const urls = service.getCacheUrls();
+    expect(urls).toEqual(expected)
+  })
 });

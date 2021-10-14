@@ -40,19 +40,21 @@ addEventListener('message', async ({data}) => {
       try {
         res1 = await ajaxData(rData[i].url);
         sData = {
+          imageId: i,
           url: rData[i].url,
-          body: res1
+          body: res1,
+          category: data.category
         }
 
       } catch (e) {
         sData = {
           url: rData[i].url,
-          body: e
+          body: e,
         }
       }
-      console.log('indx', i, rData[i].url)
+      // console.log('indx', i, rData[i].url)
       postMessage(sData,data.origin);
-      await sleep(30);
+      await sleep(50);
 
     }
   }

@@ -12,7 +12,6 @@ interface CachedImage {
   providedIn: 'root'
 })
 export class ImageService {
-  json_url = 'assets/json/animal.json';
 
   private _cacheUrls: string[] = [];
   private _cachedImages: CachedImage[] = [];
@@ -22,16 +21,22 @@ export class ImageService {
   set cacheUrls(urls: string[]) {
     this._cacheUrls = [...this._cacheUrls, ...urls];
   }
+  setCacheUrls(urls: string[]) {
+    this._cacheUrls = [...this._cacheUrls, ...urls];
+  }
 
   get cacheUrls(): string[] {
+    return this._cacheUrls;
+  }
+  getCacheUrls(): string[] {
     return this._cacheUrls;
   }
 
   set cachedImages(image: CachedImage) {
     this._cachedImages.push(image);
   }
-  getTotalImageList() {
-    return this.http.get(this.json_url).pipe(
+  getTotalImageList(url: string) {
+    return this.http.get(url).pipe(
       map ( (res:any) => res['data']),
     )
   }
@@ -40,11 +45,14 @@ export class ImageService {
     const index = this._cachedImages.findIndex(image => image.url === url);
     if (index > -1) {
       const image = this._cachedImages[index];
-      console.log('-- image',image, this._cachedImages)
-      return of(image.blob);
+      //console.log('-- image',image, this._cachedImages)
+      //return of(image.blob);
+      return image.blob;
       // return of(URL.createObjectURL(image.blob));
     }
+    return ('')
     // return of(EMPTY)
+/*
 
     return this.http.get(url, { responseType: 'blob' }).pipe(
       switchMap( response => this.readFile(response)),
@@ -53,6 +61,7 @@ export class ImageService {
         console.log('---- this._cachedImages', this._cachedImages)
       }),
     );
+*/
   }
 
   checkAndCacheImage(url: string, blob: Blob) {

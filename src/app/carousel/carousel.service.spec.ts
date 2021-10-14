@@ -29,7 +29,7 @@ describe('CarouselService', () => {
     expect(spectator.service.getNextImage).toHaveBeenCalled();
     expect(spectator.service.currentImageIndex).toEqual(2);
   })
-  fit('Press let key, display previous image ', () => {
+  it('Press let key, display previous image ', () => {
     spectator.service.currentImageIndex = 0;
     spyOn(spectator.service, 'getPrevImage').and.callThrough();
     spectator.service.getPrevImage();

@@ -8,6 +8,9 @@ import { CarouselMainComponent } from './carousel/carousel-main/carousel-main.co
 import {CarouselModule} from "./carousel/carousel.module";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatButtonModule} from "@angular/material/button";
+import {NgxsModule} from "@ngxs/store";
+import {StatusState} from "../store/status/status.state";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
@@ -16,11 +19,13 @@ import {MatButtonModule} from "@angular/material/button";
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    // AppRoutingModule,
     BrowserAnimationsModule,
     CarouselModule,
     MatRadioModule,
-    MatButtonModule
+    MatButtonModule,
+    NgxsModule.forRoot([StatusState]),
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

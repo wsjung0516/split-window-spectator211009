@@ -42,14 +42,14 @@ addEventListener('message', async ({data}) => {
         sData = {
           imageId: i,
           url: rData[i].url,
-          body: res1,
+          blob: res1,
           category: data.category
         }
 
       } catch (e) {
         sData = {
           url: rData[i].url,
-          body: e,
+          blob: e,
         }
       }
       // console.log('indx', i, rData[i].url)

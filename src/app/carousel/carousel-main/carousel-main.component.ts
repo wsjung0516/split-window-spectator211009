@@ -17,6 +17,12 @@ import {SetIsImageLoaded} from "../../../store/status/status.actions";
 import {skip} from "rxjs/operators";
 
 export const category_list = ['animal','mountain','banana', 'house']
+export interface ImageModel {
+  imageId: number,
+  category: string,
+  url: string,
+  blob: any
+}
 
 @Component({
   selector: 'app-carousel-main',
@@ -27,16 +33,19 @@ export const category_list = ['animal','mountain','banana', 'house']
         <div class="bg-green-200 m-4">
             <img class="max-h-96" #img>
         </div>
+<!--
         <div class="bg-green-200 m-4 h-24">
-          aaaaa
+          <app-thumb-item [originalImage]="originalImage"></app-thumb-item>
         </div>
+-->
 
       </div>
     </div>
 
   `,
   styles: [
-  ]
+  ],
+
 })
 export class CarouselMainComponent implements OnInit, AfterViewInit {
   worker: Worker[] = [];
@@ -47,10 +56,11 @@ export class CarouselMainComponent implements OnInit, AfterViewInit {
   imageCount: any[] = [];
   progress: string[] = [];
   _progress: string;
+  originalImage: any;
   @Input() set queryUrl( q: string){
     this._queryUrl = q;
-    this.category = q.split('.')[0].split('/')[2];
-    console.log('-- category',this.category);
+    this.category = q && q.split('.')[0].split('/')[2];
+    // console.log('-- category',this.category);
 
   }  // : string = 'assets/json/mountain.json';
 
@@ -78,6 +88,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit {
     this.getIsImageLoaded$ && this.getIsImageLoaded$.pipe(skip(1))
       .subscribe( res => {
       this.image.nativeElement.src = this.carouselService.getSelectedImage(0);
+      this.originalImage = this.carouselService.getSelectedImage(0);
         // console.log(' this.image.nativeElement.src', this.image.nativeElement.src)
         this.cdr.detectChanges();
     })
@@ -101,9 +112,11 @@ export class CarouselMainComponent implements OnInit, AfterViewInit {
   }
   nextImage() {
     this.image.nativeElement.src = this.carouselService.getNextImage();
+    this.originalImage = this.image.nativeElement.src;
   }
   prevImage() {
     this.image.nativeElement.src = this.carouselService.getPrevImage();
+    this.originalImage = this.image.nativeElement.src;
     // console.log('current index - prev', this.carouselService.currentImageIndex)
   }
   webWorkerProcess() {
@@ -113,10 +126,15 @@ export class CarouselMainComponent implements OnInit, AfterViewInit {
       this.worker[this.imageIdx] = new Worker(new URL('../carousel-worker.ts', import.meta.url));
       this.worker[this.imageIdx].onmessage = ( data: any) => {
         this.progress[this.imageIdx] = ((data.data.imageId + 1)/ this.imageCount[this.imageIdx] * 100).toFixed(0).toString();
-        // this._progress = this.progress[this.imageIdx];
-        // console.log(' res', data.data.imageId + 1,this.imageCount[this.imageIdx])
+        // console.log(' res', data.data.imageIdx + 1,this.imageCount[this.imageIdx])
+        const image_data: ImageModel = {
+          imageId: data.data.imageId,
+          category: data.data.category,
+          url: data.data.url,
+          blob: data.data.blob
+        }
         this.cdr.detectChanges();
-        this.makeCachedImage(data);
+        this.makeCachedImage(image_data);
       };
     } else {
       // Web workers are not supported in this environment.
@@ -126,20 +144,22 @@ export class CarouselMainComponent implements OnInit, AfterViewInit {
   }
 
 
-  private makeCachedImage(data: any) {
-    const image: any = this.imageService.readFile(data.data.body)
+  private makeCachedImage(data: ImageModel) {
+    const image: any = this.imageService.readFile(data.blob)
     image.subscribe((obj: any) => {
-      this.saveCacheImage(data, obj);
+      data.blob = obj;
+      this.saveCacheImage(data);
     })
   }
 
-  saveCacheImage(data: any, obj: any) {
+  saveCacheImage(data: ImageModel) {
     const urls = this.imageService.getCacheUrls();
     // console.log(' --- data', data);
-    const idx = urls.find(val => val === data.data.url);
+    const idx = urls.find(val => val === data.url);
     if (!idx) {
-      this.imageService.setCacheUrls([data.data.url]);
-      this.imageService.checkAndCacheImage(data.data.url, obj)
+      this.imageService.setCacheUrls([data.url]);
+      this.imageService.checkAndCacheImage(data)
+      // this.imageService.checkAndCacheImage(data.data.url, obj)
       this.store.dispatch(new SetIsImageLoaded(true));
     }
   }

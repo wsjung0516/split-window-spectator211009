@@ -26,6 +26,8 @@
     "@ngxs/logger-plugin": "^3.3.2",
     "@ngxs/schematics": "0.0.1-alpha.5",
     "@ngxs/store": "^3.3.2",
+    "image-thumbnail": "^1.0.14",
+    "os-browserify": "^0.3.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -37,6 +39,7 @@
     "@angular/compiler-cli": "~12.2.0",
     "@ngneat/spectator": "^8.1.0",
     "@ngxs/schematics": "^0.0.1-alpha.5",
+    "@types/image-thumbnail": "^1.0.1",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
     "cross-env": "^7.0.3",

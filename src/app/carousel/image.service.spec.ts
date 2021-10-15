@@ -30,7 +30,7 @@ describe('ImageService', () => {
   }];
   const json_url = 'assets/json/animal.json';
 
-  fit('http.get getTotalImageList()', () => {
+  it('http.get getTotalImageList()', () => {
     const response = cold('-a|',{a: _response });
     const expected = cold('-b|', {b: _expected });
     const http = spectator.inject(HttpClient);

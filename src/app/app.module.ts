@@ -11,11 +11,15 @@ import {MatButtonModule} from "@angular/material/button";
 import {NgxsModule} from "@ngxs/store";
 import {StatusState} from "../store/status/status.state";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { ThumbItemComponent } from './thumbnail/thumb-item/thumb-item.component';
+import { ThumbnailListComponent } from './thumbnail/thumbnail-list/thumbnail-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CarouselMainComponent
+    CarouselMainComponent,
+    ThumbItemComponent,
+    ThumbnailListComponent
   ],
   imports: [
     BrowserModule,

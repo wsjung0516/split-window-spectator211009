@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {EMPTY, Observable, of} from 'rxjs';
 import {map, switchMap, tap} from 'rxjs/operators';
+import {ImageModel} from "./carousel-main/carousel-main.component";
 
+/*
 interface CachedImage {
   url: string;
   blob: Blob;
 }
+*/
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +17,7 @@ interface CachedImage {
 export class ImageService {
 
   private _cacheUrls: string[] = [];
-  private _cachedImages: CachedImage[] = [];
+  private _cachedImages: ImageModel[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -32,7 +35,7 @@ export class ImageService {
     return this._cacheUrls;
   }
 
-  set cachedImages(image: CachedImage) {
+  set cachedImages(image: ImageModel) {
     this._cachedImages.push(image);
   }
   getTotalImageList(url: string) {
@@ -64,11 +67,16 @@ export class ImageService {
 */
   }
 
-  checkAndCacheImage(url: string, blob: Blob) {
-    if (this._cacheUrls.indexOf(url) > -1) {
-      this._cachedImages.push({url, blob});
+  checkAndCacheImage(data: ImageModel) {
+    if (this._cacheUrls.indexOf(data.url) > -1) {
+      this._cachedImages.push(data);
     }
   }
+  // checkAndCacheImage(url: string, blob: Blob) {
+  //   if (this._cacheUrls.indexOf(url) > -1) {
+  //     this._cachedImages.push({url, blob});
+  //   }
+  // }
   readFile (blob: any): Observable<string>  {
     return new Observable((obs: any) => {
       const reader = new FileReader();

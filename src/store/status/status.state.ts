@@ -1,17 +1,32 @@
 import { State, Action, Selector, StateContext } from '@ngxs/store';
-import {SetIsImageLoaded, StatusAction} from './status.actions';
+import {
+  SetCurrentCategory,
+  SetCurrentImages,
+  SetIsImageLoaded,
+  SetSelectedImageById, SetSelectedImageByUrl,
+  StatusAction
+} from './status.actions';
 import {Injectable} from "@angular/core";
+import {ImageModel} from "../../app/carousel/carousel-main/carousel-main.component";
 
 export interface StatusStateModel {
   items: string[];
   isImageLoaded: boolean;
+  currentImages: ImageModel[]; //
+  currentCategory: string;
+  selectedImageId: number;
+  selectedImageUrl: string;
 }
 
 @State<StatusStateModel>({
   name: 'status',
   defaults: {
     items: [],
-    isImageLoaded: false
+    isImageLoaded: false,
+    currentImages: [],
+    currentCategory: '',
+    selectedImageId: 0,
+    selectedImageUrl: ''
   }
 })
 @Injectable()
@@ -25,6 +40,22 @@ export class StatusState {
   public static getIsImageLoaded(state: StatusStateModel) {
     return state.isImageLoaded;
   }
+  @Selector()
+  public static getCurrentImages(state: StatusStateModel) {
+    return state.currentImages;
+  }
+  @Selector()
+  public static getCurrentCategory(state: StatusStateModel) {
+    return state.currentCategory;
+  }
+  @Selector()
+  public static getSelectedImageById(state: StatusStateModel) {
+    return state.selectedImageId;
+  }
+  @Selector()
+  public static getSelectedImageByUrl(state: StatusStateModel) {
+    return state.selectedImageUrl;
+  }
 
   @Action(StatusAction)
   public add(ctx: StateContext<StatusStateModel>, { payload }: StatusAction) {
@@ -35,5 +66,22 @@ export class StatusState {
   @Action(SetIsImageLoaded)
   public setIsImageLoaded({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetIsImageLoaded) {
     patchState({isImageLoaded: payload})
+  }
+  @Action(SetCurrentImages)
+  public setCurrentImages({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetCurrentImages) {
+    let images = getState().currentImages;
+    patchState({currentImages: [...images, ...payload]});
+  }
+  @Action(SetCurrentCategory)
+  public setCurrentCategory({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetCurrentCategory) {
+    patchState({currentCategory: payload})
+  }
+  @Action(SetSelectedImageById)
+  public setSelectedImageById({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSelectedImageById) {
+    patchState({selectedImageId: payload})
+  }
+  @Action(SetSelectedImageByUrl)
+  public setSelectedImageByUrl({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSelectedImageByUrl) {
+    patchState({selectedImageUrl: payload})
   }
 }

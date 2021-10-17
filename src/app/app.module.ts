@@ -13,6 +13,8 @@ import {StatusState} from "../store/status/status.state";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { ThumbItemComponent } from './thumbnail/thumb-item/thumb-item.component';
 import { ThumbnailListComponent } from './thumbnail/thumbnail-list/thumbnail-list.component';
+import {ScrollingModule} from "@angular/cdk/scrolling";
+import {NgxsSelectSnapshotModule} from "@ngxs-labs/select-snapshot";
 
 @NgModule({
   declarations: [
@@ -21,16 +23,18 @@ import { ThumbnailListComponent } from './thumbnail/thumbnail-list/thumbnail-lis
     ThumbItemComponent,
     ThumbnailListComponent
   ],
-  imports: [
-    BrowserModule,
-    // AppRoutingModule,
-    BrowserAnimationsModule,
-    CarouselModule,
-    MatRadioModule,
-    MatButtonModule,
-    NgxsModule.forRoot([StatusState]),
-    MatProgressBarModule
-  ],
+    imports: [
+        BrowserModule,
+        // AppRoutingModule,
+        BrowserAnimationsModule,
+        CarouselModule,
+        MatRadioModule,
+        MatButtonModule,
+        NgxsModule.forRoot([StatusState]),
+        NgxsSelectSnapshotModule.forRoot(),
+        MatProgressBarModule,
+        ScrollingModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

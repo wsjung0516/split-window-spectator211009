@@ -8,5 +8,5 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'split-window-spectator211009';
-  queryUrl = 'assets/json/banana.json';
+  queryUrl = 'assets/json/animal.json';
 }

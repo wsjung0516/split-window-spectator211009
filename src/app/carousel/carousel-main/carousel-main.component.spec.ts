@@ -31,7 +31,7 @@ describe('CarouselMainComponent', () => {
     expect(spectator.component).toBeTruthy();
   });
 
-  fit(' Should not save duplicated cached image', () => {
+  it(' Should not save duplicated cached image', () => {
     const data: ImageModel = {
       imageId: 1,
       url:'aaaaa',

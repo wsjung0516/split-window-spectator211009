@@ -3,35 +3,51 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ElementRef,
-  Input,
-  OnInit,
+  ElementRef, EventEmitter,
+  Input, OnChanges,
+  OnInit, Output, SimpleChanges,
   ViewChild
 } from '@angular/core';
-import * as imageThumbnail from 'image-thumbnail';
 import {CarouselService} from "../../carousel/carousel.service";
+import {ImageModel} from "../../carousel/carousel-main/carousel-main.component";
+import {StatusState} from "../../../store/status/status.state";
+import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 
 @Component({
   selector: 'app-thumb-item',
   template: `
-    <div class="h-20 w-20">
-      <img #img>
+    <div class="mx-1">
+      <div class="image_content {{borderColor}}" (click)="selected.emit(originalImage)">
+        <!--    <div class="h-20 w-30 " (click)="selected.emit(originalImage)">-->
+        <img #img >
+      </div>
     </div>
   `,
-  styles: [
+  styles: [`
+  .image_content {
+    /*border: yellow solid 2px;*/
+
+  }
+  img {
+    width: 90px;
+    height:65px;
+    object-fit: fill;
+  }
+  .selected_item {
+    border: blue solid 3px ;
+  }
+  `
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ThumbItemComponent implements OnInit, AfterViewInit {
-
-  @Input() set originalImage(img: any) {
-    this.image.nativeElement.src = img;
-    // this.makeThumbnail(img);
-    // this.cdr.detectChanges();
-
-  }
+export class ThumbItemComponent implements OnInit, AfterViewInit, OnChanges {
   @ViewChild('img') image: ElementRef;
-  _originalImage:any;
+  @Input() addClass: any;
+  @Input() originalImage: ImageModel;
+  @Output() selected: EventEmitter<ImageModel> = new EventEmitter<ImageModel>();
+  @SelectSnapshot(StatusState.getSelectedImageById) selectedImageId: number;
+
+  borderColor: string ;
   constructor(
     private carouselService: CarouselService,
     private cdr: ChangeDetectorRef
@@ -40,25 +56,29 @@ export class ThumbItemComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
   ngAfterViewInit() {
-    setTimeout(() => {
-      // this.image.nativeElement.src = this.carouselService.getSelectedImage(0);
-      // this.image.nativeElement.src = this._originalImage;
-      // console.log(' this.image.nativeElement.src', this.image.nativeElement.src)
-      // this.cdr.detectChanges();
-
-    },1500)
+    // console.log('this.originalImage', this.originalImage.imageId)
+    this.image.nativeElement.src = this.originalImage.blob;
   }
+  get borderStyle() {
+    return {'border-color': this.originalImage.imageId === this.selectedImageId ? 'blue' : 'yellow'}
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    this.borderColor = 'none_selected_item'
+      this.cdr.markForCheck();
 
-/*
-  async makeThumbnail(image: any) {
-    try {
-      // const thumbnail = await imageThumbnail('resources/images/dog.jpg');
-      const thumbnail = await imageThumbnail(image);
-      console.log(thumbnail);
-    } catch (err) {
-      console.error(err);
+    if( changes.addClass.currentValue ) {
+    // console.log(' ngOnchanges', changes, changes.addClass.currentValue )
+
     }
-  }
-*/
+    if( this.selectedImageId === this.originalImage.imageId) {
+      this.borderColor = 'selected_item';
+      this.cdr.markForCheck();
 
+    } else {
+      this.borderColor = 'non_selected_item';
+      this.cdr.markForCheck();
+
+    }
+
+  }
 }

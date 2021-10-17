@@ -22,6 +22,7 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@ngxs-labs/select-snapshot": "^3.0.0",
     "@ngxs/devtools-plugin": "^3.3.2",
     "@ngxs/logger-plugin": "^3.3.2",
     "@ngxs/schematics": "0.0.1-alpha.5",

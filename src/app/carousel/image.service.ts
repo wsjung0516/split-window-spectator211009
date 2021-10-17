@@ -24,19 +24,23 @@ export class ImageService {
   set cacheUrls(urls: string[]) {
     this._cacheUrls = [...this._cacheUrls, ...urls];
   }
+  get cacheUrls(): string[] {
+    return this._cacheUrls;
+  }
   setCacheUrls(urls: string[]) {
     this._cacheUrls = [...this._cacheUrls, ...urls];
   }
 
-  get cacheUrls(): string[] {
-    return this._cacheUrls;
-  }
   getCacheUrls(): string[] {
     return this._cacheUrls;
   }
 
   set cachedImages(image: ImageModel) {
     this._cachedImages.push(image);
+  }
+  // @ts-ignore
+  get cachedImages(): ImageModel[] {
+    return this._cachedImages;
   }
   getTotalImageList(url: string) {
     return this.http.get(url).pipe(

@@ -50,7 +50,7 @@ jobs:
       - name: Test
         run:
           export CHROME_BIN=/usr/bin/chromiun-browser
-          CI=true npm run test-headless
+          CI=true npm run test
         env:
           CI: true
         

@@ -74,4 +74,5 @@ jobs:
       - name: Deploy
         run: |
           CI=true npm run deploy
-          
+        env:
+          CI: true  

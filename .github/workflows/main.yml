@@ -73,5 +73,5 @@ jobs:
 
       - name: Deploy
         run: |
-          npm run deploy:ci
+          CI=true npm run deploy
           

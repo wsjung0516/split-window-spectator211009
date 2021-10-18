@@ -55,4 +55,4 @@ jobs:
           npm run build -- --prod
       - name: Test
         run: 
-          npm run test -- --configurations=production
+          npm run test 

@@ -36,6 +36,9 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+            
+      - run: sudo apt install chromium-browser
+
       - name: Install Dependencies
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: 
@@ -46,7 +49,8 @@ jobs:
           
       - name: Test
         run:
-          npm run test
+          export CHROME_BIN=/usr/bin/chromiun-browser
+          CI=true npm run test-headless
         env:
           CI: true
         

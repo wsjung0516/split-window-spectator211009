@@ -61,6 +61,6 @@ jobs:
           body: ${{ steps.changelog.outputs.clean_changelog }}
 
       - name: Deploy
-        run:
-          npm run deploy --
+        run: |
+          npm run deploy
           

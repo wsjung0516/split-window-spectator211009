@@ -15,27 +15,32 @@ import { ThumbItemComponent } from './thumbnail/thumb-item/thumb-item.component'
 import { ThumbnailListComponent } from './thumbnail/thumbnail-list/thumbnail-list.component';
 import {ScrollingModule} from "@angular/cdk/scrolling";
 import {NgxsSelectSnapshotModule} from "@ngxs-labs/select-snapshot";
+import {GridModule} from "./grid/grid.module";
+import {AngularMaterials} from "./shared/angular-materials";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CarouselMainComponent,
-    ThumbItemComponent,
-    ThumbnailListComponent
-  ],
+    declarations: [
+        AppComponent,
+        // CarouselMainComponent,
+        ThumbItemComponent,
+        ThumbnailListComponent,
+    ],
     imports: [
         BrowserModule,
         // AppRoutingModule,
         BrowserAnimationsModule,
         CarouselModule,
-        MatRadioModule,
-        MatButtonModule,
+        AngularMaterials,
         NgxsModule.forRoot([StatusState]),
         NgxsSelectSnapshotModule.forRoot(),
-        MatProgressBarModule,
-        ScrollingModule
+        ScrollingModule,
+        GridModule
     ],
-  providers: [],
-  bootstrap: [AppComponent]
+    providers: [],
+  exports: [
+    CarouselMainComponent,
+    // CarouselMainComponent
+  ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

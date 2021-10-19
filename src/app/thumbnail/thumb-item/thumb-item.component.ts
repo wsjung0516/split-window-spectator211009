@@ -34,7 +34,7 @@ import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
     object-fit: fill;
   }
   .selected_item {
-    border: blue solid 3px ;
+    border: red solid 4px ;
   }
   `
   ],
@@ -66,10 +66,10 @@ export class ThumbItemComponent implements OnInit, AfterViewInit, OnChanges {
     this.borderColor = 'none_selected_item'
       this.cdr.markForCheck();
 
-    if( changes.addClass.currentValue ) {
+    // if( changes.addClass.currentValue ) {
     // console.log(' ngOnchanges', changes, changes.addClass.currentValue )
 
-    }
+    // }
     if( this.selectedImageId === this.originalImage.imageId) {
       this.borderColor = 'selected_item';
       this.cdr.markForCheck();

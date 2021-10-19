@@ -24,3 +24,7 @@ export class SetSelectedImageByUrl {
   public static readonly type = '[Status] Selected image url';
   constructor(public payload: string ) { }
 }
+export class SetWindowSplit {
+  public static readonly type = '[Status] Set Window split';
+  constructor(public payload: number ) { }
+}

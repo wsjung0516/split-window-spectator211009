@@ -5,15 +5,22 @@ import {createComponentFactory, Spectator} from "@ngneat/spectator";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {ImageModel} from "../../carousel/carousel-main/carousel-main.component";
 import {ImageService} from "../../carousel/image.service";
-import {NgxsModule} from "@ngxs/store";
+import {NgxsModule, Store} from "@ngxs/store";
 import {StatusState} from "../../../store/status/status.state";
+import {NgxsSelectSnapshotModule} from "@ngxs-labs/select-snapshot";
 
 describe('ThumbItemComponent', () => {
   let spectator: Spectator<ThumbItemComponent>;
   const createComponent = createComponentFactory({
     component: ThumbItemComponent,
-    imports: [HttpClientModule],
+    imports: [
+      HttpClientModule,
+      NgxsModule.forRoot([StatusState]),
+      NgxsSelectSnapshotModule.forRoot()
+    ],
+
     providers: [HttpClient],
+    mocks: [Store],
     detectChanges: false
   });
   const tImage: ImageModel = {

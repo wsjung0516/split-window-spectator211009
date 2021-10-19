@@ -1,0 +1,23 @@
+.tool-bar{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  /*align-content: stretch;*/
+  align-items: flex-start;
+  width: 100%;
+}
+.window_layout{
+  width: 24px;
+  height: 24px;
+  margin-right: 19px;
+  display: inline-block;
+}
+
+.split_menu {
+  display: flex;
+  flex-direction : row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: 5px;
+}

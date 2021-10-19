@@ -9,13 +9,17 @@ import {ThumbItemComponent} from "../thumb-item/thumb-item.component";
 import {ImageModel} from "../../carousel/carousel-main/carousel-main.component";
 import {NgxsModule} from "@ngxs/store";
 import {StatusState} from "../../../store/status/status.state";
+import {CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 
 describe('ThumbnailListComponent', () => {
   let spectator: Spectator<ThumbnailListComponent>;
   const createComponent = createComponentFactory({
     component: ThumbnailListComponent,
-    imports: [ NgxsModule.forRoot([StatusState])],
-    declarations: [ThumbItemComponent],
+    imports: [
+      NgxsModule.forRoot([StatusState]),
+
+    ],
+    declarations: [ThumbItemComponent, CdkVirtualScrollViewport],
     providers: [CarouselService, ImageService],
     mocks: [HttpClient]
   })
@@ -27,7 +31,7 @@ describe('ThumbnailListComponent', () => {
   it('should create', () => {
     expect(spectator).toBeTruthy();
   });
-  fit('should be the cached image length same the thumbnail list lenght', () => {
+  it('should be the cached image length same the thumbnail list lenght', () => {
     spectator.setInput("category", "animal");
     const service = spectator.inject(ImageService);
     const list_length = service.getCacheUrls().length;

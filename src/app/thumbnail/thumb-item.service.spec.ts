@@ -7,7 +7,7 @@ interface Post {
   title: string;
   body: string;
 }
-fdescribe('AuthService', () => {
+describe('AuthService', () => {
   let service: ThumbItemService;
   beforeEach(() => {
     TestBed.configureTestingModule({

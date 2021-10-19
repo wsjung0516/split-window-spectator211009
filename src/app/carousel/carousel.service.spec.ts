@@ -2,6 +2,8 @@ import { createServiceFactory, SpectatorService} from '@ngneat/spectator';
 import {CarouselService} from './carousel.service';
 import {ImageService} from "./image.service";
 import {HttpClient} from "@angular/common/http";
+import {Store} from "@ngxs/store";
+
 
 describe('CarouselService', () => {
   let spectator: SpectatorService<CarouselService>;
@@ -11,7 +13,7 @@ describe('CarouselService', () => {
       ImageService,
 
     ],
-    mocks:[HttpClient]
+    mocks:[HttpClient, Store]
   });
 
   beforeEach(() => spectator = createService());

@@ -3,7 +3,7 @@ import {
   SetCurrentCategory,
   SetCurrentImages,
   SetIsImageLoaded,
-  SetSelectedImageById, SetSelectedImageByUrl,
+  SetSelectedImageById, SetSelectedImageByUrl, SetWindowSplit,
   StatusAction
 } from './status.actions';
 import {Injectable} from "@angular/core";
@@ -16,6 +16,7 @@ export interface StatusStateModel {
   currentCategory: string;
   selectedImageId: number;
   selectedImageUrl: string;
+  windowSplit: number;
 }
 
 @State<StatusStateModel>({
@@ -26,7 +27,8 @@ export interface StatusStateModel {
     currentImages: [],
     currentCategory: '',
     selectedImageId: 0,
-    selectedImageUrl: ''
+    selectedImageUrl: '',
+    windowSplit: 1
   }
 })
 @Injectable()
@@ -56,6 +58,10 @@ export class StatusState {
   public static getSelectedImageByUrl(state: StatusStateModel) {
     return state.selectedImageUrl;
   }
+  @Selector()
+  public static getWindowSplit(state: StatusStateModel) {
+    return state.windowSplit;
+  }
 
   @Action(StatusAction)
   public add(ctx: StateContext<StatusStateModel>, { payload }: StatusAction) {
@@ -83,5 +89,9 @@ export class StatusState {
   @Action(SetSelectedImageByUrl)
   public setSelectedImageByUrl({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSelectedImageByUrl) {
     patchState({selectedImageUrl: payload})
+  }
+  @Action(SetWindowSplit)
+  public setWindowSplit({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetWindowSplit) {
+    patchState({windowSplit: payload})
   }
 }

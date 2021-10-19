@@ -26,7 +26,8 @@ describe('Status store', () => {
       currentImages: [],
       currentCategory: '',
       selectedImageId: 0,
-      selectedImageUrl: ''
+      selectedImageUrl: '',
+      windowSplit: 1
     };
     spyOn(store,'dispatch').and.callThrough();
     store.dispatch(new SetIsImageLoaded(true));

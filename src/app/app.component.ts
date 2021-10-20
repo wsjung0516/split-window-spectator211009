@@ -10,7 +10,7 @@ import {SetWindowSplit} from "../store/status/status.actions";
 })
 export class AppComponent {
   title = 'split-window-spectator211009';
-  queryUrl = 'assets/json/animal.json';
+  queryUrl = 'assets/json/sea.json';
   constructor(private store: Store) {
   }
   onClickWindowSplit(no: number) {
@@ -21,8 +21,8 @@ export class AppComponent {
     var x = element.getAttribute('aria-expanded');
 
     return x==='true'?
-      `assets/pressed/${id}.svg`
-      : `assets/released/${id}.svg`;
+      `assets/icon_split/${id}_black.svg`
+      : `assets/icon_split/${id}_white.svg`;
 
   }
   isAriaExpandedForCaret(id:string) {

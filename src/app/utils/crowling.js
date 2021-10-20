@@ -7,7 +7,7 @@ const google = new Scraper({
 });
 
 (async () => {
-  const results = await google.scrape('animal', 100);
+  const results = await google.scrape('forest', 60);
   console.log('results', results);
 })();
 /*

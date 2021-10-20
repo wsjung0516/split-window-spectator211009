@@ -24,8 +24,8 @@ import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 @Injectable()
 export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy {
   constructor() {
-    /** Below value is assumed, that could contains at most 200 nodule pixel data at one time
-     * less than this value, the image data tend to be shuffled by sharing memory usage while scrolling  */
+    /** Below value is assumed, that could contains at most 100 image pixel data at one time.
+     * If less than this value, the image data tend to be shuffled by sharing memory usage while scrolling  */
     super(90, 10000, 10000); // (itemSize, minBufferPx, maxBufferPx)
   }
 }
@@ -35,13 +35,11 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
   selector: 'app-thumbnail-list',
   template: `
     <div class="">
-      <div class="cdk-scroll-source h-screen w-screen bg-blue-100">
-        <cdk-virtual-scroll-viewport id="nodule_list"
+      <div class="cdk-scroll-source w-screen bg-blue-100">
+        <cdk-virtual-scroll-viewport
                                      class="cdk-scroll-viewport"
-                                     orientation="horizontal"
-        >
-          <ng-container *cdkVirtualFor="let item of currentImages$ | async"
-          >
+                                     orientation="horizontal" >
+          <ng-container *cdkVirtualFor="let item of currentImages$ | async" >
 
             <app-thumb-item [originalImage]="item"
                             [addClass]="addClass"
@@ -66,15 +64,6 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
       display: flex;
       flex-direction: row;
     }
-    .selected-item {
-      border-color: green;
-      /*color: white;*/
-      /*background-color: #0065A6;  !* #005596(dodgers) dodgerblue #434243 *!;*/
-      /*border-radius: 5px;*/
-
-    }
-
-
   `
   ],
   providers: [{provide: VIRTUAL_SCROLL_STRATEGY, useClass: CustomVirtualScrollStrategy}],
@@ -121,7 +110,7 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
       }
       // To synchronize with the current selected item, after when it is activated by clicking item-list
       this.carouselService.currentImageIndex = val;
-      console.log(' scrolled index', val);
+      // console.log(' scrolled index', val);
       // this.viewPort.scrollToOffset(this.idx, 'smooth');
       setTimeout(() => this.viewPort.scrollToIndex(val, 'smooth'),200);
     })

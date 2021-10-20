@@ -7,13 +7,15 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {CarouselMainComponent} from "../carousel/carousel-main/carousel-main.component";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatMenuModule} from "@angular/material/menu";
+import {ScrollingModule} from "@angular/cdk/scrolling";
 const materials = [
   MatRadioModule,
   MatButtonModule,
   MatProgressBarModule,
   MatGridListModule,
   MatToolbarModule,
-  MatMenuModule
+  MatMenuModule,
+  ScrollingModule,
 ]
 
 @NgModule({

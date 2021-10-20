@@ -17,17 +17,12 @@ import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
   selector: 'app-thumb-item',
   template: `
     <div class="mx-1">
-      <div class="image_content {{borderColor}}" (click)="selected.emit(originalImage)">
-        <!--    <div class="h-20 w-30 " (click)="selected.emit(originalImage)">-->
+      <div class="{{borderColor}}" (click)="selected.emit(originalImage)">
         <img #img >
       </div>
     </div>
   `,
   styles: [`
-  .image_content {
-    /*border: yellow solid 2px;*/
-
-  }
   img {
     width: 90px;
     height:65px;
@@ -65,11 +60,6 @@ export class ThumbItemComponent implements OnInit, AfterViewInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     this.borderColor = 'none_selected_item'
       this.cdr.markForCheck();
-
-    // if( changes.addClass.currentValue ) {
-    // console.log(' ngOnchanges', changes, changes.addClass.currentValue )
-
-    // }
     if( this.selectedImageId === this.originalImage.imageId) {
       this.borderColor = 'selected_item';
       this.cdr.markForCheck();

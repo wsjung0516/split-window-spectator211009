@@ -28,6 +28,7 @@
     "@ngxs/logger-plugin": "^3.3.2",
     "@ngxs/store": "^3.3.2",
     "image-thumbnail": "^1.0.14",
+    "images-scraper": "^6.4.0",
     "os-browserify": "^0.3.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",

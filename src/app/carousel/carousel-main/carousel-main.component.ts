@@ -16,7 +16,7 @@ import {StatusState} from "../../../store/status/status.state";
 import {SetCurrentImages, SetIsImageLoaded} from "../../../store/status/status.actions";
 import {skip} from "rxjs/operators";
 
-export const category_list = ['animal','mountain','banana', 'house']
+export const category_list = ['animal','mountain','banana', 'house', 'baby', 'forest', 'happiness', 'love', 'sea']
 export interface ImageModel {
   imageId: number,
   category: string,
@@ -27,13 +27,18 @@ export interface ImageModel {
 @Component({
   selector: 'app-carousel-main',
   template: `
-    <div class="w-screen h-screen bg-red-100" >
+    <div>
+      <div class="w-screen h-96" >
         <mat-progress-bar mode="determinate" [value]="progress[imageIdx]"></mat-progress-bar>
-      <div class="grid grid-rows-2 auto-rows-max gap-3">
-        <div class="bg-green-200 m-4">
-            <img class="max-h-96" #img>
+        <div class="">
+          <div class="m-1">
+            <img class="" #img>
+          </div>
+          <!--          <div class="bg-green-100 mx-2 mt-1 row-span-1">-->
+          <!--          </div>-->
         </div>
       </div>
+
     </div>
 
   `,

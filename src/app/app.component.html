@@ -1,11 +1,13 @@
-<div class="bg-blue-300 flex flex-col justify-center" style="height: 4rem">
+<div class="bg-blue-600 flex flex-col justify-center h-16">
   <div class="flex justify-between">
-    <div class="flex-start mx-3"><h1>Split window </h1></div>
-    <div class="flex-end mx-3">
+    <div class="flex-start mx-3 mt-3 text-white"><h1>Splitting window for demo. ( by Wonsup Jung ) </h1></div>
+    <div class="flex-end mx-3 mt-2">
       <div class="tool-bar">
-        <ng-container >
-          <button mat-icon-button [matMenuTriggerFor]="menu3" aria-label="split" id="icon_split" class="tools-btn expanded-menu" [ngClass]="isAriaExpandedForCaret('icon_split')">
-            <img src="{{isAriaExpanded('icon_split')}}" title="Split Window" alt="Split Window" class="tools-icon-button">
+        <ng-container>
+          <button mat-icon-button [matMenuTriggerFor]="menu3" aria-label="split" id="icon_split"
+                  class="tools-btn expanded-menu" [ngClass]="isAriaExpandedForCaret('icon_split')">
+            <img src="{{isAriaExpanded('icon_split')}}" title="Split Window" alt="Split Window"
+                 class="tools-icon-button">
             <i class="fa fa-caret-down fa-xs caret-down dropdown"></i>
           </button>
           <mat-menu #menu3="matMenu">
@@ -43,13 +45,18 @@
 
 </div>
 
-<div class="w-screen h-screen mt-2">
-  <div style="height: 6rem">
-    <app-thumbnail-list></app-thumbnail-list>
+<div class="w-screen mt-1">
+  <div class="grid grid-cols-5 gap-3">
+    <div class="h-24 col-span-1 bg-red-100">
+      <app-series-list></app-series-list>
+    </div>
+    <div class="h-24 col-span-4">
+      <app-thumbnail-list></app-thumbnail-list>
+    </div>
   </div>
-  <div class="">
-<!--    <app-carousel-main [queryUrl]="queryUrl"></app-carousel-main>-->
-    <app-grid></app-grid>
+  <div class="h-auto ">
+    <app-carousel-main [queryUrl]="queryUrl"></app-carousel-main>
+    <!--    <app-grid></app-grid>-->
   </div>
 
 </div>

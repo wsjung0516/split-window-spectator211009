@@ -23,11 +23,14 @@ describe('Status store', () => {
     const expected: StatusStateModel = {
       items: ['item-1'],
       isImageLoaded: false,
+      isSeriesLoaded: false,
       currentImages: [],
+      currentSeries: [],
       currentCategory: '',
       selectedImageId: 0,
       selectedImageUrl: '',
-      windowSplit: 1
+      windowSplit: 1,
+      selectedSeriesId: 1
     };
     spyOn(store,'dispatch').and.callThrough();
     store.dispatch(new SetIsImageLoaded(true));

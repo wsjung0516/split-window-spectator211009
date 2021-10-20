@@ -4,11 +4,11 @@ import {GridTemplateDirective} from "../directives/grid-template.directive";
 @Component({
   selector: 'app-grid-template',
   template: `
-    <ng-template [appGridTemplate]="'element1'" let-height=height let-width=width>
+    <ng-template [appGridTemplate]="'element1'" let-height=height > <!-- to get proper template -->
       <div [style.height]="height">
-        <div class="bg-red-100">
-          AAAAAA
-        </div>
+        <app-carousel-main [queryUrl]="'element1'">  <!-- to make observable of making split window -->
+          <button mat-mini-fab>fab</button>
+        </app-carousel-main>
       </div>
     </ng-template>
     <ng-template [appGridTemplate]="'element2'" let-height=height let-width=width>

@@ -1,22 +1,26 @@
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import {
   SetCurrentCategory,
-  SetCurrentImages,
-  SetIsImageLoaded,
-  SetSelectedImageById, SetSelectedImageByUrl, SetWindowSplit,
+  SetCurrentImages, SetCurrentSeries,
+  SetIsImageLoaded, SetIsSeriesLoaded,
+  SetSelectedImageById, SetSelectedImageByUrl, SetSelectedSeriesById, SetWindowSplit,
   StatusAction
 } from './status.actions';
 import {Injectable} from "@angular/core";
 import {ImageModel} from "../../app/carousel/carousel-main/carousel-main.component";
+import {SeriesModel} from "../../app/thumbnail/series-list/series-list.component";
 
 export interface StatusStateModel {
   items: string[];
   isImageLoaded: boolean;
+  isSeriesLoaded: boolean;
   currentImages: ImageModel[]; //
+  currentSeries: SeriesModel[]; //
   currentCategory: string;
   selectedImageId: number;
   selectedImageUrl: string;
   windowSplit: number;
+  selectedSeriesId: number
 }
 
 @State<StatusStateModel>({
@@ -24,11 +28,14 @@ export interface StatusStateModel {
   defaults: {
     items: [],
     isImageLoaded: false,
+    isSeriesLoaded: false,
     currentImages: [],
+    currentSeries: [],
     currentCategory: '',
     selectedImageId: 0,
     selectedImageUrl: '',
-    windowSplit: 1
+    windowSplit: 1,
+    selectedSeriesId: 1
   }
 })
 @Injectable()
@@ -43,8 +50,16 @@ export class StatusState {
     return state.isImageLoaded;
   }
   @Selector()
+  public static getIsSeriesLoaded(state: StatusStateModel) {
+    return state.isSeriesLoaded;
+  }
+  @Selector()
   public static getCurrentImages(state: StatusStateModel) {
     return state.currentImages;
+  }
+  @Selector()
+  public static getCurrentSeries(state: StatusStateModel) {
+    return state.currentSeries;
   }
   @Selector()
   public static getCurrentCategory(state: StatusStateModel) {
@@ -62,6 +77,10 @@ export class StatusState {
   public static getWindowSplit(state: StatusStateModel) {
     return state.windowSplit;
   }
+  @Selector()
+  public static getSelectedSeriesById(state: StatusStateModel) {
+    return state.selectedSeriesId;
+  }
 
   @Action(StatusAction)
   public add(ctx: StateContext<StatusStateModel>, { payload }: StatusAction) {
@@ -72,6 +91,10 @@ export class StatusState {
   @Action(SetIsImageLoaded)
   public setIsImageLoaded({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetIsImageLoaded) {
     patchState({isImageLoaded: payload})
+  }
+  @Action(SetIsSeriesLoaded)
+  public setIsSeriesLoaded({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetIsSeriesLoaded) {
+    patchState({isSeriesLoaded: payload})
   }
   @Action(SetCurrentImages)
   public setCurrentImages({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetCurrentImages) {
@@ -94,4 +117,14 @@ export class StatusState {
   public setWindowSplit({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetWindowSplit) {
     patchState({windowSplit: payload})
   }
+  @Action(SetCurrentSeries)
+  public setCurrentSeries({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetCurrentSeries) {
+    let series = getState().currentSeries;
+    patchState({currentSeries: [...series, ...payload]});
+  }
+  @Action(SetSelectedSeriesById)
+  public setSelectedSeriesById({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSelectedSeriesById) {
+    patchState({selectedSeriesId: payload})
+  }
+
 }

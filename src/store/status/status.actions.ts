@@ -1,11 +1,16 @@
 import {ImageModel} from "../../app/carousel/carousel-main/carousel-main.component";
+import {SeriesModel} from "../../app/thumbnail/series-list/series-list.component";
 
 export class StatusAction {
   public static readonly type = '[Status] Add item';
   constructor(public payload: string) { }
 }
 export class SetIsImageLoaded {
-  public static readonly type = '[Status] Is Imaged Loaeded';
+  public static readonly type = '[Status] Is Imaged Loaded';
+  constructor(public payload: boolean) { }
+}
+export class SetIsSeriesLoaded {
+  public static readonly type = '[Status] Is Series Loaded';
   constructor(public payload: boolean) { }
 }
 export class SetCurrentImages {
@@ -26,5 +31,13 @@ export class SetSelectedImageByUrl {
 }
 export class SetWindowSplit {
   public static readonly type = '[Status] Set Window split';
+  constructor(public payload: number ) { }
+}
+export class SetCurrentSeries {
+  public static readonly type = '[Status] Current saved series';
+  constructor(public payload: SeriesModel[]) { }
+}
+export class SetSelectedSeriesById {
+  public static readonly type = '[Status] Selected series id';
   constructor(public payload: number ) { }
 }

@@ -5,7 +5,8 @@ import {
   Injectable,
   Input,
   OnDestroy,
-  OnInit, ViewChild
+  OnInit,
+  ViewChild
 } from '@angular/core';
 import {CarouselService} from "../../carousel/carousel.service";
 import {ImageService} from "../../carousel/image.service";
@@ -14,13 +15,14 @@ import {Select, Store} from "@ngxs/store";
 import {Observable, Subject} from "rxjs";
 import {StatusState} from "../../../store/status/status.state";
 import {takeUntil} from "rxjs/operators";
-import {SetCurrentImages, SetSelectedImageById} from "../../../store/status/status.actions";
+import {SetSelectedImageById} from "../../../store/status/status.actions";
 import {
   CdkVirtualScrollViewport,
   FixedSizeVirtualScrollStrategy,
   VIRTUAL_SCROLL_STRATEGY
 } from "@angular/cdk/scrolling";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
+
 @Injectable()
 export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy {
   constructor() {
@@ -35,7 +37,7 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
   selector: 'app-thumbnail-list',
   template: `
     <div class="">
-      <div class="cdk-scroll-source w-screen bg-blue-100">
+      <div class="cdk-scroll-source" style="width: 99%">
         <cdk-virtual-scroll-viewport
                                      class="cdk-scroll-viewport"
                                      orientation="horizontal" >
@@ -67,6 +69,7 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
   `
   ],
   providers: [{provide: VIRTUAL_SCROLL_STRATEGY, useClass: CustomVirtualScrollStrategy}],
+  changeDetection: ChangeDetectionStrategy.OnPush
 
 })
 export class ThumbnailListComponent implements OnInit, OnDestroy {

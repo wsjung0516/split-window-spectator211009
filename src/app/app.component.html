@@ -45,17 +45,24 @@
 
 </div>
 
-<div class="w-screen mt-1">
+<div class="w-screen">
   <div class="grid grid-cols-5 gap-3">
-    <div class="h-24 col-span-1 bg-red-100">
-      <app-series-list></app-series-list>
+    <div class="h-24 col-span-1 bg-blue-300">
+      <div class="mt-2">
+        <app-series-list></app-series-list>
+      </div>
     </div>
-    <div class="h-24 col-span-4">
-      <app-thumbnail-list></app-thumbnail-list>
+    <div class="h-24 col-span-4 bg-red-300">
+      <div class="m-2">
+        <app-thumbnail-list></app-thumbnail-list>
+      </div>
     </div>
   </div>
   <div class="h-auto ">
-    <app-carousel-main [queryUrl]="queryUrl"></app-carousel-main>
+    <div class="mt-2">
+      <app-carousel-main [queryUrl]="queryUrl"></app-carousel-main>
+
+    </div>
     <!--    <app-grid></app-grid>-->
   </div>
 

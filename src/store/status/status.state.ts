@@ -1,9 +1,16 @@
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import {
   SetCurrentCategory,
-  SetCurrentImages, SetCurrentSeries,
-  SetIsImageLoaded, SetIsSeriesLoaded,
-  SetSelectedImageById, SetSelectedImageByUrl, SetSelectedSeriesById, SetWindowSplit,
+  SetCurrentImages,
+  SetCurrentSeries,
+  SetIsImageLoaded,
+  SetIsSeriesLoaded,
+  SetSelectedImageById,
+  SetSelectedImageByUrl,
+  SetSelectedSeriesById,
+  SetSelectedSplitWindowId,
+  SetSplitMode,
+  SetSplitState,
   StatusAction
 } from './status.actions';
 import {Injectable} from "@angular/core";
@@ -19,8 +26,10 @@ export interface StatusStateModel {
   currentCategory: string;
   selectedImageId: number;
   selectedImageUrl: string;
-  windowSplit: number;
-  selectedSeriesId: number
+  splitMode: number;
+  splitState: string[];
+  selectedSeriesId: number;
+  selectedSplitWindowId: number;
 }
 
 @State<StatusStateModel>({
@@ -34,8 +43,10 @@ export interface StatusStateModel {
     currentCategory: '',
     selectedImageId: 0,
     selectedImageUrl: '',
-    windowSplit: 1,
-    selectedSeriesId: 1
+    splitMode: 1,
+    splitState: ['animal'],
+    selectedSeriesId: 1,
+    selectedSplitWindowId: 0
   }
 })
 @Injectable()
@@ -74,12 +85,20 @@ export class StatusState {
     return state.selectedImageUrl;
   }
   @Selector()
-  public static getWindowSplit(state: StatusStateModel) {
-    return state.windowSplit;
+  public static getSplitMode(state: StatusStateModel) {
+    return state.splitMode;
+  }
+  @Selector()
+  public static getSplitState(state: StatusStateModel) {
+    return state.splitState;
   }
   @Selector()
   public static getSelectedSeriesById(state: StatusStateModel) {
     return state.selectedSeriesId;
+  }
+  @Selector()
+  public static getSelectedSplitWindowId(state: StatusStateModel) {
+    return state.selectedSplitWindowId;
   }
 
   @Action(StatusAction)
@@ -113,9 +132,14 @@ export class StatusState {
   public setSelectedImageByUrl({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSelectedImageByUrl) {
     patchState({selectedImageUrl: payload})
   }
-  @Action(SetWindowSplit)
-  public setWindowSplit({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetWindowSplit) {
-    patchState({windowSplit: payload})
+  @Action(SetSplitMode)
+  public setSplitMode({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSplitMode) {
+    patchState({splitMode: payload})
+  }
+  @Action(SetSplitState)
+  public setSplitState({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSplitState) {
+    const state = getState().splitState;
+    patchState({splitState: [...state, ...payload]})
   }
   @Action(SetCurrentSeries)
   public setCurrentSeries({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetCurrentSeries) {
@@ -124,6 +148,10 @@ export class StatusState {
   }
   @Action(SetSelectedSeriesById)
   public setSelectedSeriesById({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSelectedSeriesById) {
+    patchState({selectedSeriesId: payload})
+  }
+  @Action(SetSelectedSplitWindowId)
+  public setSelectedSplitWindowId({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSelectedSplitWindowId) {
     patchState({selectedSeriesId: payload})
   }
 

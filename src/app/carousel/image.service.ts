@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {EMPTY, Observable, of} from 'rxjs';
 import {map, switchMap, tap} from 'rxjs/operators';
-import {ImageModel} from "./carousel-main/carousel-main.component";
+import {category_list, ImageModel} from "./carousel-main/carousel-main.component";
 
 /*
 interface CachedImage {
@@ -16,30 +16,54 @@ interface CachedImage {
 })
 export class ImageService {
 
-  private _cacheUrls: string[] = [];
-  private _cachedImages: ImageModel[] = [];
+  private _cacheUrls: {
+    idx: number,
+    category: string,
+    url: string
+  }[] = [];
+  private _cachedImages: {
+    idx: number,
+    image: ImageModel
+  }[] = [];
 
   constructor(private http: HttpClient) { }
 
-  set cacheUrls(urls: string[]) {
-    this._cacheUrls = [...this._cacheUrls, ...urls];
+/*
+  set cacheUrls(data: any ) {  // data: ImageModel
+    const cIdx: any = category_list.findIndex( val => val === data.category) + 1;
+    const nIdx = data.imageId < 10 ? (cIdx * 10 + data.imageId) : (cIdx * 100 + data.imageId);
+    const nUrl = { idx: nIdx, url: data.url};
+    this._cacheUrls = {...this._cacheUrls, ...nUrl};
   }
-  get cacheUrls(): string[] {
+  get cacheUrls(): any[] {
     return this._cacheUrls;
   }
-  setCacheUrls(urls: string[]) {
-    this._cacheUrls = [...this._cacheUrls, ...urls];
+*/
+  setCacheUrl(data:any) { // data: ImageModel
+    const cIdx: any = category_list.findIndex( val => val === data.category) + 1;
+    const nIdx = data.imageId < 10 ? (cIdx * 10 + data.imageId) : (cIdx * 100 + data.imageId);
+    const nUrl = { idx: nIdx, category: data.category, url: data.url};
+    // [{idx:10, url:'aaa'}, {idx:11, url:'bbb'}]
+    this._cacheUrls = [...this._cacheUrls,nUrl];
+    // console.log(' nUrl', nUrl, this._cacheUrls, cIdx)
   }
 
-  getCacheUrls(): string[] {
+  getCacheUrls() {
     return this._cacheUrls;
   }
+  getCacheUrlsByCategory(cat: string) {
+    return this._cacheUrls.filter(val => val.category === cat);
+  }
 
-  set cachedImages(image: ImageModel) {
-    this._cachedImages.push(image);
+  // set cachedImages(image: ImageModel) {
+  set cachedImages(data: any) { // data: ImageModel
+    const cIdx: any = category_list.findIndex( val => val === data.category) + 1;
+    const nIdx = data.imageId < 10 ? (cIdx * 10 + data.imageId) : (cIdx * 100 + data.imageId);
+    const image: ImageModel = data.image;
+    this._cachedImages.push({idx:nIdx, image:image});
   }
   // @ts-ignore
-  get cachedImages(): ImageModel[] {
+  get cachedImages(): any[] {
     return this._cachedImages;
   }
   getTotalImageList(url: string) {
@@ -48,17 +72,15 @@ export class ImageService {
     )
   }
 
-  getImage(url: string) {
-    const index = this._cachedImages.findIndex(image => image.url === url);
+  getCacheImage(cat: string, idx: number) {
+    const cIdx: any = category_list.findIndex( val => val === cat) + 1;
+    const nIdx = idx < 10 ? (cIdx * 10 + idx) : (cIdx * 100 + idx);
+    const index = this._cachedImages.findIndex(image => image.idx === nIdx);
     if (index > -1) {
-      const image = this._cachedImages[index];
-      //console.log('-- image',image, this._cachedImages)
-      //return of(image.blob);
-      return image.blob;
-      // return of(URL.createObjectURL(image.blob));
+      const res = this._cachedImages.filter(val => val.idx === nIdx);
+      return res[0].image.blob;
     }
     return ('')
-    // return of(EMPTY)
 /*
 
     return this.http.get(url, { responseType: 'blob' }).pipe(
@@ -72,15 +94,14 @@ export class ImageService {
   }
 
   checkAndCacheImage(data: ImageModel) {
-    if (this._cacheUrls.indexOf(data.url) > -1) {
-      this._cachedImages.push(data);
-    }
+    const cIdx: any = category_list.findIndex( val => val === data.category) + 1;
+    const nIdx = data.imageId < 10 ? (cIdx * 10 + data.imageId) : (cIdx * 100 + data.imageId);
+    const ret = this._cacheUrls.find( val => val.idx === nIdx)
+    if( ret ) return;
+     // [{idx:10, image: ImageModel}, {idx:11, image: ImageModel}]
+      this.setCacheUrl(data);
+      this._cachedImages.push({idx: nIdx, image: data});
   }
-  // checkAndCacheImage(url: string, blob: Blob) {
-  //   if (this._cacheUrls.indexOf(url) > -1) {
-  //     this._cachedImages.push({url, blob});
-  //   }
-  // }
   readFile (blob: any): Observable<string>  {
     return new Observable((obs: any) => {
       const reader = new FileReader();

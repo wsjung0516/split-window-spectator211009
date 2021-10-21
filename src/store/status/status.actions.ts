@@ -29,9 +29,13 @@ export class SetSelectedImageByUrl {
   public static readonly type = '[Status] Selected image url';
   constructor(public payload: string ) { }
 }
-export class SetWindowSplit {
+export class SetSplitMode {
   public static readonly type = '[Status] Set Window split';
   constructor(public payload: number ) { }
+}
+export class SetSplitState {
+  public static readonly type = '[Status] Set split state';
+  constructor(public payload: string[] ) { }
 }
 export class SetCurrentSeries {
   public static readonly type = '[Status] Current saved series';
@@ -39,5 +43,9 @@ export class SetCurrentSeries {
 }
 export class SetSelectedSeriesById {
   public static readonly type = '[Status] Selected series id';
+  constructor(public payload: number ) { }
+}
+export class SetSelectedSplitWindowId {
+  public static readonly type = '[Status] Selected split window id';
   constructor(public payload: number ) { }
 }

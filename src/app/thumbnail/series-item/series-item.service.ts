@@ -13,7 +13,7 @@ export class SeriesItemService implements OnDestroy{
   unsubscribe$ = this.unsubscribe.asObservable();
 
   constructor(private http: HttpClient) { }
-  getSeriesImages(): Observable<any[]> {
+  getSeriesObject(): Observable<any[]> {
      const url_base = 'assets/json/';
      return from( category_list).pipe(
        takeUntil(this.unsubscribe$),

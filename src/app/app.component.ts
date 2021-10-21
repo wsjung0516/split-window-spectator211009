@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {Store} from "@ngxs/store";
-import {SetWindowSplit} from "../store/status/status.actions";
+import {SetSplitMode} from "../store/status/status.actions";
 
 @Component({
   selector: 'app-root',
@@ -14,13 +14,13 @@ export class AppComponent {
   constructor(private store: Store) {
   }
   onClickWindowSplit(no: number) {
-    this.store.dispatch(new SetWindowSplit(no));
+    this.store.dispatch(new SetSplitMode(no));
   }
   isAriaExpanded( id: string) {
     var element = document.getElementById(id)
     var x = element.getAttribute('aria-expanded');
 
-    return x==='true'?
+    return x === 'true'?
       `assets/icon_split/${id}_black.svg`
       : `assets/icon_split/${id}_white.svg`;
 

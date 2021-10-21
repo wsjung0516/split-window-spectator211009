@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -32,7 +33,7 @@ import {SeriesModel} from "../series-list/series-list.component";
   `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SeriesItemComponent implements OnInit, OnChanges {
+export class SeriesItemComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild('img') image: ElementRef;
   @Input() seriesImage: SeriesModel;
   @Input() addClass: any;
@@ -43,13 +44,11 @@ export class SeriesItemComponent implements OnInit, OnChanges {
 
   constructor(private cdr: ChangeDetectorRef) { }
 
-  ngOnInit(): void {
-    console.log('-- series', this.seriesImage )
-    if(this.image) {
-      this.image.nativeElement.src = this.seriesImage.blob;
-      this.cdr.markForCheck();
-    }
+  ngOnInit(): void {}
+  ngAfterViewInit() {
+    this.image.nativeElement.src = this.seriesImage.blob;
   }
+
   ngOnChanges(changes: SimpleChanges) {
     this.borderColor = 'none_selected_item'
     this.cdr.markForCheck();

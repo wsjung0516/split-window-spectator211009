@@ -40,7 +40,7 @@ addEventListener('message', async ({data}) => {
       try {
         res1 = await seriesAjaxData(rData[i].url);
         sData = {
-          imageId: i,
+          seriesId: i,
           url: rData[i].url,
           blob: res1,
           category: data.category

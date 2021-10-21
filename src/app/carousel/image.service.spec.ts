@@ -2,6 +2,7 @@ import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 import { ImageService } from './image.service';
 import {HttpClient, HttpHandler} from "@angular/common/http";
 import {cold} from "jasmine-marbles";
+import {ImageModel} from "./carousel-main/carousel-main.component";
 
 describe('ImageService', () => {
   let spectator: SpectatorService<ImageService>;
@@ -41,22 +42,59 @@ describe('ImageService', () => {
       API_PATH
     )
   })
-  const cachedUrls = [
-    'aaaaa',
-    'bbbbb'
+  const cachedUrls: ImageModel[] = [
+    { imageId: 10, url: 'aaaaa', category:'animal', blob:''},
+    { imageId: 11, url: 'bbbbb', category:'animal', blob:''},
   ]
-  const expected = [
-    'aaaaa',
-    'bbbbb',
-    'ccccc'
+  const expected: ImageModel[] = [
+    { imageId: 10, url: 'aaaaa', category:'animal', blob:''},
+    { imageId: 11, url: 'bbbbb', category:'animal', blob:''},
+    { imageId: 12, url: 'ccccc', category:'animal', blob:''},
   ]
-  const added = 'ccccc';
+  const cachedUrl1: ImageModel =
+    { imageId: 0, url: 'aaaaa', category:'animal', blob:'bloba'};
+  const cachedUrl2: ImageModel =
+    { imageId: 1, url: 'bbbbb', category:'animal', blob:'blobb'};
+  const cachedUrl3: ImageModel =
+    { imageId: 0, url: 'ccccc', category:'sea', blob:'blobc'};
 
-  it(' Should add image urls', () => {
+  const added: ImageModel = {imageId: 0, url: 'bbbbb', category:'animal', blob:''};
+
+  const expectedUrls: any[] = [
+    { idx: 10, category: 'animal', url: 'aaaaa'},
+    { idx: 11, category: 'animal', url: 'bbbbb'},
+    { idx: 90, category: 'sea', url: 'ccccc'},
+  ]
+
+  fit(' Should add image urls', () => {
     const service = spectator.service;
-    service.setCacheUrls(cachedUrls);
-    service.setCacheUrls([added]);
+    service.checkAndCacheImage(cachedUrl1);
+    service.checkAndCacheImage(cachedUrl2);
+    service.checkAndCacheImage(cachedUrl3);
+    service.checkAndCacheImage(added);
     const urls = service.getCacheUrls();
-    expect(urls).toEqual(expected)
+    expect(urls).toEqual(expectedUrls)
+  })
+  const expectedUrls2: any[] = [
+    { idx: 10, category: 'animal', url: 'aaaaa'},
+    { idx: 11, category: 'animal', url: 'bbbbb'},
+  ]
+  fit(' get urls by category', () => {
+    const service = spectator.service;
+    service.checkAndCacheImage(cachedUrl1);
+    service.checkAndCacheImage(cachedUrl2);
+    service.checkAndCacheImage(cachedUrl3);
+    service.checkAndCacheImage(added);
+    const urls = service.getCacheUrlsByCategory('animal');
+    expect(urls).toEqual(expectedUrls2)
+  })
+
+  const rObj = { cat: 'animal', idx:1};
+  it(' Should add image to cachedImage', () => {
+    const service = spectator.service;
+    service.checkAndCacheImage(cachedUrl1);
+    const ret = service.getCacheImage(rObj.cat, rObj.idx);
+    const expected = 'ablob';
+    expect(ret).toEqual(expected)
   })
 });

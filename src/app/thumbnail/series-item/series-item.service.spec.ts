@@ -26,10 +26,10 @@ describe('SeriesItemService', () => {
   it('should...', () => {
     expect(spectator.service).toBeTruthy();
   });
-  fit(' should get series image', () => {
+  it(' should get series image', () => {
     const http = spectator.inject(HttpClient);
     // spyOn(http,'get').and.callThrough();
-    const series: Observable<SeriesModel[]> = spectator.service.getSeriesImages();
+    const series: Observable<SeriesModel[]> = spectator.service.getSeriesObject();
     series.subscribe( val => {
       expect(val.length).toEqual(category_list.length);
       console.log(' val', val);

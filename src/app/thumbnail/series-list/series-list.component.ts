@@ -26,6 +26,7 @@ import {
   SetSelectedSeriesById
 } from "../../../store/status/status.actions";
 import {SeriesItemService} from "../series-item/series-item.service";
+import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 
 export interface SeriesModel {
   seriesId: number;
@@ -46,7 +47,7 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
   selector: 'app-series-list',
   template: `
     <div class="">
-      <div class="cdk-scroll-source w-screen bg-red-100">
+      <div class="cdk-scroll-source" style="width: 98%">
         <cdk-virtual-scroll-viewport
                                      class="cdk-scroll-viewport"
                                      orientation="horizontal"
@@ -86,11 +87,11 @@ export class SeriesListComponent implements OnInit, OnDestroy {
 
   @Input() category: string;
   @Select(StatusState.getCurrentSeries)  currentSeries$: Observable<SeriesModel[]>;
-  // @SelectSnapshot(StatusState.getSelectedSeriesById)  getCurrentSeriesById: number;
-  @Select(StatusState.getSelectedImageById)  getCurrentSeriesById$: Observable<number>;
+  @SelectSnapshot(StatusState.getSelectedSeriesById)  getSelectedSeriesById: number;
+  @Select(StatusState.getSelectedSeriesById)  getSelectedSeriesById$: Observable<number>;
   @ViewChild(CdkVirtualScrollViewport, { static: true }) viewPort: CdkVirtualScrollViewport;
 
-  item_list: ImageModel[] = [];
+  item_list: SeriesModel[] = [];
   unsubscribe = new Subject();
   unsubscribe$ = this.unsubscribe.asObservable();
   addClass: {} = {};
@@ -117,7 +118,7 @@ export class SeriesListComponent implements OnInit, OnDestroy {
     });
     //
     this.webWorkerProcess();
-    this.seriesSerive.getSeriesImages()
+    this.seriesSerive.getSeriesObject()
       .subscribe((val:any) => {
         const data: any = {
           body: val,
@@ -126,23 +127,19 @@ export class SeriesListComponent implements OnInit, OnDestroy {
         this.seriesWorker.postMessage(data);
       });
     //
-    this.getCurrentSeriesById$.pipe(
+    this.getSelectedSeriesById$.pipe(
       takeUntil(this.unsubscribe$)
     ).subscribe( val => {
       this.addClass = {
         class:'selected_item',
-        imageId: val
+        seriesId: val
       }
-      // To synchronize with the current selected series, after when it is activated by clicking item-list
-      this.carouselService.currentImageIndex = val;
-      // console.log(' scrolled index', val);
-      // this.viewPort.scrollToOffset(this.idx, 'smooth');
       setTimeout(() => this.viewPort.scrollToIndex(val, 'smooth'),200);
     })
 
   }
   onSelectSeries(ev:SeriesModel) {
-    // console.log( '--- thumbnail-list id', ev.imageId )
+    // console.log( '--- seriesList-list id', ev )
     this.store.dispatch(new SetSelectedSeriesById(ev.seriesId));
     this.addClass = {
       class: 'selected_item',
@@ -155,8 +152,8 @@ export class SeriesListComponent implements OnInit, OnDestroy {
       // console.log(' import.meta.url',  import.meta.url)
       this.seriesWorker = new Worker(new URL('./series-worker.ts', import.meta.url));
       this.seriesWorker.onmessage = ( data: any) => {
-        const image: any = this.imageService.readFile(data.data.blob)
-        image.subscribe( (obj:any) => {
+        const series: any = this.imageService.readFile(data.data.blob)
+        series.subscribe( (obj:any) => {
           data.data.blob = obj;
           this.store.dispatch(new SetIsSeriesLoaded(true));
           this.store.dispatch(new SetCurrentSeries([data.data]));

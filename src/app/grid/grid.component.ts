@@ -65,17 +65,16 @@ export class GridComponent implements OnInit {
 
   selectedTemplate: string = this.tiles[0].templateName;
   // @ViewChild('gridContainer', {read: ViewContainerRef}) gridContainer: ViewContainerRef;
-  @Select(StatusState.getWindowSplit) windowSplit$: Observable<any>;
+  @Select(StatusState.getSplitMode) splitMode$: Observable<any>;
   @ViewChild('gridTemplate', { static: true }) gridTemplate: GridTemplateComponent;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.windowSplit$.pipe(skip(1), takeUntil(this.unsubscribe$)).subscribe((val)=> {
-      console.log('****************** windowSplit$', val)
+    this.splitMode$.pipe(skip(1), takeUntil(this.unsubscribe$)).subscribe((val)=> {
+      console.log('****************** splitMode$', val)
       if (val === 1) {
         this.tiles = [...this.tiles1];
-        // this.tiles[0].templateName = val['template'] !== '' ? val['template'] : 'dicomImage';
       } else if (val === 2) {
         this.tiles = [...this.tiles2];
       } else if( val === 3) {
@@ -83,18 +82,6 @@ export class GridComponent implements OnInit {
       } else if( val === 4)  {
         this.tiles = [...this.tiles4];
       }
-/*
-      if (val['num'] === 1) {
-        this.tiles = [...this.tiles1];
-        this.tiles[0].templateName = val['template'] !== '' ? val['template'] : 'dicomImage';
-      } else if (val['num'] === 2) {
-        this.tiles = [...this.tiles2];
-      } else if( val['num'] === 3) {
-        this.tiles = [...this.tiles3];
-      } else if( val['num'] === 4)  {
-        this.tiles = [...this.tiles4];
-      }
-*/
       this.mcols = this.tiles[this.tiles.length - 1].mcols;
       this.mheight = this.tiles[this.tiles.length - 1].mheight;
       console.log(' mcols mheight', this.mcols, this.mheight)

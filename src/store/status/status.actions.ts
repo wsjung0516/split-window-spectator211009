@@ -49,3 +49,7 @@ export class SetSelectedSplitWindowId {
   public static readonly type = '[Status] Selected split window id';
   constructor(public payload: number ) { }
 }
+export class SetWebworkerWorkingStatus {
+  public static readonly type = '[Status] Set Webworker WorkingStatus';
+  constructor(public payload: boolean ) { }
+}

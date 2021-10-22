@@ -4,17 +4,22 @@ import {
   Component,
   ElementRef,
   HostListener,
-  Input,
+  Input, OnDestroy,
   OnInit,
   ViewChild
 } from '@angular/core';
 import {CarouselService} from "../carousel.service";
 import {ImageService} from "../image.service";
-import {Observable} from "rxjs";
+import {from, Observable, Subject} from "rxjs";
 import {Select, Store} from "@ngxs/store";
 import {StatusState} from "../../../store/status/status.state";
-import {SetCurrentImages, SetIsImageLoaded} from "../../../store/status/status.actions";
-import {skip} from "rxjs/operators";
+import {
+  SetCurrentCategory,
+  SetCurrentImages,
+  SetIsImageLoaded,
+  SetWebworkerWorkingStatus
+} from "../../../store/status/status.actions";
+import {filter, skip, takeUntil, tap} from "rxjs/operators";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 
 export const category_list = ['animal','mountain','banana', 'house', 'baby', 'forest', 'happiness', 'love', 'sea']
@@ -45,9 +50,10 @@ export interface ImageModel {
   ],
 
 })
-export class CarouselMainComponent implements OnInit, AfterViewInit {
+export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   worker: Worker[] = [];
-
+  unsubscribe = new Subject();
+  unsubscribe$ = this.unsubscribe.asObservable();
   _queryUrl: string;
   category: string;
   imageIdx: any;
@@ -56,6 +62,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit {
   _progress: string;
   originalImage: any;
   @Input() set queryUrl( q: string){
+    if( !q ) q = 'animal';
     this._queryUrl = q;
     this.category = q && q.split('.')[0].split('/')[2];
   }  // : string = 'assets/json/mountain.json';
@@ -68,6 +75,8 @@ export class CarouselMainComponent implements OnInit, AfterViewInit {
   @Select(StatusState.getSelectedSplitWindowId) getSelectedSplitWindowId$: Observable<number>;
   @SelectSnapshot(StatusState.getSplitState) getSplitState: string[];
   @SelectSnapshot(StatusState.getCurrentCategory) currentCategory: string;
+  @SelectSnapshot(StatusState.getWebworkerWorkingStatus) getWebworkerWorkingStatus: boolean;
+  @Select(StatusState.getCurrentSeries) getCurrentSeries$: Observable<any>;
 
   @HostListener('window:keydown', ['$event'])
     handleKey(event: KeyboardEvent) {
@@ -84,41 +93,76 @@ export class CarouselMainComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
-    this.imageIdx = category_list.find( val => val === this.category);
     // call from thumbnail-list, triggered by clicking image item.
+    /** Display image at the main window whenever clinking thumbnail_item */
     this.getSelectedImageById$.pipe(skip(1))
       .subscribe( id => {
         this.image.nativeElement.src = this.carouselService.getSelectedImageById(id)
       })
-    // to check if image loading is started. then show the first image.
-    this.getIsImageLoaded$ && this.getIsImageLoaded$.pipe(skip(1))
-      .subscribe( res => {
-        // To display the first image in the main window, and item list window
-      this.image.nativeElement.src = this.carouselService.getSelectedImageById(0);
-      this.originalImage = this.image.nativeElement.src;
-        // console.log(' this.image.nativeElement.src', this.image.nativeElement.src)
-        this.cdr.detectChanges();
-    })
-    //
+
+    /** New process start whenever clinking series_item */
+    this.getCurrentSeries$.pipe(
+      takeUntil(this.unsubscribe$),
+      skip(1),
+      tap(() => {
+        this.imageIdx = category_list.find( val => val === this.category);
+        // to check if image loading is started. then show the first image.
+        this.showTheFirstImage();
+        this.webWorkerProcess();
+        this.getTotalImageList();
+      })
+    )
+    this.imageIdx = category_list.find( val => val === this.category);
+    this.showTheFirstImage();
     this.webWorkerProcess();
     this.getTotalImageList();
+  }
 
-
+  private showTheFirstImage() {
+    this.getIsImageLoaded$ && this.getIsImageLoaded$.pipe(skip(1))
+      .subscribe(res => {
+        // To display the first image in the main window, and item list window
+        this.image.nativeElement.src = this.carouselService.getSelectedImageById(0);
+        this.originalImage = this.image.nativeElement.src;
+        // console.log(' this.image.nativeElement.src', this.image.nativeElement.src)
+        this.cdr.detectChanges();
+      })
   }
 
   private getTotalImageList() {
+    let image_list: any = undefined;
     this.imageService.getTotalImageList(this._queryUrl)
       .subscribe((val: any) => {
-        this.imageCount[this.imageIdx] = val.length;
-        console.log(' val', val.length)
-        const data: any = {
-          body: val,
-          category: this.category
-        }
-        this.worker[this.imageIdx].postMessage(data)
+        image_list = val;
+        from(val).pipe(
+          takeUntil(this.getCurrentSeries$),
+          filter( (val: any) => {
+            if( this.imageService.isThisUrlCached(val.url)){
+              this.store.dispatch(new SetWebworkerWorkingStatus(false))
+              return false;
+            }
+            return true
+          }),
+          filter(() => !this.getWebworkerWorkingStatus ),
+          tap(() => {
+            this.store.dispatch(new SetWebworkerWorkingStatus(true))
+            this.webworkerPostMessage(image_list);
+          })
+        )
+
       }, error => {
         throw Error(error)
       });
+  }
+
+  private webworkerPostMessage(val: any) {
+    this.imageCount[this.imageIdx] = val.length;
+    // console.log(' val', val.length)
+    const data: any = {
+      body: val,
+      category: this.category
+    }
+    this.worker[this.imageIdx].postMessage(data)
   }
 
   ngAfterViewInit() {
@@ -136,9 +180,11 @@ export class CarouselMainComponent implements OnInit, AfterViewInit {
     if (typeof Worker !== 'undefined') {
       // console.log(' import.meta.url',  import.meta.url)
       this.worker[this.imageIdx] = new Worker(new URL('../carousel-worker.ts', import.meta.url));
+      //
       this.worker[this.imageIdx].onmessage = ( data: any) => {
         this.progress[this.imageIdx] = ((data.data.imageId + 1)/ this.imageCount[this.imageIdx] * 100).toFixed(0).toString();
         // console.log(' res', data.data.imageIdx + 1,this.imageCount[this.imageIdx])
+        this.store.dispatch(new SetWebworkerWorkingStatus(true));
         this.cdr.detectChanges();
         this.makeCachedImage(data.data);
       };
@@ -161,6 +207,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit {
 
   saveCacheImage(data: ImageModel) {
     this.imageService.checkAndCacheImage(data)
+
     this.store.dispatch(new SetIsImageLoaded(true));
     this.store.dispatch(new SetCurrentImages([data]));
 
@@ -174,5 +221,9 @@ export class CarouselMainComponent implements OnInit, AfterViewInit {
     //   this.store.dispatch(new SetIsImageLoaded(true));
     //   this.store.dispatch(new SetCurrentImages([data]));
     // }
+  }
+  ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 }

@@ -39,6 +39,9 @@ export class ImageService {
     return this._cacheUrls;
   }
 */
+  isThisUrlCached(url: string) {
+    return this._cacheUrls.find(val => val.url === url);
+  }
   setCacheUrl(data:any) { // data: ImageModel
     const cIdx: any = category_list.findIndex( val => val === data.category) + 1;
     const nIdx = data.imageId < 10 ? (cIdx * 10 + data.imageId) : (cIdx * 100 + data.imageId);

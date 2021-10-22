@@ -46,6 +46,7 @@ export class CarouselService {
     return this.imageService.getCacheImage(this.category, this.currentImageIndex)
   }
   getSelectedImageById(idx: number) {
+    console.log(' category, idx', this.category, idx)
     // const url = this.imageService.cacheUrls[idx];
     return this.imageService.getCacheImage(this.category, idx)
   }

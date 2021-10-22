@@ -20,6 +20,7 @@ import {CarouselService} from "../../carousel/carousel.service";
 import {ImageService} from "../../carousel/image.service";
 import {takeUntil} from "rxjs/operators";
 import {
+  SetCurrentCategory,
   SetCurrentImages,
   SetCurrentSeries,
   SetIsImageLoaded, SetIsSeriesLoaded,
@@ -107,6 +108,9 @@ export class SeriesListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    /** Default category */
+    this.store.dispatch(new SetCurrentCategory('animal'));
+
     /** When scrollbar is dragged,  then update nodule-list scroll offset */
     this.viewPort.scrolledIndexChange.pipe(takeUntil(this.unsubscribe$)).subscribe(val => {
       // console.log(' draaged value', val)
@@ -118,15 +122,17 @@ export class SeriesListComponent implements OnInit, OnDestroy {
     });
     //
     this.webWorkerProcess();
+    /** Start series worker with the initial values */
     this.seriesSerive.getSeriesObject()
       .subscribe((val:any) => {
+        console.log('-- val', val)
         const data: any = {
-          body: val,
-          category: ''
+          body: val
         }
         this.seriesWorker.postMessage(data);
       });
     //
+    /** Move scroll position by the selected series */
     this.getSelectedSeriesById$.pipe(
       takeUntil(this.unsubscribe$)
     ).subscribe( val => {
@@ -139,7 +145,7 @@ export class SeriesListComponent implements OnInit, OnDestroy {
 
   }
   onSelectSeries(ev:SeriesModel) {
-    // console.log( '--- seriesList-list id', ev )
+    console.log( '--- seriesList-list id', ev )
     this.store.dispatch(new SetSelectedSeriesById(ev.seriesId));
     this.addClass = {
       class: 'selected_item',

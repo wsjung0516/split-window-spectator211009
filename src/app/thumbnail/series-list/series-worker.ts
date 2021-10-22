@@ -43,7 +43,7 @@ addEventListener('message', async ({data}) => {
           seriesId: i,
           url: rData[i].url,
           blob: res1,
-          category: data.category
+          category: rData[i].category
         }
 
       } catch (e) {

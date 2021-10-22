@@ -10,7 +10,7 @@ import {SetSplitMode} from "../store/status/status.actions";
 })
 export class AppComponent {
   title = 'split-window-spectator211009';
-  queryUrl = 'assets/json/sea.json';
+  queryUrl = 'assets/json/animal.json';
   constructor(private store: Store) {
   }
   onClickWindowSplit(no: number) {

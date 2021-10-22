@@ -32,7 +32,8 @@ describe('Status store', () => {
       splitMode: 1,
       splitState: ['animal'],
       selectedSeriesId: 1,
-      selectedSplitWindowId: 1
+      selectedSplitWindowId: 1,
+      webworkerWorkingStatus: false
     };
     spyOn(store,'dispatch').and.callThrough();
     store.dispatch(new SetIsImageLoaded(true));

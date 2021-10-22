@@ -10,7 +10,7 @@ import {
   SetSelectedSeriesById,
   SetSelectedSplitWindowId,
   SetSplitMode,
-  SetSplitState,
+  SetSplitState, SetWebworkerWorkingStatus,
   StatusAction
 } from './status.actions';
 import {Injectable} from "@angular/core";
@@ -30,6 +30,7 @@ export interface StatusStateModel {
   splitState: string[];
   selectedSeriesId: number;
   selectedSplitWindowId: number;
+  webworkerWorkingStatus: boolean;
 }
 
 @State<StatusStateModel>({
@@ -46,7 +47,8 @@ export interface StatusStateModel {
     splitMode: 1,
     splitState: ['animal'],
     selectedSeriesId: 1,
-    selectedSplitWindowId: 0
+    selectedSplitWindowId: 0,
+    webworkerWorkingStatus: false
   }
 })
 @Injectable()
@@ -99,6 +101,10 @@ export class StatusState {
   @Selector()
   public static getSelectedSplitWindowId(state: StatusStateModel) {
     return state.selectedSplitWindowId;
+  }
+  @Selector()
+  public static getWebworkerWorkingStatus(state: StatusStateModel) {
+    return state.webworkerWorkingStatus;
   }
 
   @Action(StatusAction)
@@ -153,6 +159,10 @@ export class StatusState {
   @Action(SetSelectedSplitWindowId)
   public setSelectedSplitWindowId({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSelectedSplitWindowId) {
     patchState({selectedSeriesId: payload})
+  }
+  @Action(SetWebworkerWorkingStatus)
+  public setWebworkerWorkingStatus({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetWebworkerWorkingStatus) {
+    patchState({webworkerWorkingStatus: payload})
   }
 
 }

@@ -12,6 +12,7 @@ import {NgxsModule} from "@ngxs/store";
 import {StatusState} from "../store/status/status.state";
 import {ScrollingModule} from "@angular/cdk/scrolling";
 import {NgxsSelectSnapshotModule} from "@ngxs-labs/select-snapshot";
+import {NgxsStoragePluginModule} from "@ngxs/storage-plugin";
 import {GridModule} from "./grid/grid.module";
 import {AngularMaterials} from "./shared/angular-materials";
 import {ThumbnailModule} from "./thumbnail/thumbnail-module";
@@ -28,6 +29,7 @@ import {ThumbnailModule} from "./thumbnail/thumbnail-module";
         AngularMaterials,
         NgxsModule.forRoot([StatusState]),
         NgxsSelectSnapshotModule.forRoot(),
+        // NgxsStoragePluginModule.forRoot(),
         GridModule,
         ThumbnailModule
     ],

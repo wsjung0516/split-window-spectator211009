@@ -28,7 +28,7 @@ export interface StatusStateModel {
   selectedImageUrl: string;
   splitMode: number;
   splitState: string[];
-  selectedSeriesId: number;
+  selectedSeriesById: number;
   selectedSplitWindowId: number;
   webworkerWorkingStatus: boolean;
 }
@@ -46,7 +46,7 @@ export interface StatusStateModel {
     selectedImageUrl: '',
     splitMode: 1,
     splitState: ['animal'],
-    selectedSeriesId: 1,
+    selectedSeriesById: 0,
     selectedSplitWindowId: 0,
     webworkerWorkingStatus: false
   }
@@ -96,7 +96,7 @@ export class StatusState {
   }
   @Selector()
   public static getSelectedSeriesById(state: StatusStateModel) {
-    return state.selectedSeriesId;
+    return state.selectedSeriesById;
   }
   @Selector()
   public static getSelectedSplitWindowId(state: StatusStateModel) {
@@ -154,15 +154,14 @@ export class StatusState {
   }
   @Action(SetSelectedSeriesById)
   public setSelectedSeriesById({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSelectedSeriesById) {
-    patchState({selectedSeriesId: payload})
+    patchState({selectedSeriesById: payload})
   }
   @Action(SetSelectedSplitWindowId)
   public setSelectedSplitWindowId({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSelectedSplitWindowId) {
-    patchState({selectedSeriesId: payload})
+    patchState({selectedSplitWindowId: payload})
   }
   @Action(SetWebworkerWorkingStatus)
   public setWebworkerWorkingStatus({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetWebworkerWorkingStatus) {
     patchState({webworkerWorkingStatus: payload})
   }
-
 }

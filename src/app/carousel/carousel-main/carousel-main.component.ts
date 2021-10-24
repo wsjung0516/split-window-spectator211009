@@ -21,6 +21,8 @@ import {
 } from "../../../store/status/status.actions";
 import {filter, skip, takeUntil, tap} from "rxjs/operators";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
+import {SeriesModel} from "../../thumbnail/series-list/series-list.component";
+import {SeriesItemService} from "../../thumbnail/series-item/series-item.service";
 
 export const category_list = ['animal','mountain','banana', 'house', 'baby', 'forest', 'happiness', 'love', 'sea']
 export interface ImageModel {
@@ -89,6 +91,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
     private imageService: ImageService,
     private store: Store,
     private cdr: ChangeDetectorRef,
+    private seriesItemService: SeriesItemService
     ) { }
 
 
@@ -101,11 +104,15 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
       })
 
     /** New process start whenever clinking series_item */
-    this.getCurrentSeries$.pipe(
-      takeUntil(this.unsubscribe$),
+    this.getSelectedSeriesById$.pipe(
       skip(1),
-      tap(() => {
-        this.imageIdx = category_list.find( val => val === this.category);
+      takeUntil(this.unsubscribe$),
+      tap((id: number) => {
+        const series = this.seriesItemService.getSeries;
+        this.category = series[id].category;
+        this.imageIdx = id;
+        console.log('---- series', series)
+        // this.imageIdx = category_list.find( val => val === this.category);
         // to check if image loading is started. then show the first image.
         this.showTheFirstImage();
         this.webWorkerProcess();
@@ -130,35 +137,20 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private getTotalImageList() {
-    let image_list: any = undefined;
     this.imageService.getTotalImageList(this._queryUrl)
       .subscribe((val: any) => {
-        image_list = val;
-        from(val).pipe(
-          takeUntil(this.getCurrentSeries$),
-          filter( (val: any) => {
-            if( this.imageService.isThisUrlCached(val.url)){
-              this.store.dispatch(new SetWebworkerWorkingStatus(false))
-              return false;
-            }
-            return true
-          }),
-          filter(() => !this.getWebworkerWorkingStatus ),
-          tap(() => {
-            this.store.dispatch(new SetWebworkerWorkingStatus(true))
-            this.webworkerPostMessage(image_list);
-          })
-        )
-
+        // console.log(' val', val)
+        this.imageCount[this.imageIdx] = val.length;
+        this.webworkerPostMessage(val);
       }, error => {
         throw Error(error)
       });
   }
 
   private webworkerPostMessage(val: any) {
-    this.imageCount[this.imageIdx] = val.length;
     // console.log(' val', val.length)
     const data: any = {
+      msg: 'download',
       body: val,
       category: this.category
     }
@@ -179,14 +171,22 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   webWorkerProcess() {
     if (typeof Worker !== 'undefined') {
       // console.log(' import.meta.url',  import.meta.url)
+      if( !this.worker[this.imageIdx])
       this.worker[this.imageIdx] = new Worker(new URL('../carousel-worker.ts', import.meta.url));
       //
       this.worker[this.imageIdx].onmessage = ( data: any) => {
         this.progress[this.imageIdx] = ((data.data.imageId + 1)/ this.imageCount[this.imageIdx] * 100).toFixed(0).toString();
-        // console.log(' res', data.data.imageIdx + 1,this.imageCount[this.imageIdx])
-        this.store.dispatch(new SetWebworkerWorkingStatus(true));
+        // console.log(' res data', data)
+        // this.store.dispatch(new SetWebworkerWorkingStatus(true));
         this.cdr.detectChanges();
         this.makeCachedImage(data.data);
+        const _data: any = {
+          msg: 'completeCachedImage',
+          body: data.data.url,
+          category: this.category
+        }
+        this.worker[this.imageIdx].postMessage(JSON.parse(JSON.stringify(_data)))
+
       };
     }
   }
@@ -194,7 +194,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   private makeCachedImage(data: ImageModel) {
     if(  !data.blob.type || !data.blob.size) {
       //this.imageService.removeUrl(data.url);
-      console.log(' ---data url', data.url)
+      console.log(' ---data url', data)
       return;
     } // data is not Blob type.
     // console.log('----data',data.blob)

@@ -66,7 +66,7 @@ describe('ImageService', () => {
     { idx: 90, category: 'sea', url: 'ccccc'},
   ]
 
-  fit(' Should add image urls', () => {
+  it(' Should add image urls', () => {
     const service = spectator.service;
     service.checkAndCacheImage(cachedUrl1);
     service.checkAndCacheImage(cachedUrl2);
@@ -79,7 +79,7 @@ describe('ImageService', () => {
     { idx: 10, category: 'animal', url: 'aaaaa'},
     { idx: 11, category: 'animal', url: 'bbbbb'},
   ]
-  fit(' get urls by category', () => {
+  it(' get urls by category', () => {
     const service = spectator.service;
     service.checkAndCacheImage(cachedUrl1);
     service.checkAndCacheImage(cachedUrl2);

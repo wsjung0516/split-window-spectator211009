@@ -15,16 +15,13 @@ import {
 import {Select, Store} from "@ngxs/store";
 import {StatusState} from "../../../store/status/status.state";
 import {Observable, Subject} from "rxjs";
-import {ImageModel} from "../../carousel/carousel-main/carousel-main.component";
 import {CarouselService} from "../../carousel/carousel.service";
 import {ImageService} from "../../carousel/image.service";
-import {takeUntil} from "rxjs/operators";
+import {skip, takeUntil} from "rxjs/operators";
 import {
   SetCurrentCategory,
-  SetCurrentImages,
   SetCurrentSeries,
-  SetIsImageLoaded, SetIsSeriesLoaded,
-  SetSelectedSeriesById
+  SetIsSeriesLoaded, SetSelectedSeriesById,
 } from "../../../store/status/status.actions";
 import {SeriesItemService} from "../series-item/series-item.service";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
@@ -104,7 +101,7 @@ export class SeriesListComponent implements OnInit, OnDestroy {
     private imageService: ImageService,
     private store: Store,
     private cdr: ChangeDetectorRef,
-    private seriesSerive: SeriesItemService
+    private seriesService: SeriesItemService
   ) { }
 
   ngOnInit(): void {
@@ -123,9 +120,9 @@ export class SeriesListComponent implements OnInit, OnDestroy {
     //
     this.webWorkerProcess();
     /** Start series worker with the initial values */
-    this.seriesSerive.getSeriesObject()
+    this.seriesService.getSeriesObject()
       .subscribe((val:any) => {
-        console.log('-- val', val)
+        // console.log('-- val', val)
         const data: any = {
           body: val
         }
@@ -134,8 +131,10 @@ export class SeriesListComponent implements OnInit, OnDestroy {
     //
     /** Move scroll position by the selected series */
     this.getSelectedSeriesById$.pipe(
+      skip(1),
       takeUntil(this.unsubscribe$)
-    ).subscribe( val => {
+    ).subscribe( (val: number) => {
+      // console.log( '--- seriesList-list id', val )
       this.addClass = {
         class:'selected_item',
         seriesId: val
@@ -145,7 +144,7 @@ export class SeriesListComponent implements OnInit, OnDestroy {
 
   }
   onSelectSeries(ev:SeriesModel) {
-    console.log( '--- seriesList-list id', ev )
+    console.log(' onSelectSeries', ev);
     this.store.dispatch(new SetSelectedSeriesById(ev.seriesId));
     this.addClass = {
       class: 'selected_item',
@@ -160,7 +159,9 @@ export class SeriesListComponent implements OnInit, OnDestroy {
       this.seriesWorker.onmessage = ( data: any) => {
         const series: any = this.imageService.readFile(data.data.blob)
         series.subscribe( (obj:any) => {
+          // console.log('--- data', obj);
           data.data.blob = obj;
+          // this.seriesService.saveSeries = [data.data];
           this.store.dispatch(new SetIsSeriesLoaded(true));
           this.store.dispatch(new SetCurrentSeries([data.data]));
         })

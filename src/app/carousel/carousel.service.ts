@@ -27,18 +27,12 @@ export class CarouselService {
     // const url = this.imageService.cacheUrls[this.currentImageIndex]
     this.store.dispatch(new SetSelectedImageById(this.currentImageIndex));
     return this.imageService.getCacheImage(this.category, this.currentImageIndex);
-    // return this.imageService.getCacheImage(url);
-
-
-    // return this.currentImageUrl = this.imageService.cacheUrls[this.currentImageIndex]
-
   }
   getPrevImage() {
     if( this.currentImageIndex > 0) {
       this.currentImageIndex = this.currentImageIndex - 1;
     }
     // console.log('-- prev this.currentImageIndex', this.currentImageIndex )
-    // const url = this.imageService.cacheUrls[this.currentImageIndex]
     this.store.dispatch(new SetSelectedImageById(this.currentImageIndex));
     return this.imageService.getCacheImage(this.category, this.currentImageIndex);
   }
@@ -46,8 +40,6 @@ export class CarouselService {
     return this.imageService.getCacheImage(this.category, this.currentImageIndex)
   }
   getSelectedImageById(idx: number) {
-    console.log(' category, idx', this.category, idx)
-    // const url = this.imageService.cacheUrls[idx];
     return this.imageService.getCacheImage(this.category, idx)
   }
 }

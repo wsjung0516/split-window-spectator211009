@@ -26,6 +26,7 @@
     "@ngxs-labs/select-snapshot": "^3.0.0",
     "@ngxs/devtools-plugin": "^3.3.2",
     "@ngxs/logger-plugin": "^3.3.2",
+    "@ngxs/storage-plugin": "^3.7.2",
     "@ngxs/store": "^3.3.2",
     "image-thumbnail": "^1.0.14",
     "images-scraper": "^6.4.0",

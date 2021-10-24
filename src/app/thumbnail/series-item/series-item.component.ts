@@ -38,7 +38,7 @@ export class SeriesItemComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() seriesImage: SeriesModel;
   @Input() addClass: any;
   @Output() selected: EventEmitter<any> = new EventEmitter();
-  @SelectSnapshot(StatusState.getSelectedSeriesById) selectedSeriesId: number;
+  @SelectSnapshot(StatusState.getSelectedSeriesById) selectedSeriesById: number;
 
   borderColor: any;
 
@@ -52,7 +52,7 @@ export class SeriesItemComponent implements OnInit, OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges) {
     this.borderColor = 'none_selected_item'
     this.cdr.markForCheck();
-    if( this.selectedSeriesId === this.seriesImage.seriesId) {
+    if( this.selectedSeriesById === this.seriesImage.seriesId) {
       this.borderColor = 'selected_item';
       this.cdr.markForCheck();
 

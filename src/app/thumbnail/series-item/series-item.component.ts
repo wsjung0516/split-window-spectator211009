@@ -11,6 +11,7 @@ import {
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 import {StatusState} from "../../../store/status/status.state";
 import {SeriesModel} from "../series-list/series-list.component";
+import {mark} from "@angular/compiler-cli/src/ngtsc/perf/src/clock";
 
 @Component({
   selector: 'app-series-item',
@@ -47,6 +48,7 @@ export class SeriesItemComponent implements OnInit, OnChanges, AfterViewInit {
   ngOnInit(): void {}
   ngAfterViewInit() {
     this.image.nativeElement.src = this.seriesImage.blob;
+    this.cdr.markForCheck();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -58,6 +60,11 @@ export class SeriesItemComponent implements OnInit, OnChanges, AfterViewInit {
 
     } else {
       this.borderColor = 'non_selected_item';
+      this.cdr.markForCheck();
+
+    }
+    if( changes.seriesImage && changes.seriesImage.currentValue && this.image) {
+      this.image.nativeElement.src = changes.seriesImage.currentValue.blob;
       this.cdr.markForCheck();
 
     }

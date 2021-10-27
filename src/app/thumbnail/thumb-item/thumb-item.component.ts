@@ -53,6 +53,7 @@ export class ThumbItemComponent implements OnInit, AfterViewInit, OnChanges {
   ngAfterViewInit() {
     // console.log('this.originalImage', this.originalImage.imageId)
     this.image.nativeElement.src = this.originalImage.blob;
+    this.cdr.markForCheck();
   }
   get borderStyle() {
     return {'border-color': this.originalImage.imageId === this.selectedImageId ? 'blue' : 'yellow'}
@@ -67,7 +68,10 @@ export class ThumbItemComponent implements OnInit, AfterViewInit, OnChanges {
     } else {
       this.borderColor = 'non_selected_item';
       this.cdr.markForCheck();
-
+    }
+    if( changes.originalImage && changes.originalImage.currentValue && this.image) {
+      this.image.nativeElement.src = changes.originalImage.currentValue.blob;
+      this.cdr.markForCheck();
     }
 
   }

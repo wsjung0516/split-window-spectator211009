@@ -27,7 +27,8 @@ describe('ThumbItemComponent', () => {
     imageId: 1,
     url: '',
     category: 'animal',
-    blob: ''
+    blob: '',
+    title: ''
   }
 
   beforeEach(() => {

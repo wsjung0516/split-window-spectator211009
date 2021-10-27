@@ -39,7 +39,7 @@ export class CarouselService {
   getSelectedImageByUrl(url: string) {
     return this.imageService.getCacheImage(this.category, this.currentImageIndex)
   }
-  getSelectedImageById(idx: number) {
-    return this.imageService.getCacheImage(this.category, idx)
+  getSelectedImageById(cat: string, idx: number) {
+    return this.imageService.getCacheImage(cat, idx)
   }
 }

@@ -14,17 +14,17 @@ import {
 } from "@angular/cdk/scrolling";
 import {Select, Store} from "@ngxs/store";
 import {StatusState} from "../../../store/status/status.state";
-import {Observable, Subject} from "rxjs";
+import {from, Observable, Subject} from "rxjs";
 import {CarouselService} from "../../carousel/carousel.service";
 import {ImageService} from "../../carousel/image.service";
-import {skip, takeUntil} from "rxjs/operators";
+import {map, skip, switchMap, takeUntil, tap} from "rxjs/operators";
 import {
-  SetCurrentCategory,
-  SetCurrentSeries,
-  SetIsSeriesLoaded, SetSelectedSeriesById,
+  SetCurrentCategory, SetIsImageLoaded,
+  SetIsSeriesLoaded, SetSelectedImageById, SetSelectedSeriesById, SetSeriesUrls,
 } from "../../../store/status/status.actions";
 import {SeriesItemService} from "../series-item/series-item.service";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
+import {CacheSeriesService} from "../cache-series.service";
 
 export interface SeriesModel {
   seriesId: number;
@@ -50,7 +50,8 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
                                      class="cdk-scroll-viewport"
                                      orientation="horizontal"
                                     >
-          <ng-container *cdkVirtualFor="let item of currentSeries$ | async" >
+<!--          <ng-container *cdkVirtualFor="let item of currentSeries$ | async" >-->
+          <ng-container *cdkVirtualFor="let item of currentSeries" >
 
             <app-series-item [seriesImage]="item"
                             [addClass]="addClass"
@@ -84,7 +85,7 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
 export class SeriesListComponent implements OnInit, OnDestroy {
 
   @Input() category: string;
-  @Select(StatusState.getCurrentSeries)  currentSeries$: Observable<SeriesModel[]>;
+  @Select(StatusState.getSeriesUrls)  seriesUrls$: Observable<string[]>;
   @SelectSnapshot(StatusState.getSelectedSeriesById)  getSelectedSeriesById: number;
   @Select(StatusState.getSelectedSeriesById)  getSelectedSeriesById$: Observable<number>;
   @ViewChild(CdkVirtualScrollViewport, { static: true }) viewPort: CdkVirtualScrollViewport;
@@ -96,17 +97,28 @@ export class SeriesListComponent implements OnInit, OnDestroy {
   draggedInx = 0;
   idx = 0;
   seriesWorker: Worker;
+  currentSeries: SeriesModel[] = [];
+  testValue:any;
   constructor(
     private carouselService: CarouselService,
     private imageService: ImageService,
     private store: Store,
     private cdr: ChangeDetectorRef,
-    private seriesService: SeriesItemService
+    private seriesService: SeriesItemService,
+    private cacheSeriesService: CacheSeriesService
   ) { }
 
   ngOnInit(): void {
     /** Default category */
     this.store.dispatch(new SetCurrentCategory('animal'));
+
+    this.seriesUrls$.pipe(
+      takeUntil(this.unsubscribe$),
+      tap((series) => {
+        this.currentSeries = [...this.cacheSeriesService.cachedSeries]
+        this.cdr.detectChanges()
+      })
+    ).subscribe()
 
     /** When scrollbar is dragged,  then update nodule-list scroll offset */
     this.viewPort.scrolledIndexChange.pipe(takeUntil(this.unsubscribe$)).subscribe(val => {
@@ -144,13 +156,20 @@ export class SeriesListComponent implements OnInit, OnDestroy {
 
   }
   onSelectSeries(ev:SeriesModel) {
-    console.log(' onSelectSeries', ev);
+    // console.log(' onSelectSeries', ev);
+    // Select series
     this.store.dispatch(new SetSelectedSeriesById(ev.seriesId));
+    // Setting the first thumbnail_item
+    this.store.dispatch(new SetSelectedImageById(0));
+    // Setting the current selected category
+    this.store.dispatch(new SetCurrentCategory(ev.category));
+    // Enable display the first image in the main window
+    this.store.dispatch(new SetIsImageLoaded(true));
+    // Focusing the selected series
     this.addClass = {
       class: 'selected_item',
       index: ev.seriesId
     }
-
   }
   webWorkerProcess() {
     if (typeof Worker !== 'undefined') {
@@ -159,11 +178,12 @@ export class SeriesListComponent implements OnInit, OnDestroy {
       this.seriesWorker.onmessage = ( data: any) => {
         const series: any = this.imageService.readFile(data.data.blob)
         series.subscribe( (obj:any) => {
-          // console.log('--- data', obj);
+          // console.log('--- data', data.data.url);
           data.data.blob = obj;
           // this.seriesService.saveSeries = [data.data];
           this.store.dispatch(new SetIsSeriesLoaded(true));
-          this.store.dispatch(new SetCurrentSeries([data.data]));
+          this.store.dispatch(new SetSeriesUrls([data.data.url]))
+          this.cacheSeriesService.checkAndCacheSeries(data.data);
         })
       };
     }

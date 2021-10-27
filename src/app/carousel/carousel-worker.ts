@@ -43,10 +43,11 @@ async function getCarouselImage({data}: any) {
       try {
         res1 = await ajaxData(rData[i].url);
         sData = {
-          imageId: i,
+          imageId: rData[i].id,
           url: rData[i].url,
           blob: res1,
-          category: data.category
+          category: data.category,
+          title: rData[i].title
         }
       } catch (e) {
         sData = {

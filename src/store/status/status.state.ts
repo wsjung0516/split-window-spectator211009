@@ -1,14 +1,13 @@
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import {
   SetCurrentCategory,
-  SetCurrentImages,
-  SetCurrentSeries,
+  SetImageUrls,
   SetIsImageLoaded,
   SetIsSeriesLoaded,
   SetSelectedImageById,
   SetSelectedImageByUrl,
   SetSelectedSeriesById,
-  SetSelectedSplitWindowId,
+  SetSelectedSplitWindowId, SetSeriesUrls,
   SetSplitMode,
   SetSplitState, SetWebworkerWorkingStatus,
   StatusAction
@@ -21,8 +20,8 @@ export interface StatusStateModel {
   items: string[];
   isImageLoaded: boolean;
   isSeriesLoaded: boolean;
-  currentImages: ImageModel[]; //
-  currentSeries: SeriesModel[]; //
+  imageUrls: string[]; //
+  seriesUrls: string[]; //
   currentCategory: string;
   selectedImageId: number;
   selectedImageUrl: string;
@@ -39,8 +38,8 @@ export interface StatusStateModel {
     items: [],
     isImageLoaded: false,
     isSeriesLoaded: false,
-    currentImages: [],
-    currentSeries: [],
+    imageUrls: [],
+    seriesUrls: [],
     currentCategory: '',
     selectedImageId: 0,
     selectedImageUrl: '',
@@ -67,12 +66,12 @@ export class StatusState {
     return state.isSeriesLoaded;
   }
   @Selector()
-  public static getCurrentImages(state: StatusStateModel) {
-    return state.currentImages;
+  public static getImageUrls(state: StatusStateModel) {
+    return state.imageUrls;
   }
   @Selector()
-  public static getCurrentSeries(state: StatusStateModel) {
-    return state.currentSeries;
+  public static getSeriesUrls(state: StatusStateModel) {
+    return state.seriesUrls;
   }
   @Selector()
   public static getCurrentCategory(state: StatusStateModel) {
@@ -115,16 +114,22 @@ export class StatusState {
   }
   @Action(SetIsImageLoaded)
   public setIsImageLoaded({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetIsImageLoaded) {
-    patchState({isImageLoaded: payload})
+    const status = !getState().isImageLoaded;
+    patchState({isImageLoaded: status})
   }
   @Action(SetIsSeriesLoaded)
   public setIsSeriesLoaded({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetIsSeriesLoaded) {
     patchState({isSeriesLoaded: payload})
   }
-  @Action(SetCurrentImages)
-  public setCurrentImages({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetCurrentImages) {
-    let images = getState().currentImages;
-    patchState({currentImages: [...images, ...payload]});
+  @Action(SetImageUrls)
+  public setImageUrls({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetImageUrls) {
+    let urls = getState().imageUrls;
+    patchState({imageUrls: [...urls, ...payload]});
+  }
+  @Action(SetSeriesUrls)
+  public setSeriesUrls({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSeriesUrls) {
+    let urls = getState().seriesUrls;
+    patchState({seriesUrls: [...urls, ...payload]});
   }
   @Action(SetCurrentCategory)
   public setCurrentCategory({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetCurrentCategory) {
@@ -146,11 +151,6 @@ export class StatusState {
   public setSplitState({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSplitState) {
     const state = getState().splitState;
     patchState({splitState: [...state, ...payload]})
-  }
-  @Action(SetCurrentSeries)
-  public setCurrentSeries({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetCurrentSeries) {
-    let series = getState().currentSeries;
-    patchState({currentSeries: [...series, ...payload]});
   }
   @Action(SetSelectedSeriesById)
   public setSelectedSeriesById({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSelectedSeriesById) {

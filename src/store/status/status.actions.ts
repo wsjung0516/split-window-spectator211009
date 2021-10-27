@@ -13,9 +13,13 @@ export class SetIsSeriesLoaded {
   public static readonly type = '[Status] Is Series Loaded';
   constructor(public payload: boolean) { }
 }
-export class SetCurrentImages {
-  public static readonly type = '[Status] Current cached images';
-  constructor(public payload: ImageModel[]) { }
+export class SetImageUrls {
+  public static readonly type = '[Status] Cache image urls';
+  constructor(public payload: string[]) { }
+}
+export class SetSeriesUrls {
+  public static readonly type = '[Status] Cache series urls';
+  constructor(public payload: string[]) { }
 }
 export class SetCurrentCategory {
   public static readonly type = '[Status] Current category';
@@ -36,10 +40,6 @@ export class SetSplitMode {
 export class SetSplitState {
   public static readonly type = '[Status] Set split state';
   constructor(public payload: string[] ) { }
-}
-export class SetCurrentSeries {
-  public static readonly type = '[Status] Current saved series';
-  constructor(public payload: SeriesModel[]) { }
 }
 export class SetSelectedSeriesById {
   public static readonly type = '[Status] Selected series id';

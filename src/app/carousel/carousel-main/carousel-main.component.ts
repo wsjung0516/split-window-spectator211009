@@ -10,26 +10,25 @@ import {
 } from '@angular/core';
 import {CarouselService} from "../carousel.service";
 import {ImageService} from "../image.service";
-import {from, Observable, Subject} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {Select, Store} from "@ngxs/store";
 import {StatusState} from "../../../store/status/status.state";
 import {
-  SetCurrentCategory,
-  SetCurrentImages,
+  SetImageUrls,
   SetIsImageLoaded,
-  SetWebworkerWorkingStatus
 } from "../../../store/status/status.actions";
-import {filter, skip, takeUntil, tap} from "rxjs/operators";
+import {skip, takeUntil} from "rxjs/operators";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
-import {SeriesModel} from "../../thumbnail/series-list/series-list.component";
 import {SeriesItemService} from "../../thumbnail/series-item/series-item.service";
+import {CacheSeriesService} from "../../thumbnail/cache-series.service";
 
 export const category_list = ['animal','mountain','banana', 'house', 'baby', 'forest', 'happiness', 'love', 'sea']
 export interface ImageModel {
   imageId: number,
   category: string,
   url: string,
-  blob: any
+  blob: any,
+  title: string
 }
 
 @Component({
@@ -53,16 +52,6 @@ export interface ImageModel {
 
 })
 export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
-  worker: Worker[] = [];
-  unsubscribe = new Subject();
-  unsubscribe$ = this.unsubscribe.asObservable();
-  _queryUrl: string;
-  category: string;
-  imageIdx: any;
-  imageCount: any[] = [];
-  progress: string[] = [];
-  _progress: string;
-  originalImage: any;
   @Input() set queryUrl( q: string){
     if( !q ) q = 'animal';
     this._queryUrl = q;
@@ -78,7 +67,17 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   @SelectSnapshot(StatusState.getSplitState) getSplitState: string[];
   @SelectSnapshot(StatusState.getCurrentCategory) currentCategory: string;
   @SelectSnapshot(StatusState.getWebworkerWorkingStatus) getWebworkerWorkingStatus: boolean;
-  @Select(StatusState.getCurrentSeries) getCurrentSeries$: Observable<any>;
+  @Select(StatusState.getSeriesUrls) getSeriesUrls$: Observable<any>;
+  worker: Worker[] = [];
+  unsubscribe = new Subject();
+  unsubscribe$ = this.unsubscribe.asObservable();
+  _queryUrl: string;
+  category: string;
+  imageIdx: any;
+  imageCount: any[] = [];
+  progress: string[] = [];
+  _progress: string;
+  originalImage: any;
 
   @HostListener('window:keydown', ['$event'])
     handleKey(event: KeyboardEvent) {
@@ -91,7 +90,8 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
     private imageService: ImageService,
     private store: Store,
     private cdr: ChangeDetectorRef,
-    private seriesItemService: SeriesItemService
+    private seriesItemService: SeriesItemService,
+    private cacheSeriesService: CacheSeriesService
     ) { }
 
 
@@ -100,25 +100,26 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
     /** Display image at the main window whenever clinking thumbnail_item */
     this.getSelectedImageById$.pipe(skip(1))
       .subscribe( id => {
-        this.image.nativeElement.src = this.carouselService.getSelectedImageById(id)
+        this.image.nativeElement.src = this.carouselService.getSelectedImageById(this.category, id)
+        this.cdr.detectChanges();
       })
 
     /** New process start whenever clinking series_item */
     this.getSelectedSeriesById$.pipe(
       skip(1),
       takeUntil(this.unsubscribe$),
-      tap((id: number) => {
-        const series = this.seriesItemService.getSeries;
-        this.category = series[id].category;
-        this.imageIdx = id;
-        console.log('---- series', series)
-        // this.imageIdx = category_list.find( val => val === this.category);
-        // to check if image loading is started. then show the first image.
-        this.showTheFirstImage();
-        this.webWorkerProcess();
-        this.getTotalImageList();
-      })
-    )
+    ).subscribe((id: number) => {
+      const series = this.cacheSeriesService.cachedSeries;
+      // console.log('-- getSelectedSeriesById$ -- series', series)
+      this.category = series[id].category;
+      this._queryUrl = `assets/json/${this.category}.json`;
+      this.imageIdx = id;
+      // this.imageIdx = category_list.find( val => val === this.category);
+      // to check if image loading is started. then show the first image.
+      this.showTheFirstImage();
+      this.webWorkerProcess();
+      this.getTotalImageList();
+    });
     this.imageIdx = category_list.find( val => val === this.category);
     this.showTheFirstImage();
     this.webWorkerProcess();
@@ -129,9 +130,9 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
     this.getIsImageLoaded$ && this.getIsImageLoaded$.pipe(skip(1))
       .subscribe(res => {
         // To display the first image in the main window, and item list window
-        this.image.nativeElement.src = this.carouselService.getSelectedImageById(0);
+        console.log(' showTheFirstImage -3 ', this.category)
+        this.image.nativeElement.src = this.carouselService.getSelectedImageById(this.category, 0);
         this.originalImage = this.image.nativeElement.src;
-        // console.log(' this.image.nativeElement.src', this.image.nativeElement.src)
         this.cdr.detectChanges();
       })
   }
@@ -139,9 +140,26 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   private getTotalImageList() {
     this.imageService.getTotalImageList(this._queryUrl)
       .subscribe((val: any) => {
+        const category = this._queryUrl && this._queryUrl.split('.')[0].split('/')[2];
+
         // console.log(' val', val)
-        this.imageCount[this.imageIdx] = val.length;
-        this.webworkerPostMessage(val);
+        /** Check if image is cached already, then skip caching job
+         * then extract remained image to be needed loading*/
+        this.imageService.checkIfAdditionalLoading(val, category)
+          .subscribe( res => {
+            console.log('-- remained url', res.length)
+            if( res.length > 0) { // If there is remained url that need loading image
+              this.imageCount[this.imageIdx] = res.length;
+              this.webworkerPostMessage(res);
+            } else {
+              // In this case, no webworker job is working,
+              // To display the first image even though all images are cached.
+              this.store.dispatch(new SetIsImageLoaded(true));
+              this.progress[this.imageIdx] = '';
+              /** Triggering that every image is loading, then thumbnail list is updated continuously */
+              this.store.dispatch(new SetImageUrls([]));
+            }
+          })
       }, error => {
         throw Error(error)
       });
@@ -177,8 +195,6 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
       this.worker[this.imageIdx].onmessage = ( data: any) => {
         this.progress[this.imageIdx] = ((data.data.imageId + 1)/ this.imageCount[this.imageIdx] * 100).toFixed(0).toString();
         // console.log(' res data', data)
-        // this.store.dispatch(new SetWebworkerWorkingStatus(true));
-        this.cdr.detectChanges();
         this.makeCachedImage(data.data);
         const _data: any = {
           msg: 'completeCachedImage',
@@ -192,12 +208,12 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private makeCachedImage(data: ImageModel) {
+    //console.log(' ---data url', data, data.blob.type, data.blob.size)
     if(  !data.blob.type || !data.blob.size) {
-      //this.imageService.removeUrl(data.url);
-      console.log(' ---data url', data)
+      //
       return;
     } // data is not Blob type.
-    // console.log('----data',data.blob)
+    // console.log('----data- category',data.category)
     const image: any = this.imageService.readFile(data.blob)
     image.subscribe((obj: any) => {
       data.blob = obj;
@@ -207,20 +223,12 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
 
   saveCacheImage(data: ImageModel) {
     this.imageService.checkAndCacheImage(data)
-
-    this.store.dispatch(new SetIsImageLoaded(true));
-    this.store.dispatch(new SetCurrentImages([data]));
-
-    // const urls = this.imageService.getCacheUrls();
-    // const idx = urls.find(val => val.url === data.url);
-    // if (!idx) {
-    //   this.imageService.setCacheUrl([data.url]);
-    //   this.imageService.checkAndCacheImage(data)
-    //   // this.imageService.checkAndCacheImage(data.data.url, obj)
-    //   // to notify signal of starting image loading.
-    //   this.store.dispatch(new SetIsImageLoaded(true));
-    //   this.store.dispatch(new SetCurrentImages([data]));
-    // }
+    /** Triggering that every image is loading, then thumbnail list is updated continuously */
+    this.store.dispatch(new SetImageUrls([data.url]));
+    /** To show the first image in the main window */
+    if( data.imageId === 0 ) {
+      this.store.dispatch(new SetIsImageLoaded(true));
+    }
   }
   ngOnDestroy() {
     this.unsubscribe.next();

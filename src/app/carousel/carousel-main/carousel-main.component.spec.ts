@@ -36,7 +36,8 @@ xdescribe('CarouselMainComponent', () => {
       imageId: 1,
       url:'aaaaa',
       category: '',
-      blob: ''
+      blob: '',
+      title: ''
     }
     const expected = [{idx: 10, category:'', url:'aaaaa'},
                       {idx: 11, category:'', url:'ccccc'}]
@@ -45,14 +46,16 @@ xdescribe('CarouselMainComponent', () => {
           imageId: 1,
           url:'aaaaa',
           category: '',
-          blob: ''
+          blob: '',
+          title:''
         }
     const ccccc =
         {
           imageId: 1,
           url:'ccccc',
           category: '',
-          blob: ''
+          blob: '',
+          title: ''
         }
 
     const service = spectator.inject(ImageService);

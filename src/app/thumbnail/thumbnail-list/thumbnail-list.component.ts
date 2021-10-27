@@ -12,10 +12,10 @@ import {CarouselService} from "../../carousel/carousel.service";
 import {ImageService} from "../../carousel/image.service";
 import {ImageModel} from "../../carousel/carousel-main/carousel-main.component";
 import {Select, Store} from "@ngxs/store";
-import {Observable, Subject} from "rxjs";
+import {combineLatest, merge, Observable, Subject} from "rxjs";
 import {StatusState} from "../../../store/status/status.state";
-import {takeUntil} from "rxjs/operators";
-import {SetSelectedImageById} from "../../../store/status/status.actions";
+import {map, takeUntil, tap} from "rxjs/operators";
+import {SetIsImageLoaded, SetSelectedImageById} from "../../../store/status/status.actions";
 import {
   CdkVirtualScrollViewport,
   FixedSizeVirtualScrollStrategy,
@@ -41,7 +41,7 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
         <cdk-virtual-scroll-viewport
                                      class="cdk-scroll-viewport"
                                      orientation="horizontal" >
-          <ng-container *cdkVirtualFor="let item of currentImages$ | async" >
+          <ng-container *cdkVirtualFor="let item of currentImages" >
 
             <app-thumb-item [originalImage]="item"
                             [addClass]="addClass"
@@ -75,9 +75,10 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
 export class ThumbnailListComponent implements OnInit, OnDestroy {
 
   @Input() category: string;
-  @Select(StatusState.getCurrentImages)  currentImages$: Observable<ImageModel[]>;
+  @Select(StatusState.getImageUrls)  getImageUrls$: Observable<string[]>;
   @SelectSnapshot(StatusState.getSelectedImageById)  getCurrentImageById: number;
-  @Select(StatusState.getSelectedImageById)  getCurrentImageById$: Observable<number>;
+  @Select(StatusState.getSelectedImageById)  getSelectedImageById$: Observable<number>;
+  @Select(StatusState.getCurrentCategory) currentCategory$: Observable<string>;
   @ViewChild(CdkVirtualScrollViewport, { static: true }) viewPort: CdkVirtualScrollViewport;
 
   item_list: ImageModel[] = [];
@@ -86,6 +87,7 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
   addClass: {} = {};
   draggedInx = 0;
   idx = 0;
+  currentImages: ImageModel[] = [];
   constructor(
     private carouselService: CarouselService,
     private imageService: ImageService,
@@ -94,6 +96,20 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+
+    // this.getImageUrls$.pipe(
+    this.currentCategory$.pipe().subscribe(val => {
+      this.category = val;
+       console.log('-- category -1', val)
+    });
+    this.getImageUrls$.pipe(
+      takeUntil(this.unsubscribe$),
+    ).subscribe(() => {
+      this.currentImages = this.imageService.cachedImages.map(val => val.image)
+        .filter(val => val.category === this.category);
+         console.log('this.currentImages -2', this.category)
+      this.cdr.detectChanges();
+    });
     /** When scrollbar is dragged,  then update nodule-list scroll offset */
     this.viewPort.scrolledIndexChange.pipe(takeUntil(this.unsubscribe$)).subscribe(val => {
       // console.log(' draaged value', val)
@@ -104,7 +120,7 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
       // console.log(' idx', this.idx)
     });
     //
-    this.getCurrentImageById$.pipe(
+    this.getSelectedImageById$.pipe(
       takeUntil(this.unsubscribe$)
     ).subscribe( val => {
       this.addClass = {
@@ -120,8 +136,9 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
 
   }
   onSelectItem(ev:ImageModel) {
-    // console.log( '--- thumbnail-list id', ev.imageId )
+    console.log( '--- thumbnail-list id', ev.imageId )
     this.store.dispatch(new SetSelectedImageById(ev.imageId));
+    this.category = ev.category;
     this.addClass = {
       class: 'selected_item',
       index: ev.imageId

@@ -4,41 +4,32 @@ import {GridTemplateDirective} from "../directives/grid-template.directive";
 @Component({
   selector: 'app-grid-template',
   template: `
-    <ng-template [appGridTemplate]="'element1'" let-height=height > <!-- to get proper template -->
-      <div [style.height]="height">
-        <app-carousel-main [queryUrl]="'element1'">  <!-- to make observable of making split window -->
+    <ng-template [appGridTemplate]="'element1'" let-height=height> <!-- to get proper template -->
+      <div [style.height]="height" >
+        <app-carousel-main [queryElement]="'element1'">  <!-- to make observable of making split window -->
           <button mat-mini-fab>fab</button>
         </app-carousel-main>
       </div>
     </ng-template>
-    <ng-template [appGridTemplate]="'element2'" let-height=height let-width=width>
-      <div [style.height]="height">
-        <div class="bg-green-200">BBBBB</div>
-<!--
-        <app-carousel-main [queryUrl]="'element2'">
+    <ng-template [appGridTemplate]="'element2'" let-height=height>
+      <div [style.height]="height" >
+        <app-carousel-main [queryElement]="'element2'">
           <button mat-mini-fab>fab</button>
         </app-carousel-main>
--->
       </div>
     </ng-template>
-    <ng-template [appGridTemplate]="'element3'" let-height=height let-width=width>
+    <ng-template [appGridTemplate]="'element3'" let-height=height>
       <div [style.height]="height">
-        <div class="bg-green-100">CCCCC</div>
-<!--
-        <app-carousel-main [queryUrl]="'element3'">
+        <app-carousel-main [queryElement]="'element3'">
           <button mat-mini-fab>fab</button>
         </app-carousel-main>
--->
       </div>
     </ng-template>
-    <ng-template [appGridTemplate]="'element4'" let-height=height let-width=width>
+    <ng-template [appGridTemplate]="'element4'" let-height=height>
       <div [style.height]="height">
-        <div class="bg-yellow-100">DDDD</div>
-<!--
-        <app-carousel-main [queryUrl]="'element4'">
+        <app-carousel-main [queryElement]="'element4'">
           <button mat-mini-fab>fab</button>
         </app-carousel-main>
--->
       </div>
     </ng-template>
   `,

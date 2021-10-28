@@ -100,14 +100,14 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
     // this.getImageUrls$.pipe(
     this.currentCategory$.pipe().subscribe(val => {
       this.category = val;
-       console.log('-- category -1', val)
+       // console.log('-- category -1', val)
     });
     this.getImageUrls$.pipe(
       takeUntil(this.unsubscribe$),
     ).subscribe(() => {
       this.currentImages = this.imageService.cachedImages.map(val => val.image)
         .filter(val => val.category === this.category);
-         console.log('this.currentImages -2', this.category)
+         // console.log('this.currentImages -2', this.category)
       this.cdr.detectChanges();
     });
     /** When scrollbar is dragged,  then update nodule-list scroll offset */

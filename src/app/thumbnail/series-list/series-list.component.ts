@@ -157,12 +157,12 @@ export class SeriesListComponent implements OnInit, OnDestroy {
   }
   onSelectSeries(ev:SeriesModel) {
     // console.log(' onSelectSeries', ev);
+    // Setting the current selected category
+    this.store.dispatch(new SetCurrentCategory(ev.category));
     // Select series
     this.store.dispatch(new SetSelectedSeriesById(ev.seriesId));
     // Setting the first thumbnail_item
     this.store.dispatch(new SetSelectedImageById(0));
-    // Setting the current selected category
-    this.store.dispatch(new SetCurrentCategory(ev.category));
     // Enable display the first image in the main window
     this.store.dispatch(new SetIsImageLoaded(true));
     // Focusing the selected series

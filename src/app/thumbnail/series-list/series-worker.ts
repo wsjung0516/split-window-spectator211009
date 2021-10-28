@@ -39,6 +39,7 @@ addEventListener('message', async ({data}) => {
     for (let i = 0; i < rData.length; i++) {
       try {
         res1 = await seriesAjaxData(rData[i].url);
+        // console.log(' res1 --', res1);
         sData = {
           seriesId: i,
           url: rData[i].url,
@@ -54,7 +55,7 @@ addEventListener('message', async ({data}) => {
       }
       // console.log('indx', i, rData[i].url)
       postMessage(sData,data.origin);
-      await sleep2(50);
+      await sleep2(150);
 
     }
   }

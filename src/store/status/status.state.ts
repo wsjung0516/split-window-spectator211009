@@ -1,6 +1,6 @@
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import {
-  SetCurrentCategory,
+  SetCurrentCategory, SetFocusedSplit,
   SetImageUrls,
   SetIsImageLoaded,
   SetIsSeriesLoaded,
@@ -23,6 +23,7 @@ export interface StatusStateModel {
   imageUrls: string[]; //
   seriesUrls: string[]; //
   currentCategory: string;
+  focusedSplit: number;
   selectedImageId: number;
   selectedImageUrl: string;
   splitMode: number;
@@ -41,10 +42,11 @@ export interface StatusStateModel {
     imageUrls: [],
     seriesUrls: [],
     currentCategory: '',
+    focusedSplit: 0, // 0: split1, 1: split2, 2: split3, 3: split4
     selectedImageId: 0,
     selectedImageUrl: '',
-    splitMode: 1,
-    splitState: ['animal'],
+    splitMode: 1, // 1: active --> split1, 2: active --> split1, split2
+    splitState: ['animal','mountain','banana', 'house'],
     selectedSeriesById: 0,
     selectedSplitWindowId: 0,
     webworkerWorkingStatus: false
@@ -76,6 +78,10 @@ export class StatusState {
   @Selector()
   public static getCurrentCategory(state: StatusStateModel) {
     return state.currentCategory;
+  }
+  @Selector()
+  public static getFocusedSplit(state: StatusStateModel) {
+    return state.focusedSplit;
   }
   @Selector()
   public static getSelectedImageById(state: StatusStateModel) {
@@ -135,6 +141,10 @@ export class StatusState {
   public setCurrentCategory({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetCurrentCategory) {
     patchState({currentCategory: payload})
   }
+  @Action(SetFocusedSplit)
+  public setFocusedSplit({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetFocusedSplit) {
+    patchState({focusedSplit: payload})
+  }
   @Action(SetSelectedImageById)
   public setSelectedImageById({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSelectedImageById) {
     patchState({selectedImageId: payload})
@@ -150,7 +160,10 @@ export class StatusState {
   @Action(SetSplitState)
   public setSplitState({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSplitState) {
     const state = getState().splitState;
-    patchState({splitState: [...state, ...payload]})
+    const idx = payload.idx;
+    const category = payload.category
+    state[idx] = category
+    patchState({splitState: [...state]})
   }
   @Action(SetSelectedSeriesById)
   public setSelectedSeriesById({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSelectedSeriesById) {

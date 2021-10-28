@@ -1,7 +1,13 @@
-import { TestBed, async } from '@angular/core/testing';
 import { NgxsModule, Store } from '@ngxs/store';
 import { StatusState, StatusStateModel } from './status.state';
-import {SetImageUrls, SetIsImageLoaded, SetSelectedSeriesById, SetSeriesUrls, StatusAction} from './status.actions';
+import {
+  SetImageUrls,
+  SetIsImageLoaded,
+  SetSelectedSeriesById,
+  SetSeriesUrls,
+  SetSplitState,
+  StatusAction
+} from './status.actions';
 import {createServiceFactory, SpectatorService} from "@ngneat/spectator";
 import {SeriesModel} from "../../app/thumbnail/series-list/series-list.component";
 import {ImageModel} from "../../app/carousel/carousel-main/carousel-main.component";
@@ -30,6 +36,7 @@ describe('Status store', () => {
     imageUrls: [],
     seriesUrls: [],
     currentCategory: '',
+    focusedSplit: 0,
     selectedImageId: 0,
     selectedImageUrl: '',
     splitMode: 1,
@@ -97,6 +104,18 @@ describe('Status store', () => {
     store.dispatch(new SetImageUrls([]));
     const actual = store.selectSnapshot(StatusState.getImageUrls);
     expect(actual).toEqual(expectedUrls);
+  });
+  const splitState = ['animal','mountain','banana', 'house'];
+  const expectedState = ['animal','mountain','sea', 'house'];
+  const expectedState2 = ['baby','mountain','sea', 'house'];
+  fit(' SetSplitState, input category with selected series ', () => {
+    store.dispatch(new SetSplitState({idx:2, category:'sea'}));
+    const actual = store.selectSnapshot(StatusState.getSplitState);
+    expect(actual).toEqual(expectedState);
+    //
+    store.dispatch(new SetSplitState({idx:0, category:'baby'}));
+    const actual2 = store.selectSnapshot(StatusState.getSplitState);
+    expect(actual2).toEqual(expectedState2);
   });
 
 });

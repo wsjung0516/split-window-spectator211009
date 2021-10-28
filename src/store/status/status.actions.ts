@@ -25,6 +25,10 @@ export class SetCurrentCategory {
   public static readonly type = '[Status] Current category';
   constructor(public payload: string ) { }
 }
+export class SetFocusedSplit {
+  public static readonly type = '[Status] Focused split';
+  constructor(public payload: number ) { }
+}
 export class SetSelectedImageById {
   public static readonly type = '[Status] Selected image id';
   constructor(public payload: number ) { }
@@ -39,7 +43,7 @@ export class SetSplitMode {
 }
 export class SetSplitState {
   public static readonly type = '[Status] Set split state';
-  constructor(public payload: string[] ) { }
+  constructor(public payload: {idx:number, category:string} ) { }
 }
 export class SetSelectedSeriesById {
   public static readonly type = '[Status] Selected series id';

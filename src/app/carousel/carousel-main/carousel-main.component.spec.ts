@@ -67,16 +67,16 @@ xdescribe('CarouselMainComponent', () => {
   it(' Should category name is same with category of cachedImage', () => {
     spectator = createComponent({
       props: {
-        set queryUrl(q: string) {
+        set queryElement(q: string) {
           spectator.component._queryUrl = q;
         }
       },
       detectChanges: false
     })
     spectator.setInput({
-      queryUrl: 'assets/json/mountain.json'
+      queryElement: 'element1'
     })
-    expect(spectator.component._queryUrl).toEqual('assets/json/mountain.json')
+    expect(spectator.component.categoryIdx).toEqual(1)
   })
 
 });

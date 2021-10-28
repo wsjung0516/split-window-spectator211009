@@ -108,7 +108,7 @@ describe('Status store', () => {
   const splitState = ['animal','mountain','banana', 'house'];
   const expectedState = ['animal','mountain','sea', 'house'];
   const expectedState2 = ['baby','mountain','sea', 'house'];
-  fit(' SetSplitState, input category with selected series ', () => {
+  it(' SetSplitState, input category with selected series ', () => {
     store.dispatch(new SetSplitState({idx:2, category:'sea'}));
     const actual = store.selectSnapshot(StatusState.getSplitState);
     expect(actual).toEqual(expectedState);

@@ -84,12 +84,14 @@ export class ImageService implements  OnDestroy {
     }
     return ('')
   }
-  checkIfAdditionalLoading(req: any[], cat: string) {
+  checkIfAdditionalLoading(req: any[], cat: string, urls: any[]) {
     let re = req;
-    if( this._cacheUrls.filter(val => val.category === cat ).length === 0 ) return of(req)
+    if( urls.filter(val => val.category === cat ).length === 0 ) return of(req)
+    // if( this._cacheUrls.filter(val => val.category === cat ).length === 0 ) return of(req)
     // console.log(' this._cacheUrls, req ', this._cacheUrls.filter(val => val.category === cat ).length, req.length)
     //
-    return from(this._cacheUrls).pipe(
+    // return from(this._cacheUrls).pipe(
+    return from(urls).pipe(
       takeUntil(this.unsubscribe$),
       filter(obj => obj.category === cat),
       toArray(),

@@ -174,7 +174,7 @@ export class SeriesListComponent implements OnInit, OnDestroy {
   webWorkerProcess() {
     if (typeof Worker !== 'undefined') {
       // console.log(' import.meta.url',  import.meta.url)
-      this.seriesWorker = new Worker(new URL('./series-worker.ts', import.meta.url));
+      this.seriesWorker = new Worker(new URL('src/assets/workers/series-worker.ts', import.meta.url));
       this.seriesWorker.onmessage = ( data: any) => {
         const series: any = this.imageService.readFile(data.data.blob)
         series.subscribe( (obj:any) => {

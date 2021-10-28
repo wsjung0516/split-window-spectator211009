@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import {CarouselService} from "../carousel.service";
 import {ImageService} from "../image.service";
-import {Observable, Subject} from "rxjs";
+import {Observable, of, Subject} from "rxjs";
 import {Select, Store} from "@ngxs/store";
 import {StatusState} from "../../../store/status/status.state";
 import {
@@ -22,6 +22,7 @@ import {skip, takeUntil} from "rxjs/operators";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 import {SeriesItemService} from "../../thumbnail/series-item/series-item.service";
 import {CacheSeriesService} from "../../thumbnail/cache-series.service";
+import {fromWorker} from "observable-webworker";
 
 export const category_list = ['animal','mountain','banana', 'house', 'baby', 'forest', 'happiness', 'love', 'sea']
 export interface ImageModel {
@@ -148,6 +149,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
     this.showTheFirstImage();
     this.webWorkerProcess();
     this.getTotalImageList();
+    // setTimeout(() =>this.worker[this.categoryIdx].terminate(),3000);
   }
 
 
@@ -169,22 +171,29 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
 
         // console.log(' val', val)
         /** Check if image is cached already, then skip caching job
-         * then extract remained image to be needed loading*/
-        this.imageService.checkIfAdditionalLoading(val, category)
-          .subscribe( res => {
-            console.log('-- remained url', res.length)
-            if( res.length > 0) { // If there is remained url that need loading image
-              this.imageCount[this.categoryIdx] = res.length;
-              this.webworkerPostMessage(res);
-            } else {
-              // In this case, no webworker job is working,
-              // To display the first image even though all images are cached.
-              this.store.dispatch(new SetIsImageLoaded(true));
-              this.progress[this.categoryIdx] = '';
-              /** Triggering that every image is loading, then thumbnail list is updated continuously */
-              this.store.dispatch(new SetImageUrls([]));
-            }
-          })
+         * or extract remained urls to be needed image loading by using webworker */
+
+        const urls = this.imageService.getCacheUrls();
+        const input$ = of({req:val, category, urls: urls});
+
+        fromWorker<{}, string[]>(
+          () => new Worker(new URL('src/assets/workers/additional-loading.worker', import.meta.url), { type: 'module' }),
+          input$,
+        ).subscribe(res => {
+          // console.log(' worker-- ',res); // Outputs 'Hello from webworker'
+          console.log('-- remained url', res.length)
+          if( res.length > 0) { // If there is remained url that need loading image
+            this.imageCount[this.categoryIdx] = res.length;
+            this.webworkerPostMessage(res);
+          } else {
+            // In this case, no webworker job is working,
+            // To display the first image even though all images are cached.
+            this.store.dispatch(new SetIsImageLoaded(true));
+            this.progress[this.categoryIdx] = '';
+            /** Triggering that every image is loading, then thumbnail list is updated continuously */
+            this.store.dispatch(new SetImageUrls([]));
+          }
+        });
       }, error => {
         throw Error(error)
       });
@@ -214,21 +223,23 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   webWorkerProcess() {
     if (typeof Worker !== 'undefined') {
       // console.log(' import.meta.url',  import.meta.url)
-      if( !this.worker[this.categoryIdx])
-      this.worker[this.categoryIdx] = new Worker(new URL('../carousel-worker.ts', import.meta.url));
-      //
-      this.worker[this.categoryIdx].onmessage = (data: any) => {
-        this.progress[this.categoryIdx] = ((data.data.imageId + 1)/ this.imageCount[this.categoryIdx] * 100).toFixed(0).toString();
-        // console.log(' res data', data)
-        this.makeCachedImage(data.data);
-        const _data: any = {
-          msg: 'completeCachedImage',
-          body: data.data.url,
-          category: this.category
-        }
-        this.worker[this.categoryIdx].postMessage(JSON.parse(JSON.stringify(_data)))
+      if( !this.worker[this.categoryIdx]) {
+        this.worker[this.categoryIdx] = new Worker(new URL('src/assets/workers/carousel-worker.ts', import.meta.url));
+        //
+        this.worker[this.categoryIdx].onmessage = (data: any) => {
+          this.progress[this.categoryIdx] = ((data.data.imageId + 1)/ this.imageCount[this.categoryIdx] * 100).toFixed(0).toString();
+          // console.log(' res data', data)
+          this.makeCachedImage(data.data);
+          const _data: any = {
+            msg: 'completeCachedImage',
+            body: data.data.url,
+            category: this.category
+          }
+          this.worker[this.categoryIdx].postMessage(JSON.parse(JSON.stringify(_data)))
 
-      };
+        };
+
+      }
     }
   }
 

@@ -91,6 +91,7 @@ describe('ImageService', () => {
   const _cacheUrls = [
     { idx: 10, category: 'animal', url: 'aaaaa'},
     { idx: 11, category: 'animal', url: 'bbbbb'},
+    { idx: 90, category: 'sea', url: 'ccccc'},
   ];
   const requestUrls = [
     { url: 'aaaaa'},
@@ -102,12 +103,12 @@ describe('ImageService', () => {
     { url: 'ccccc'},
     { url: 'ddddd'},
   ];
-  it(' to exclude images that is loaded already',()=> {
+  fit(' to exclude images that is loaded already',()=> {
     const service = spectator.service;
-    service.checkAndCacheImage(cachedUrl1);
-    service.checkAndCacheImage(cachedUrl2);
-    service.checkAndCacheImage(cachedUrl3);
-    service.checkIfAdditionalLoading(requestUrls, 'animal').subscribe( result => {
+    // service.checkAndCacheImage(cachedUrl1);
+    // service.checkAndCacheImage(cachedUrl2);
+    // service.checkAndCacheImage(cachedUrl3);
+    service.checkIfAdditionalLoading(requestUrls, 'animal', _cacheUrls).subscribe( result => {
       expect(result).toEqual(requestResult);
     });
   })

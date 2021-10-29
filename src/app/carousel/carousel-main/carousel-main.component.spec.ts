@@ -6,13 +6,16 @@ import {ImageService} from "../image.service";
 import {NgxsModule, Store} from "@ngxs/store";
 import {HttpClient} from "@angular/common/http";
 import {StatusState} from "../../../store/status/status.state";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {fakeAsync, tick} from "@angular/core/testing";
 
 xdescribe('CarouselMainComponent', () => {
   let spectator: Spectator<CarouselMainComponent>;
   const createComponent = createComponentFactory({
     component: CarouselMainComponent,
     imports: [
-      NgxsModule.forRoot([StatusState])
+      NgxsModule.forRoot([StatusState]),
+      MatProgressBarModule
     ],
     providers:[
       CarouselService,
@@ -78,5 +81,30 @@ xdescribe('CarouselMainComponent', () => {
     })
     expect(spectator.component.categoryIdx).toEqual(1)
   })
+  const _cacheUrls = [
+    { idx: 10, category: 'animal', url: 'aaaaa'},
+    { idx: 11, category: 'animal', url: 'bbbbb'},
+    { idx: 90, category: 'sea', url: 'ccccc'},
+  ];
+  const requestUrls = [
+    { url: 'aaaaa'},
+    { url: 'bbbbb'},
+    { url: 'ccccc'},
+    { url: 'ddddd'},
+  ];
+  const requestResult = [
+    { url: 'ccccc'},
+    { url: 'ddddd'},
+  ];
+
+/*
+  fit(' to exclude images that is loaded already',fakeAsync(()=> {
+    spectator.component.checkIfAdditionalLoading(requestUrls, 'animal', _cacheUrls).then( result => {
+      expect(result).toEqual(requestResult);
+      tick();
+    });
+  }))
+*/
+
 
 });

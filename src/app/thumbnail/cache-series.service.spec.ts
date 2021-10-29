@@ -52,7 +52,7 @@ describe('CacheSeriesService', () => {
     { seriesId: 12, url: 'ccccc', category:'animal', blob: undefined},
   ]
   const cachedUrl1: SeriesModel =
-    { seriesId: 0, url: 'aaaaa', category:'animal', blob: new Blob(['ablob']) };
+    { seriesId: 0, url: 'aaaaa', category:'animal', blob: 'ablob' };
   const cachedUrl2: SeriesModel =
     { seriesId: 1, url: 'bbbbb', category:'animal', blob: undefined};
   const cachedUrl3: SeriesModel =

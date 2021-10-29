@@ -69,7 +69,7 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
   `
   ],
   providers: [{provide: VIRTUAL_SCROLL_STRATEGY, useClass: CustomVirtualScrollStrategy}],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 
 })
 export class ThumbnailListComponent implements OnInit, OnDestroy {
@@ -105,7 +105,7 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
     this.getImageUrls$.pipe(
       takeUntil(this.unsubscribe$),
     ).subscribe(() => {
-      this.currentImages = this.imageService.cachedImages.map(val => val.image)
+      this.currentImages = this.imageService.cachedThumbnailImages.map(val => val.image)
         .filter(val => val.category === this.category);
          // console.log('this.currentImages -2', this.category)
       this.cdr.detectChanges();
@@ -130,13 +130,13 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
       // To synchronize with the current selected item, after when it is activated by clicking item-list
       this.carouselService.currentImageIndex = val;
       // console.log(' scrolled index', val);
-      // this.viewPort.scrollToOffset(this.idx, 'smooth');
-      setTimeout(() => this.viewPort.scrollToIndex(val, 'smooth'),200);
+      // this.viewPort.scrollToOffset(val, 'smooth');
+       setTimeout(() => this.viewPort.scrollToIndex(val, 'smooth'),200);
     })
 
   }
   onSelectItem(ev:ImageModel) {
-    console.log( '--- thumbnail-list id', ev.imageId )
+    // console.log( '--- thumbnail-list id', ev.imageId )
     this.store.dispatch(new SetSelectedImageById(ev.imageId));
     this.category = ev.category;
     this.addClass = {

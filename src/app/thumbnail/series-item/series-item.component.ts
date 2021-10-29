@@ -18,7 +18,7 @@ import {mark} from "@angular/compiler-cli/src/ngtsc/perf/src/clock";
   template: `
     <div class="mx-1">
       <div class="{{borderColor}}" (click)="selected.emit(seriesImage)">
-        <img #img>
+        <img id="seriesImage" #img>
       </div>
     </div>
   `,
@@ -64,8 +64,10 @@ export class SeriesItemComponent implements OnInit, OnChanges, AfterViewInit {
 
     }
     if( changes.seriesImage && changes.seriesImage.currentValue && this.image) {
-      this.image.nativeElement.src = changes.seriesImage.currentValue.blob;
-      this.cdr.markForCheck();
+      // this.image.nativeElement.src = changes.seriesImage.currentValue.blob;
+      // this.cdr.markForCheck();
+
+
 
     }
   }

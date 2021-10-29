@@ -88,28 +88,4 @@ describe('ImageService', () => {
     const expected = 'ablob';
     expect(ret).toEqual(expected)
   })
-  const _cacheUrls = [
-    { idx: 10, category: 'animal', url: 'aaaaa'},
-    { idx: 11, category: 'animal', url: 'bbbbb'},
-    { idx: 90, category: 'sea', url: 'ccccc'},
-  ];
-  const requestUrls = [
-    { url: 'aaaaa'},
-    { url: 'bbbbb'},
-    { url: 'ccccc'},
-    { url: 'ddddd'},
-  ];
-  const requestResult = [
-    { url: 'ccccc'},
-    { url: 'ddddd'},
-  ];
-  fit(' to exclude images that is loaded already',()=> {
-    const service = spectator.service;
-    // service.checkAndCacheImage(cachedUrl1);
-    // service.checkAndCacheImage(cachedUrl2);
-    // service.checkAndCacheImage(cachedUrl3);
-    service.checkIfAdditionalLoading(requestUrls, 'animal', _cacheUrls).subscribe( result => {
-      expect(result).toEqual(requestResult);
-    });
-  })
 });

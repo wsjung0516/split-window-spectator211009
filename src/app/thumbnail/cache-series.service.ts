@@ -4,6 +4,7 @@ import {EMPTY, Observable, of} from 'rxjs';
 import {map, switchMap, tap} from 'rxjs/operators';
 import {category_list, ImageModel} from "../carousel/carousel-main/carousel-main.component";
 import {SeriesModel} from "./series-list/series-list.component";
+import {downscaleImage} from "../utils/down-scale-image";
 // import {category_list, ImageModel} from "./carousel-main/carousel-main.component";
 
 /*
@@ -93,18 +94,13 @@ export class CacheSeriesService {
 */
 
   checkAndCacheSeries(data: SeriesModel) {
-    this._cachedSeries.push(data);
-    // console.log('-- this._cachedSeries', this._cachedSeries)
-/*
-    const cIdx: any = category_list.findIndex( val => val === data.category) + 1;
-    const nIdx = data.seriesId < 10 ? (cIdx * 10 + data.seriesId) : (cIdx * 100 + data.seriesId);
-    const ret = this._cacheUrls.find( val => val.idx === nIdx)
-    if( ret ) return;
-     // [{idx:10, series: SeriesModel}, {idx:11, series: SeiresModel}]
-      this.setCacheUrl(data);
-      this._cachedSeries.push({idx: nIdx, series: data});
-*/
-  }
+    const file = downscaleImage(data.blob, 'image/jpeg', 150,0.7);
+    file.then( val => {
+      // console.log(' --- file', val)
+      data.blob = val;
+      this._cachedSeries.push(data);
+    })
+}
   readFile (blob: any): Observable<string>  {
     return new Observable((obs: any) => {
       const reader = new FileReader();
@@ -117,4 +113,6 @@ export class CacheSeriesService {
       return reader.readAsDataURL(blob);
     });
   }
+
 }
+

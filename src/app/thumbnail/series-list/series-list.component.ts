@@ -29,7 +29,7 @@ import {CacheSeriesService} from "../cache-series.service";
 export interface SeriesModel {
   seriesId: number;
   url: string;
-  blob: Blob;
+  blob: string;
   category: string
 }
 @Injectable()
@@ -156,8 +156,9 @@ export class SeriesListComponent implements OnInit, OnDestroy {
 
   }
   onSelectSeries(ev:SeriesModel) {
-    // console.log(' onSelectSeries', ev);
+    console.log(' onSelectSeries');
     // Setting the current selected category
+
     this.store.dispatch(new SetCurrentCategory(ev.category));
     // Select series
     this.store.dispatch(new SetSelectedSeriesById(ev.seriesId));

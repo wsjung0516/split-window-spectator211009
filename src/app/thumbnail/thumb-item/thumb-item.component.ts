@@ -37,7 +37,9 @@ import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 })
 export class ThumbItemComponent implements OnInit, AfterViewInit, OnChanges {
   @ViewChild('img') image: ElementRef;
-  @Input() addClass: any;
+  @Input() set addClass( v: any){
+    this.cdr.markForCheck();
+  }
   @Input() originalImage: ImageModel;
   @Output() selected: EventEmitter<ImageModel> = new EventEmitter<ImageModel>();
   @SelectSnapshot(StatusState.getSelectedImageById) selectedImageId: number;
@@ -61,6 +63,7 @@ export class ThumbItemComponent implements OnInit, AfterViewInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     this.borderColor = 'none_selected_item'
       this.cdr.markForCheck();
+    // console.log('this.selectedImageId, this.originalImage.imageId ', this.selectedImageId, this.originalImage.imageId)
     if( this.selectedImageId === this.originalImage.imageId) {
       this.borderColor = 'selected_item';
       this.cdr.markForCheck();

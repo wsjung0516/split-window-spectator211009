@@ -5,6 +5,7 @@ import {filter, map, mergeMap, pluck, switchMap, takeLast, takeUntil, tap, toArr
 import {category_list, ImageModel} from "./carousel-main/carousel-main.component";
 import {StatusState} from "../../store/status/status.state";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
+import {downscaleImage} from "../utils/down-scale-image";
 
 
 @Injectable({
@@ -19,6 +20,11 @@ export class ImageService implements  OnDestroy {
     url: string
   }[] = [];
   private _cachedImages: {
+    idx: number,
+    category: string,
+    image: ImageModel
+  }[] = [];
+  private _cachedThumbnailImages: {
     idx: number,
     category: string,
     image: ImageModel
@@ -45,7 +51,6 @@ export class ImageService implements  OnDestroy {
     return this._cacheUrls.filter(val => val.category === cat);
   }
 
-  // set cachedImages(image: ImageModel) {
   set cachedImages(data: any) { // data: ImageModel
     const cIdx: any = category_list.findIndex( val => val === data.category) + 1;
     const nIdx = data.imageId < 10 ? (cIdx * 10 + data.imageId) : (cIdx * 100 + data.imageId);
@@ -56,21 +61,17 @@ export class ImageService implements  OnDestroy {
   get cachedImages(): any[] {
     return this._cachedImages;
   }
-/*
-  get cachedImages(): any[] {
-    const ret = this._cachedImages.filter(val => val.category === this.category);
-    console.log('ret, category', ret, ret.length, this.category);
-    return ret;
+  get cachedThumbnailImages(): any[] {
+    return this._cachedThumbnailImages;
   }
-  getCachedImages(cat: string): any[] {
-    const ret = this._cachedImages.filter(val => val.category === cat);
-    console.log('ret, category', cat, ret, ret.length, this.category);
-    return ret;
-  }
-*/
   getTotalImageList(url: string) {
+    console.log('--- url', url);
+    console.time('cccc')
     return this.http.get(url).pipe(
-      map ( (res:any) => res['data']),
+      map ( (res:any) => {
+        console.timeEnd('cccc')
+        return res['data']
+      }),
     )
   }
 
@@ -84,36 +85,6 @@ export class ImageService implements  OnDestroy {
     }
     return ('')
   }
-  checkIfAdditionalLoading(req: any[], cat: string, urls: any[]) {
-    let re = req;
-    if( urls.filter(val => val.category === cat ).length === 0 ) return of(req)
-    // if( this._cacheUrls.filter(val => val.category === cat ).length === 0 ) return of(req)
-    // console.log(' this._cacheUrls, req ', this._cacheUrls.filter(val => val.category === cat ).length, req.length)
-    //
-    // return from(this._cacheUrls).pipe(
-    return from(urls).pipe(
-      takeUntil(this.unsubscribe$),
-      filter(obj => obj.category === cat),
-      toArray(),
-      switchMap((objList: any[]) => {
-        // [Object{idx: 10, category: 'animal', url: 'aaaaa'},
-        //  Object{idx: 11, category: 'animal', url: 'bbbbb'}]
-        return from(objList).pipe(
-          takeUntil(this.unsubscribe$),
-          mergeMap( obj => {
-            return from(re).pipe(
-              takeUntil(this.unsubscribe$),
-              filter(val => val.url !== obj.url),
-              toArray(),
-            )
-          }),
-          // to recursive operation
-          tap((req) => re = req),
-          takeLast(1)
-        )
-      }),
-    )
-  }
 
   checkAndCacheImage(data: ImageModel) {
     const cIdx: any = category_list.findIndex( val => val === data.category) + 1;
@@ -123,6 +94,14 @@ export class ImageService implements  OnDestroy {
     if( ret ) return;
     this.setCacheUrl(data);
     this._cachedImages.push({idx: nIdx, category: data.category, image: data});
+    /** Save image data as thumbnail */
+    let tData = Object.assign({}, data);
+    const file = downscaleImage(tData.blob, 'image/jpeg', 100,0.7);
+    file.then( val => {
+      tData.blob = val;
+      this._cachedThumbnailImages.push({idx: nIdx, category: tData.category, image: tData});
+    })
+
   }
   readFile (blob: any): Observable<string>  {
     return new Observable((obs: any) => {

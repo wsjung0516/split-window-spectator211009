@@ -24,7 +24,7 @@ import {SeriesItemService} from "../../thumbnail/series-item/series-item.service
 import {CacheSeriesService} from "../../thumbnail/cache-series.service";
 import {fromWorker} from "observable-webworker";
 
-export const category_list = ['animal','mountain','banana', 'house', 'baby', 'forest', 'happiness', 'love', 'sea']
+export const category_list = ['animal', 'house', 'baby', 'forest', 'happiness', 'love', 'sea','banana', 'mountain']
 export interface ImageModel {
   imageId: number,
   category: string,
@@ -75,7 +75,8 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   @SelectSnapshot(StatusState.getWebworkerWorkingStatus) getWebworkerWorkingStatus: boolean;
   @Select(StatusState.getSeriesUrls) getSeriesUrls$: Observable<any>;
   @Select(StatusState.getSplitMode) splitMode$: Observable<any>;
-  worker: Worker[] = [];
+  worker: Worker;
+  // worker: Worker[] = [];
   unsubscribe = new Subject();
   unsubscribe$ = this.unsubscribe.asObservable();
   _queryUrl: string;
@@ -105,7 +106,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     // call from thumbnail-list, triggered by clicking image item.
-    /** Triggered from app.component.html */
+    /** Whenever user select split mode triggered from app.component.html */
     this.splitMode$.pipe(skip(1), takeUntil(this.unsubscribe$))
       .subscribe((val)=> {
         this.makingSplitWindowByGrid(val -1);
@@ -125,7 +126,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
     ).subscribe((id: number) => {
       this.makingSplitWindowBySelectedSeries(id);
     });
-    // this.categoryIdx = category_list.find(val => val === this.category);
+    //
     this.showTheFirstImage();
     this.webWorkerProcess();
     this.getTotalImageList();
@@ -149,7 +150,6 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
     this.showTheFirstImage();
     this.webWorkerProcess();
     this.getTotalImageList();
-    // setTimeout(() =>this.worker[this.categoryIdx].terminate(),3000);
   }
 
 
@@ -157,7 +157,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
     this.getIsImageLoaded$ && this.getIsImageLoaded$.pipe(skip(1))
       .subscribe(res => {
         // To display the first image in the main window, and item list window
-        console.log(' showTheFirstImage -3 ', this.category)
+        // console.log(' showTheFirstImage -3 ', this.category)
         this.image.nativeElement.src = this.carouselService.getSelectedImageById(this.category, 0);
         this.originalImage = this.image.nativeElement.src;
         this.cdr.detectChanges();
@@ -169,34 +169,46 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe((val: any) => {
         const category = this._queryUrl && this._queryUrl.split('.')[0].split('/')[2];
 
-        // console.log(' val', val)
-        /** Check if image is cached already, then skip caching job
-         * or extract remained urls to be needed image loading by using webworker */
-
         const urls = this.imageService.getCacheUrls();
-        const input$ = of({req:val, category, urls: urls});
-
-        fromWorker<{}, string[]>(
-          () => new Worker(new URL('src/assets/workers/additional-loading.worker', import.meta.url), { type: 'module' }),
-          input$,
-        ).subscribe(res => {
-          // console.log(' worker-- ',res); // Outputs 'Hello from webworker'
-          console.log('-- remained url', res.length)
-          if( res.length > 0) { // If there is remained url that need loading image
+        // console.log(' val', val)
+        this.checkIfAdditionalLoading(val, category, urls).then((res: any) =>{
+          // console.log('-- remained url', res.length)
+          if (res.length > 0) { // If there is remained url that need loading image
             this.imageCount[this.categoryIdx] = res.length;
+            /** Send urls for loading images additionally */
             this.webworkerPostMessage(res);
           } else {
-            // In this case, no webworker job is working,
-            // To display the first image even though all images are cached.
+            /** In this case, no webworker job is needed because all images are cached,
+             *  And display the first image.
+             */
             this.store.dispatch(new SetIsImageLoaded(true));
             this.progress[this.categoryIdx] = '';
-            /** Triggering that every image is loading, then thumbnail list is updated continuously */
+            /** Triggering loading every image, then thumbnail list is updated continuously */
             this.store.dispatch(new SetImageUrls([]));
           }
+
         });
       }, error => {
         throw Error(error)
       });
+  }
+  bWorker: any = undefined;
+  checkIfAdditionalLoading(val: any, category: string, urls: { idx: number; category: string; url: string }[]) {
+    /** Check if image is cached already, then skip caching job
+     * or extract remained urls, which is needed loading image by using webworker */
+    return new Promise( (resolve, reject) => {
+      const input$ = of({req: val, category, urls: urls});
+
+      if( !this.bWorker)  this.bWorker = new Worker(new URL('src/assets/workers/additional-loading.worker', import.meta.url), {type: 'module'})
+      fromWorker<{}, string[]>(
+        () => this.bWorker,
+        input$,
+      ).subscribe(res => {
+        resolve(res)
+      }, error => reject(error))
+
+
+    });
   }
 
   private webworkerPostMessage(val: any) {
@@ -206,7 +218,8 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
       body: val,
       category: this.category
     }
-    this.worker[this.categoryIdx].postMessage(data)
+    this.worker.postMessage(data)
+    // this.worker[this.categoryIdx].postMessage(data)
   }
 
   ngAfterViewInit() {
@@ -223,10 +236,11 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   webWorkerProcess() {
     if (typeof Worker !== 'undefined') {
       // console.log(' import.meta.url',  import.meta.url)
-      if( !this.worker[this.categoryIdx]) {
-        this.worker[this.categoryIdx] = new Worker(new URL('src/assets/workers/carousel-worker.ts', import.meta.url));
+      if( !this.worker) {
+        this.worker = new Worker(new URL('src/assets/workers/carousel-worker.ts', import.meta.url));
+        // this.worker[this.categoryIdx] = new Worker(new URL('src/assets/workers/carousel-worker.ts', import.meta.url));
         //
-        this.worker[this.categoryIdx].onmessage = (data: any) => {
+        this.worker.onmessage = (data: any) => {
           this.progress[this.categoryIdx] = ((data.data.imageId + 1)/ this.imageCount[this.categoryIdx] * 100).toFixed(0).toString();
           // console.log(' res data', data)
           this.makeCachedImage(data.data);
@@ -235,7 +249,8 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
             body: data.data.url,
             category: this.category
           }
-          this.worker[this.categoryIdx].postMessage(JSON.parse(JSON.stringify(_data)))
+          // console.log(' data.msg', data.data, data.data.msg)
+          this.worker.postMessage(JSON.parse(JSON.stringify(_data)))
 
         };
 

@@ -1,6 +1,6 @@
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import {
-  SetCurrentCategory, SetFocusedSplit,
+  SetCurrentCategory, SetCurrentSplitOperation, SetFocusedSplit,
   SetImageUrls,
   SetIsImageLoaded,
   SetIsSeriesLoaded,
@@ -18,7 +18,7 @@ import {SeriesModel} from "../../app/thumbnail/series-list/series-list.component
 
 export interface StatusStateModel {
   items: string[];
-  isImageLoaded: boolean;
+  isImageLoaded: {} ; // from 0
   isSeriesLoaded: boolean;
   imageUrls: string[]; //
   seriesUrls: string[]; //
@@ -31,13 +31,14 @@ export interface StatusStateModel {
   selectedSeriesById: number;
   selectedSplitWindowId: number;
   webworkerWorkingStatus: boolean;
+  currentSplitOperation: {}
 }
 
 @State<StatusStateModel>({
   name: 'status',
   defaults: {
     items: [],
-    isImageLoaded: false,
+    isImageLoaded: { idx: 0},
     isSeriesLoaded: false,
     imageUrls: [],
     seriesUrls: [],
@@ -49,7 +50,10 @@ export interface StatusStateModel {
     splitState: ['animal','mountain','banana', 'house'],
     selectedSeriesById: 0,
     selectedSplitWindowId: 0,
-    webworkerWorkingStatus: false
+    webworkerWorkingStatus: false,
+    currentSplitOperation: {
+      element: ''
+    }
   }
 })
 @Injectable()
@@ -111,6 +115,10 @@ export class StatusState {
   public static getWebworkerWorkingStatus(state: StatusStateModel) {
     return state.webworkerWorkingStatus;
   }
+  @Selector()
+  public static getCurrentSplitOperation(state: StatusStateModel) {
+    return state.currentSplitOperation;
+  }
 
   @Action(StatusAction)
   public add(ctx: StateContext<StatusStateModel>, { payload }: StatusAction) {
@@ -120,8 +128,8 @@ export class StatusState {
   }
   @Action(SetIsImageLoaded)
   public setIsImageLoaded({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetIsImageLoaded) {
-    const status = !getState().isImageLoaded;
-    patchState({isImageLoaded: status})
+    const obj = getState().isImageLoaded;
+    patchState({isImageLoaded: {...obj, ...payload}})
   }
   @Action(SetIsSeriesLoaded)
   public setIsSeriesLoaded({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetIsSeriesLoaded) {
@@ -176,5 +184,10 @@ export class StatusState {
   @Action(SetWebworkerWorkingStatus)
   public setWebworkerWorkingStatus({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetWebworkerWorkingStatus) {
     patchState({webworkerWorkingStatus: payload})
+  }
+  @Action(SetCurrentSplitOperation)
+  public setCurrentSplitOperation({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetCurrentSplitOperation) {
+    const obj = getState().currentSplitOperation;
+    patchState({currentSplitOperation: { ...obj, ...payload }})
   }
 }

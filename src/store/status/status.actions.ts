@@ -7,7 +7,7 @@ export class StatusAction {
 }
 export class SetIsImageLoaded {
   public static readonly type = '[Status] Is Imaged Loaded';
-  constructor(public payload: boolean) { }
+  constructor(public payload: {idx:number}) { }
 }
 export class SetIsSeriesLoaded {
   public static readonly type = '[Status] Is Series Loaded';
@@ -56,4 +56,8 @@ export class SetSelectedSplitWindowId {
 export class SetWebworkerWorkingStatus {
   public static readonly type = '[Status] Set Webworker WorkingStatus';
   constructor(public payload: boolean ) { }
+}
+export class SetCurrentSplitOperation {
+  public static readonly type = '[Status] Set current split operation';
+  constructor(public payload: {element: string} ) { }
 }

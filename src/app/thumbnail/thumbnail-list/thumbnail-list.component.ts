@@ -14,8 +14,8 @@ import {ImageModel} from "../../carousel/carousel-main/carousel-main.component";
 import {Select, Store} from "@ngxs/store";
 import {combineLatest, merge, Observable, Subject} from "rxjs";
 import {StatusState} from "../../../store/status/status.state";
-import {map, takeUntil, tap} from "rxjs/operators";
-import {SetIsImageLoaded, SetSelectedImageById} from "../../../store/status/status.actions";
+import {takeUntil, tap} from "rxjs/operators";
+import {SetSelectedImageById} from "../../../store/status/status.actions";
 import {
   CdkVirtualScrollViewport,
   FixedSizeVirtualScrollStrategy,

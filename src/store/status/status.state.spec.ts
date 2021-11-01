@@ -1,6 +1,7 @@
 import { NgxsModule, Store } from '@ngxs/store';
 import { StatusState, StatusStateModel } from './status.state';
 import {
+  SetCurrentSplitOperation,
   SetImageUrls,
   SetIsImageLoaded,
   SetSelectedSeriesById,
@@ -43,7 +44,8 @@ describe('Status store', () => {
     splitState: ['animal'],
     selectedSeriesById: 1,
     selectedSplitWindowId: 1,
-    webworkerWorkingStatus: false
+    webworkerWorkingStatus: false,
+    currentSplitOperation: {}
   };
   const series: SeriesModel = {
     seriesId: 0,
@@ -65,10 +67,10 @@ describe('Status store', () => {
     title: ''
   }
   it('should create an action and add an item', () => {
-    store.dispatch(new SetIsImageLoaded(true));
+    store.dispatch(new SetIsImageLoaded({idx:0}));
     const actual = store.selectSnapshot(StatusState.getIsImageLoaded);
     expect(actual).toEqual(true);
-    expect(store.dispatch).toHaveBeenCalledOnceWith(new SetIsImageLoaded( true));
+    expect(store.dispatch).toHaveBeenCalledOnceWith(new SetIsImageLoaded( {idx:0}));
   });
   const expected2 =
     ['aaaaa', 'bbbbb']
@@ -87,13 +89,13 @@ describe('Status store', () => {
     expect(store.dispatch).toHaveBeenCalledOnceWith(new SetSelectedSeriesById( 1));
   });
   it(' SetIsImageLoaded ', () => {
-    store.dispatch(new SetIsImageLoaded(true));
+    store.dispatch(new SetIsImageLoaded({idx:0}));
     const actual = store.selectSnapshot(StatusState.getIsImageLoaded);
     expect(actual).toEqual(true);
-    store.dispatch(new SetIsImageLoaded(true));
+    store.dispatch(new SetIsImageLoaded({idx:0}));
     const actual2 = store.selectSnapshot(StatusState.getIsImageLoaded);
     expect(actual2).toEqual(false);
-    store.dispatch(new SetIsImageLoaded(true));
+    store.dispatch(new SetIsImageLoaded({idx:0}));
     const actual3 = store.selectSnapshot(StatusState.getIsImageLoaded);
     expect(actual3).toEqual(true);
   });
@@ -116,6 +118,12 @@ describe('Status store', () => {
     store.dispatch(new SetSplitState({idx:0, category:'baby'}));
     const actual2 = store.selectSnapshot(StatusState.getSplitState);
     expect(actual2).toEqual(expectedState2);
+  });
+  fit(' SetCurrentSplitOperations ', () => {
+    store.dispatch(new SetCurrentSplitOperation({element: 'element1'}));
+    const actual = store.selectSnapshot(StatusState.getCurrentSplitOperation);
+    expect(actual).toEqual({element: 'element1'});
+    //
   });
 
 });

@@ -165,7 +165,7 @@ export class SeriesListComponent implements OnInit, OnDestroy {
     // Setting the first thumbnail_item
     this.store.dispatch(new SetSelectedImageById(0));
     // Enable display the first image in the main window
-    this.store.dispatch(new SetIsImageLoaded(true));
+    this.store.dispatch(new SetIsImageLoaded({idx:0}));
     // Focusing the selected series
     this.addClass = {
       class: 'selected_item',

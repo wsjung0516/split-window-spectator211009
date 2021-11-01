@@ -65,11 +65,11 @@ export class ImageService implements  OnDestroy {
     return this._cachedThumbnailImages;
   }
   getTotalImageList(url: string) {
-    console.log('--- url', url);
-    console.time('cccc')
+    // console.log('--- url', url);
+    // console.time('cccc')
     return this.http.get(url).pipe(
       map ( (res:any) => {
-        console.timeEnd('cccc')
+        // console.timeEnd('cccc')
         return res['data']
       }),
     )

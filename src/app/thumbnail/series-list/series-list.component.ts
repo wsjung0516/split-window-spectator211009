@@ -25,6 +25,7 @@ import {
 import {SeriesItemService} from "../series-item/series-item.service";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 import {CacheSeriesService} from "../cache-series.service";
+import {SeriesListService} from "./series-list.service";
 
 export interface SeriesModel {
   seriesId: number;
@@ -105,7 +106,8 @@ export class SeriesListComponent implements OnInit, OnDestroy {
     private store: Store,
     private cdr: ChangeDetectorRef,
     private seriesService: SeriesItemService,
-    private cacheSeriesService: CacheSeriesService
+    private cacheSeriesService: CacheSeriesService,
+    private sls: SeriesListService
   ) { }
 
   ngOnInit(): void {
@@ -157,20 +159,14 @@ export class SeriesListComponent implements OnInit, OnDestroy {
   }
   onSelectSeries(ev:SeriesModel) {
     console.log(' onSelectSeries');
-    // Setting the current selected category
-
-    this.store.dispatch(new SetCurrentCategory(ev.category));
-    // Select series
-    this.store.dispatch(new SetSelectedSeriesById(ev.seriesId));
-    // Setting the first thumbnail_item
-    this.store.dispatch(new SetSelectedImageById(0));
-    // Enable display the first image in the main window
-    this.store.dispatch(new SetIsImageLoaded({idx:0}));
+    this.sls.selectSeries(ev);
+/*
     // Focusing the selected series
     this.addClass = {
       class: 'selected_item',
       index: ev.seriesId
     }
+*/
   }
   webWorkerProcess() {
     if (typeof Worker !== 'undefined') {

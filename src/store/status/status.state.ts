@@ -1,5 +1,6 @@
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import {
+  SetActiveSplit,
   SetCurrentCategory, SetCurrentSplitOperation, SetFocusedSplit,
   SetImageUrls,
   SetIsImageLoaded,
@@ -29,9 +30,10 @@ export interface StatusStateModel {
   splitMode: number;
   splitState: string[];
   selectedSeriesById: number;
-  selectedSplitWindowId: number;
+  selectedSplitWindowId: string;
   webworkerWorkingStatus: boolean;
-  currentSplitOperation: {}
+  currentSplitOperation: {},
+  activeSplit: number
 }
 
 @State<StatusStateModel>({
@@ -47,13 +49,14 @@ export interface StatusStateModel {
     selectedImageId: 0,
     selectedImageUrl: '',
     splitMode: 1, // 1: active --> split1, 2: active --> split1, split2
-    splitState: ['animal','mountain','banana', 'house'],
+    splitState: ['animal', 'house', 'baby', 'forest'],
     selectedSeriesById: 0,
-    selectedSplitWindowId: 0,
+    selectedSplitWindowId: 'element1',
     webworkerWorkingStatus: false,
     currentSplitOperation: {
       element: ''
-    }
+    },
+    activeSplit: 0
   }
 })
 @Injectable()
@@ -118,6 +121,10 @@ export class StatusState {
   @Selector()
   public static getCurrentSplitOperation(state: StatusStateModel) {
     return state.currentSplitOperation;
+  }
+  @Selector()
+  public static getActiveSplit(state: StatusStateModel) {
+    return state.activeSplit;
   }
 
   @Action(StatusAction)
@@ -190,4 +197,9 @@ export class StatusState {
     const obj = getState().currentSplitOperation;
     patchState({currentSplitOperation: { ...obj, ...payload }})
   }
+  @Action(SetActiveSplit)
+  public setActiveSplit({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetActiveSplit) {
+    patchState({activeSplit: payload})
+  }
+
 }

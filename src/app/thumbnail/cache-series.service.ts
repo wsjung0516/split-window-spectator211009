@@ -28,17 +28,6 @@ export class CacheSeriesService {
 
   constructor(private http: HttpClient) { }
 
-/*
-  set cacheUrls(data: any ) {  // data: SeriesModel
-    const cIdx: any = category_list.findIndex( val => val === data.category) + 1;
-    const nIdx = data.imageId < 10 ? (cIdx * 10 + data.imageId) : (cIdx * 100 + data.imageId);
-    const nUrl = { idx: nIdx, url: data.url};
-    this._cacheUrls = {...this._cacheUrls, ...nUrl};
-  }
-  get cacheUrls(): any[] {
-    return this._cacheUrls;
-  }
-*/
   isThisUrlCached(url: string) {
     return this._cacheUrls.find(val => val.url === url);
   }
@@ -50,6 +39,9 @@ export class CacheSeriesService {
     this._cacheUrls = [...this._cacheUrls,nUrl];
     // console.log(' nUrl', nUrl, this._cacheUrls, cIdx)
   }
+  getCachedSeriesByCat(cat: string) { // data: SeriesModel
+    return  this._cachedSeries.filter(val => val.category === cat)[0];
+  }
 
   getCacheUrls() {
     return this._cacheUrls;
@@ -58,15 +50,6 @@ export class CacheSeriesService {
     return this._cacheUrls.filter(val => val.category === cat);
   }
 
-  // set cachedSeries(seires: SeriesModel) {
-/*
-  set cachedSeries(data: any) { // data: SeriesModel
-    const cIdx: any = category_list.findIndex( val => val === data.category) + 1;
-    const nIdx = data.seiresId < 10 ? (cIdx * 10 + data.seriesId) : (cIdx * 100 + data.seriesId);
-    const series: SeriesModel = data.series;
-    this._cachedSeries.push({idx:nIdx, series: series});
-  }
-*/
   // @ts-ignore
   get cachedSeries(): SeriesModel[] {
     return this._cachedSeries;
@@ -77,29 +60,18 @@ export class CacheSeriesService {
     )
   }
 
-  getCachedSeries(url: string) {
-    this._cachedSeries.filter(series => series.url === url);
+  getCachedSeriesByUrl(url: string) {
+    return this._cachedSeries.filter(series => series.url === url)[0];
   }
-/*
-  getCachedSeries(cat: string, idx: number) {
-    const cIdx: any = category_list.findIndex( val => val === cat) + 1;
-    const nIdx = idx < 10 ? (cIdx * 10 + idx) : (cIdx * 100 + idx);
-    const index = this.cachedSeries.findIndex(image => image.idx === nIdx);
-    if (index > -1) {
-      const res = this.cachedSeries.filter(val => val.idx === nIdx);
-      return res[0].series.blob;
-    }
-    return ('')
-  }
-*/
 
   checkAndCacheSeries(data: SeriesModel) {
-    const file = downscaleImage(data.blob, 'image/jpeg', 150,0.7);
-    file.then( val => {
-      // console.log(' --- file', val)
-      data.blob = val;
-      this._cachedSeries.push(data);
-    })
+    // const file = downscaleImage(data.blob, 'image/jpeg', 150,0.7);
+    // file.then( val => {
+    //   // console.log(' --- file', val)
+    //   data.blob = val;
+    //   this._cachedSeries.push(data);
+    // })
+    this._cachedSeries.push(data);
 }
   readFile (blob: any): Observable<string>  {
     return new Observable((obs: any) => {

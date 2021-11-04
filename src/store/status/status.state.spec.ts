@@ -43,9 +43,10 @@ describe('Status store', () => {
     splitMode: 1,
     splitState: ['animal'],
     selectedSeriesById: 1,
-    selectedSplitWindowId: 1,
+    selectedSplitWindowId: 'element1',
     webworkerWorkingStatus: false,
-    currentSplitOperation: {}
+    currentSplitOperation: {},
+    activeSplit:0
   };
   const series: SeriesModel = {
     seriesId: 0,
@@ -107,7 +108,7 @@ describe('Status store', () => {
     const actual = store.selectSnapshot(StatusState.getImageUrls);
     expect(actual).toEqual(expectedUrls);
   });
-  const splitState = ['animal','mountain','banana', 'house'];
+  const splitState = ['animal', 'house', 'baby', 'forest'];
   const expectedState = ['animal','mountain','sea', 'house'];
   const expectedState2 = ['baby','mountain','sea', 'house'];
   it(' SetSplitState, input category with selected series ', () => {

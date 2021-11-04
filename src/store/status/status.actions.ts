@@ -51,7 +51,7 @@ export class SetSelectedSeriesById {
 }
 export class SetSelectedSplitWindowId {
   public static readonly type = '[Status] Selected split window id';
-  constructor(public payload: number ) { }
+  constructor(public payload: string ) { }
 }
 export class SetWebworkerWorkingStatus {
   public static readonly type = '[Status] Set Webworker WorkingStatus';
@@ -60,4 +60,8 @@ export class SetWebworkerWorkingStatus {
 export class SetCurrentSplitOperation {
   public static readonly type = '[Status] Set current split operation';
   constructor(public payload: {element: string} ) { }
+}
+export class SetActiveSplit {
+  public static readonly type = '[Status] Set active split ';
+  constructor(public payload: number ) { }
 }

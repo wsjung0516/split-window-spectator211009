@@ -1,10 +1,18 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {Observable, Subject} from "rxjs";
 import {GridTemplateComponent} from "./grid-template/grid-template.component";
-import {skip, takeUntil} from "rxjs/operators";
+import {skip, takeUntil, tap} from "rxjs/operators";
 import {Select, Store} from "@ngxs/store";
 import {StatusState} from "../../store/status/status.state";
-import {SetFocusedSplit, SetSplitMode} from "../../store/status/status.actions";
+import {
+  SetCurrentCategory,
+  SetFocusedSplit,
+  SetSelectedSeriesById,
+  SetSplitMode
+} from "../../store/status/status.actions";
+import {SeriesListService} from "../thumbnail/series-list/series-list.service";
+import {CacheSeriesService} from "../thumbnail/cache-series.service";
+import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 export interface Tile {
   mcols: number;
   mheight: string;
@@ -70,9 +78,16 @@ export class GridComponent implements OnInit {
   selectedTemplate: string = this.tiles[0].templateName;
   // @ViewChild('gridContainer', {read: ViewContainerRef}) gridContainer: ViewContainerRef;
   @Select(StatusState.getSplitMode) splitMode$: Observable<any>;
+  @Select(StatusState.getSelectedSplitWindowId) selectedSplitWindow$: Observable<string>;
+  @SelectSnapshot(StatusState.getCurrentCategory) category: string;
+
   @ViewChild('gridTemplate', { static: true }) gridTemplate: GridTemplateComponent;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store,
+              private sls: SeriesListService,
+              private cacheSeriesService: CacheSeriesService,
+
+  ) { }
 
   ngOnInit(): void {
     /** Triggered from app.component.html */
@@ -94,6 +109,27 @@ export class GridComponent implements OnInit {
       /** Redraw series data and reset nodule-list  */
       // this.onClickGridMenu(val['num']);
     });
+    /** Call from displayTheFirstImage <-- carousel-main.component */
+    this.selectedSplitWindow$.pipe(
+      skip(1),
+      takeUntil(this.unsubscribe$)
+    ).subscribe( val => {
+      this.onSelectTemplate(val)
+      // this.image.nativeElement.src = this.carouselService.getSelectedImageById(this.category, id)
+      // this.cdr.detectChanges();
+      // this.store.dispatch(new SetCurrentCategory(series.category));
+      // Select series ang get the image list.
+      //  this.store.dispatch(new SetSelectedSeriesById(series.seriesId));
+      // Focusing the first thumbnail_item
+      // this.store.dispatch(new SetSelectedImageById(0));
+      const series = this.cacheSeriesService.getCachedSeriesByCat(this.category)
+      console.log(' ********* series', series);
+
+      // this.sls.selectSeries(series)
+      this.store.dispatch(new SetSelectedSeriesById(series.seriesId));
+
+
+    });
 
   }
   onGetTemplate(name: string): TemplateRef<any> {
@@ -104,10 +140,10 @@ export class GridComponent implements OnInit {
     console.log('-- ev',ev)
     this.selectedTemplate = ev;
     let idx;
-    if( ev === 'element1') idx = 0;
-    if( ev === 'element2') idx = 1;
-    if( ev === 'element3') idx = 2;
-    if( ev === 'element4') idx = 3;
-    this.store.dispatch(new SetFocusedSplit(idx))
+    if( ev === 'element1' ) idx = 0;
+    if( ev === 'element2' ) idx = 1;
+    if( ev === 'element3' ) idx = 2;
+    if( ev === 'element4' ) idx = 3;
+    this.store.dispatch(new SetFocusedSplit(idx));
   }
 }

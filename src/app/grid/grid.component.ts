@@ -7,7 +7,7 @@ import {StatusState} from "../../store/status/status.state";
 import {
   SetCurrentCategory,
   SetFocusedSplit,
-  SetSelectedSeriesById,
+  SetSelectedSeriesById, SetSplitAction,
   SetSplitMode
 } from "../../store/status/status.actions";
 import {SeriesListService} from "../thumbnail/series-list/series-list.service";
@@ -106,8 +106,8 @@ export class GridComponent implements OnInit {
       this.mheight = this.tiles[this.tiles.length - 1].mheight;
       console.log(' mcols mheight', this.mcols, this.mheight)
 
-      /** Redraw series data and reset nodule-list  */
-      // this.onClickGridMenu(val['num']);
+      this.store.dispatch(new SetSplitAction(true));
+
     });
     /** Call from displayTheFirstImage <-- carousel-main.component */
     this.selectedSplitWindow$.pipe(
@@ -115,19 +115,11 @@ export class GridComponent implements OnInit {
       takeUntil(this.unsubscribe$)
     ).subscribe( val => {
       this.onSelectTemplate(val)
-      // this.image.nativeElement.src = this.carouselService.getSelectedImageById(this.category, id)
-      // this.cdr.detectChanges();
-      // this.store.dispatch(new SetCurrentCategory(series.category));
-      // Select series ang get the image list.
-      //  this.store.dispatch(new SetSelectedSeriesById(series.seriesId));
-      // Focusing the first thumbnail_item
-      // this.store.dispatch(new SetSelectedImageById(0));
       const series = this.cacheSeriesService.getCachedSeriesByCat(this.category)
-      console.log(' ********* series', series);
+      console.log(' ********* series', series, val);
 
       // this.sls.selectSeries(series)
       this.store.dispatch(new SetSelectedSeriesById(series.seriesId));
-
 
     });
 

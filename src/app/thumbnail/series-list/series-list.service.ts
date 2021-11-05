@@ -19,7 +19,7 @@ export class SeriesListService {
   selectSeries(ev: SeriesModel) {
     // Setting the current selected category
     this.store.dispatch(new SetCurrentCategory(ev.category));
-    // Select series ang get the image list.
+    // Select series and get the image list.
     this.store.dispatch(new SetSelectedSeriesById(ev.seriesId));
     // Focusing the first thumbnail_item
     this.store.dispatch(new SetSelectedImageById(0));

@@ -42,6 +42,7 @@ describe('Status store', () => {
     selectedImageUrl: '',
     splitMode: 1,
     splitState: ['animal'],
+    splitAction: false,
     selectedSeriesById: 1,
     selectedSplitWindowId: 'element1',
     webworkerWorkingStatus: false,

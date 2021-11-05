@@ -80,6 +80,8 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   @Select(StatusState.getSeriesUrls) getSeriesUrls$: Observable<any>;
   @Select(StatusState.getSplitMode) splitMode$: Observable<any>;
   @SelectSnapshot(StatusState.getSplitMode) splitMode: number;
+  @SelectSnapshot(StatusState.getSplitAction) splitAction: boolean;
+  @SelectSnapshot(StatusState.getFocusedSplit) focusedSplit: number;
   @Select(StatusState.getCurrentSplitOperation) getCurrentSplitOperation$: Observable<{}>;
   @Select(StatusState.getActiveSplit) activeSplit$: Observable<number>;
   worker: Worker[] = [];
@@ -148,7 +150,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
     this.category = this.getSplitState[eIdx];
     this.splitIdx = eIdx;
     this._queryUrl = `assets/json/${this.category}.json`;
-    this.categoryIdx = category_list.find(val => val === this.category);
+    this.categoryIdx = category_list.findIndex(val => val === this.category);
     this.splitService.selectedElement = this.splitService.elements[eIdx];
     if (this.splitMode === 1) {
        this.splitService.resetSplitWindowProcessing();
@@ -163,8 +165,10 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private makingSplitWindowBySelectedSeries(cIdx: number) {
+    this.category = category_list[cIdx];
+    // this.splitIdx = this.splitService.elements.findIndex(val => val === this.splitService.selectedElement);
     this._queryUrl = `assets/json/${this.category}.json`;
-    this.categoryIdx = cIdx;
+    this.categoryIdx = category_list.findIndex(val => val === this.category);
     this.makingSplitWindow();
   }
 
@@ -191,7 +195,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
       this.splitService.isFinishedRendering[this.splitService.selectedElement].next(this.splitService.selectedElement)
       resolve('')
       setTimeout(() => {
-        if(this.worker[this.splitIdx]) this.worker[this.splitIdx].terminate();
+        if(this.worker[this.splitIdx] && this.splitAction ) this.worker[this.splitIdx].terminate();
       },10000);
 
     })
@@ -215,16 +219,9 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
         this.originalImage = this.image.nativeElement.src;
         this.cdr.detectChanges();
         /** To focus on the selected split window, which will call grid component */
-        this.store.dispatch(new SetSelectedSplitWindowId(this.splitService.selectedElement))
 
-
-      /** */
-        let series = this.cacheSeriesService.getCachedSeriesByCat(this.category)
-      this.makingSplitWindowBySelectedSeries(series.seriesId);
-        // console.log(' showTheFirstImage -3 -2 ', res.idx, this.category)
+      this.store.dispatch(new SetSelectedSplitWindowId(this.splitService.selectedElement))
         resolve('')
-      setTimeout(() => {
-      },100)
     })
   }
 
@@ -381,6 +378,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
        * each split window one by one */
       this.store.dispatch(new SetCurrentSplitOperation({element: this.splitService.selectedElement}));
       //
+
       this.makingSplitWindowBySelectedSeries(this.categoryIdx);
     });
 

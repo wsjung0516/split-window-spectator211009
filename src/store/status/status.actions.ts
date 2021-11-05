@@ -45,6 +45,10 @@ export class SetSplitState {
   public static readonly type = '[Status] Set split state';
   constructor(public payload: {idx:number, category:string} ) { }
 }
+export class SetSplitAction {
+  public static readonly type = '[Status] Set split action';
+  constructor(public payload: boolean ) { }
+}
 export class SetSelectedSeriesById {
   public static readonly type = '[Status] Selected series id';
   constructor(public payload: number ) { }

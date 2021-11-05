@@ -8,7 +8,7 @@ import {
   SetSelectedImageById,
   SetSelectedImageByUrl,
   SetSelectedSeriesById,
-  SetSelectedSplitWindowId, SetSeriesUrls,
+  SetSelectedSplitWindowId, SetSeriesUrls, SetSplitAction,
   SetSplitMode,
   SetSplitState, SetWebworkerWorkingStatus,
   StatusAction
@@ -29,6 +29,7 @@ export interface StatusStateModel {
   selectedImageUrl: string;
   splitMode: number;
   splitState: string[];
+  splitAction: boolean;
   selectedSeriesById: number;
   selectedSplitWindowId: string;
   webworkerWorkingStatus: boolean;
@@ -50,6 +51,7 @@ export interface StatusStateModel {
     selectedImageUrl: '',
     splitMode: 1, // 1: active --> split1, 2: active --> split1, split2
     splitState: ['animal', 'house', 'baby', 'forest'],
+    splitAction: false,
     selectedSeriesById: 0,
     selectedSplitWindowId: 'element1',
     webworkerWorkingStatus: false,
@@ -105,6 +107,10 @@ export class StatusState {
   @Selector()
   public static getSplitState(state: StatusStateModel) {
     return state.splitState;
+  }
+  @Selector()
+  public static getSplitAction(state: StatusStateModel) {
+    return state.splitAction;
   }
   @Selector()
   public static getSelectedSeriesById(state: StatusStateModel) {
@@ -179,6 +185,10 @@ export class StatusState {
     const category = payload.category
     state[idx] = category
     patchState({splitState: [...state]})
+  }
+  @Action(SetSplitAction)
+  public setSplitAction({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSplitAction) {
+    patchState({splitAction: payload})
   }
   @Action(SetSelectedSeriesById)
   public setSelectedSeriesById({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSelectedSeriesById) {

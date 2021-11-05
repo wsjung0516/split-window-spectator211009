@@ -20,7 +20,7 @@ import {ImageService} from "../../carousel/image.service";
 import {map, skip, switchMap, takeUntil, tap} from "rxjs/operators";
 import {
   SetCurrentCategory, SetIsImageLoaded,
-  SetIsSeriesLoaded, SetSelectedImageById, SetSelectedSeriesById, SetSeriesUrls,
+  SetIsSeriesLoaded, SetSeriesUrls, SetSplitAction,
 } from "../../../store/status/status.actions";
 import {SeriesItemService} from "../series-item/series-item.service";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
@@ -159,6 +159,7 @@ export class SeriesListComponent implements OnInit, OnDestroy {
   }
   onSelectSeries(ev:SeriesModel) {
     console.log(' onSelectSeries');
+    this.store.dispatch(new SetSplitAction(false));
     this.sls.selectSeries(ev);
 /*
     // Focusing the selected series

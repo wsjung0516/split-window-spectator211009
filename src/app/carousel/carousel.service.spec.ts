@@ -3,6 +3,7 @@ import {CarouselService} from './carousel.service';
 import {ImageService} from "./image.service";
 import {HttpClient} from "@angular/common/http";
 import {Store} from "@ngxs/store";
+import {SplitService} from "../grid/split.service";
 
 
 describe('CarouselService', () => {
@@ -13,7 +14,7 @@ describe('CarouselService', () => {
       ImageService,
 
     ],
-    mocks:[HttpClient, Store]
+    mocks:[HttpClient, Store, SplitService]
   });
 
   beforeEach(() => spectator = createService());
@@ -33,10 +34,13 @@ describe('CarouselService', () => {
   })
 */
   it('Press let key, display previous image ', () => {
-    spectator.service.currentImageIndex = 0;
+    const splitService = spectator.inject(SplitService);
+    let el: any = 'element1'
+    splitService.currentImageIndex[el] = 0;
+    // spectator.service.currentImageIndex = 0;
     spyOn(spectator.service, 'getPrevImage').and.callThrough();
-    spectator.service.getPrevImage();
+    spectator.service.getPrevImage(el);
     expect(spectator.service.getPrevImage).toHaveBeenCalled();
-    expect(spectator.service.currentImageIndex).toEqual(0);
+    expect(splitService.currentImageIndex[el]).toEqual(0);
   })
 });

@@ -9,14 +9,21 @@ export class SplitService {
 
   elements: any[] = ['element1', 'element2', 'element3', 'element4']
   selectedElement: any = this.elements[0];
+  currentImageIndex:any[]  = ['element1', 'element2', 'element3', 'element4'];
 
   isFinishedRendering: Subject<any>[];
   isFinishedRendering$: Observable<any>[];
   isStartedRendering: Subject<any>[];
   isStartedRendering$: Observable<any>[];
 
+
   constructor() { }
   resetSplitWindowProcessing() {
+    this.currentImageIndex[this.elements[0]] = 0;
+    this.currentImageIndex[this.elements[1]] = 0;
+    this.currentImageIndex[this.elements[2]] = 0;
+    this.currentImageIndex[this.elements[3]] = 0;
+
     this.isFinishedRendering = [];
     this.isFinishedRendering$ = [];
     this.isStartedRendering = [];

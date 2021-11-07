@@ -15,13 +15,14 @@ import {Select, Store} from "@ngxs/store";
 import {combineLatest, merge, Observable, Subject} from "rxjs";
 import {StatusState} from "../../../store/status/status.state";
 import {takeUntil, tap} from "rxjs/operators";
-import {SetSelectedImageById} from "../../../store/status/status.actions";
+import {SetSelectedImageById, SetSplitAction} from "../../../store/status/status.actions";
 import {
   CdkVirtualScrollViewport,
   FixedSizeVirtualScrollStrategy,
   VIRTUAL_SCROLL_STRATEGY
 } from "@angular/cdk/scrolling";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
+import {SplitService} from "../../grid/split.service";
 
 @Injectable()
 export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy {
@@ -77,6 +78,7 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
   @Input() category: string;
   @Select(StatusState.getImageUrls)  getImageUrls$: Observable<string[]>;
   @SelectSnapshot(StatusState.getSelectedImageById)  getCurrentImageById: number;
+  @SelectSnapshot(StatusState.getActiveSplit)  activeSplit: number;
   @Select(StatusState.getSelectedImageById)  getSelectedImageById$: Observable<number>;
   @Select(StatusState.getCurrentCategory) currentCategory$: Observable<string>;
   @ViewChild(CdkVirtualScrollViewport, { static: true }) viewPort: CdkVirtualScrollViewport;
@@ -92,7 +94,8 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
     private carouselService: CarouselService,
     private imageService: ImageService,
     private store: Store,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private splitService: SplitService
   ) { }
 
   ngOnInit(): void {
@@ -107,10 +110,10 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
     ).subscribe(() => {
       this.currentImages = this.imageService.cachedThumbnailImages.map(val => val.image)
         .filter(val => val.category === this.category);
-         // console.log('this.currentImages -2', this.category)
+         console.log('this.currentImages -2', this.category)
       this.cdr.detectChanges();
     });
-    /** When scrollbar is dragged,  then update nodule-list scroll offset */
+    /** When scrollbar is dragged,  then update thumbnail-list scroll offset */
     this.viewPort.scrolledIndexChange.pipe(takeUntil(this.unsubscribe$)).subscribe(val => {
       // console.log(' draaged value', val)
       this.draggedInx = val;
@@ -128,7 +131,8 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
         imageId: val
       }
       // To synchronize with the current selected item, after when it is activated by clicking item-list
-      this.carouselService.currentImageIndex = val;
+      const el = this.splitService.elements[this.activeSplit];
+      this.splitService.currentImageIndex[el] = val;
       // console.log(' scrolled index', val);
       // this.viewPort.scrollToOffset(val, 'smooth');
        setTimeout(() => this.viewPort.scrollToIndex(val, 'smooth'),200);
@@ -143,6 +147,7 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
       class: 'selected_item',
       index: ev.imageId
     }
+    this.store.dispatch(new SetSplitAction(false));
 
   }
   ngOnDestroy() {

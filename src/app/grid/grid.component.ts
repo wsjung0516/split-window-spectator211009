@@ -111,15 +111,15 @@ export class GridComponent implements OnInit {
     });
     /** Call from displayTheFirstImage <-- carousel-main.component */
     this.selectedSplitWindow$.pipe(
-      skip(1),
+      // skip(1),
       takeUntil(this.unsubscribe$)
     ).subscribe( val => {
       this.onSelectTemplate(val)
       const series = this.cacheSeriesService.getCachedSeriesByCat(this.category)
-      console.log(' ********* series', series, val);
+      //console.log(' ********* series', series, val);
 
       // this.sls.selectSeries(series)
-      this.store.dispatch(new SetSelectedSeriesById(series.seriesId));
+      // this.store.dispatch(new SetSelectedSeriesById(series.seriesId));
 
     });
 
@@ -137,5 +137,6 @@ export class GridComponent implements OnInit {
     if( ev === 'element3' ) idx = 2;
     if( ev === 'element4' ) idx = 3;
     this.store.dispatch(new SetFocusedSplit(idx));
+    this.store.dispatch(new SetSplitAction(false));
   }
 }

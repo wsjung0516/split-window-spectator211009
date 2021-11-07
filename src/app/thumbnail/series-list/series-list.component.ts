@@ -148,7 +148,7 @@ export class SeriesListComponent implements OnInit, OnDestroy {
       skip(1),
       takeUntil(this.unsubscribe$)
     ).subscribe( (val: number) => {
-      // console.log( '--- seriesList-list id', val )
+      console.log( '--- seriesList-list id', val )
       this.addClass = {
         class:'selected_item',
         seriesId: val

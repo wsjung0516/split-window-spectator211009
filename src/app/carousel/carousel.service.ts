@@ -5,39 +5,38 @@ import {Store} from "@ngxs/store";
 import {SetSelectedImageById} from "../../store/status/status.actions";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 import {StatusState} from "../../store/status/status.state";
+import {SplitService} from "../grid/split.service";
 // import {StatusState} from "../../store/status/status.state";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarouselService {
-  currentImageIndex = 0;
   // @Select(StatusState.getSelectedImageById) getSelectedImageById$: Observable<number>;
   @SelectSnapshot(StatusState.getCurrentCategory) category: string;
   constructor(
     private imageService: ImageService,
+    private splitService: SplitService,
     private store: Store
     ) {}
-  getNextImage(cat: string) {
-    if( this.imageService.getCacheUrlsByCategory(cat).length > this.currentImageIndex + 1) {
-      this.currentImageIndex = this.currentImageIndex + 1;
+  getNextImage(cat: string, element: any) {
+    if( this.imageService.getCacheUrlsByCategory(cat).length > this.splitService.currentImageIndex[element] + 1) {
+      this.splitService.currentImageIndex[element] = this.splitService.currentImageIndex[element] + 1;
     }
-    // console.log('-- next this.currentImageIndex', this.currentImageIndex )
-
-    // const url = this.imageService.cacheUrls[this.currentImageIndex]
-    this.store.dispatch(new SetSelectedImageById(this.currentImageIndex));
-    return this.imageService.getCacheImage(this.category, this.currentImageIndex);
+    this.store.dispatch(new SetSelectedImageById(this.splitService.currentImageIndex[element]));
+    return this.imageService.getCacheImage(cat, this.splitService.currentImageIndex[element]);
+    // return this.imageService.getCacheImage(this.category, this.currentImageIndex);
   }
-  getPrevImage() {
-    if( this.currentImageIndex > 0) {
-      this.currentImageIndex = this.currentImageIndex - 1;
+  getPrevImage(element: any) {
+    if( this.splitService.currentImageIndex[element] > 0) {
+      this.splitService.currentImageIndex[element] = this.splitService.currentImageIndex[element] - 1;
     }
     // console.log('-- prev this.currentImageIndex', this.currentImageIndex )
-    this.store.dispatch(new SetSelectedImageById(this.currentImageIndex));
-    return this.imageService.getCacheImage(this.category, this.currentImageIndex);
+    this.store.dispatch(new SetSelectedImageById(this.splitService.currentImageIndex[element]));
+    return this.imageService.getCacheImage(this.category, this.splitService.currentImageIndex[element]);
   }
-  getSelectedImageByUrl(url: string) {
-    return this.imageService.getCacheImage(this.category, this.currentImageIndex)
+  getSelectedImageByUrl(url: string, element: any) {
+    return this.imageService.getCacheImage(this.category, this.splitService.currentImageIndex[element])
   }
   getSelectedImageById(cat: string, idx: number) {
     return this.imageService.getCacheImage(cat, idx)

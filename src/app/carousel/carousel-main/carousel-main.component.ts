@@ -81,7 +81,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   @Select(StatusState.getSplitMode) splitMode$: Observable<any>;
   @SelectSnapshot(StatusState.getSplitMode) splitMode: number;
   @SelectSnapshot(StatusState.getSplitAction) splitAction: boolean;
-  @SelectSnapshot(StatusState.getFocusedSplit) focusedSplit: number;
+  @SelectSnapshot(StatusState.getFocusedSplit) focusedSplitIdx: number;
   @Select(StatusState.getCurrentSplitOperation) getCurrentSplitOperation$: Observable<{}>;
   @Select(StatusState.getActiveSplit) activeSplit$: Observable<number>;
   worker: Worker[] = [];
@@ -133,8 +133,10 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
     /** Display image at the main window whenever clinking thumbnail_item */
     this.getSelectedImageById$.pipe(skip(1))
       .subscribe(id => {
-        this.image.nativeElement.src = this.carouselService.getSelectedImageById(this.category, id)
-        this.cdr.detectChanges();
+        const image = this.carouselService.getSelectedImageById(this.category, id)
+        this.displaySplitWindowImage(image);
+        // this.image.nativeElement.src = this.carouselService.getSelectedImageById(this.category, id)
+        // this.cdr.detectChanges();
       })
 
     /** New process start whenever clinking series_item */
@@ -157,7 +159,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     //
 
-    console.log('----requestRenderingSplitWindow$', this.requestRenderingSplitWindow$, this.splitService.selectedElement, eIdx);
+    // console.log('----requestRenderingSplitWindow$', this.requestRenderingSplitWindow$, this.splitService.selectedElement, eIdx);
     this.requestRenderingSplitWindow$[this.splitService.selectedElement] = of(this.splitService.selectedElement).pipe(take(1));
 
 
@@ -211,18 +213,25 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
          */
         const tImage = this.carouselService.getSelectedImageById(this.category, 0);
         if( tImage ) {
-          this.image.nativeElement.src = tImage;
+          this.displaySplitWindowImage(tImage)
         } else {
-          this.image.nativeElement.src = this.cacheSeriesService.getCachedSeriesByCat(this.category).blob;
+          const image = this.cacheSeriesService.getCachedSeriesByCat(this.category).blob;
+          this.displaySplitWindowImage(image);
         }
-
-        this.originalImage = this.image.nativeElement.src;
-        this.cdr.detectChanges();
-        /** To focus on the selected split window, which will call grid component */
-
-      this.store.dispatch(new SetSelectedSplitWindowId(this.splitService.selectedElement))
         resolve('')
     })
+  }
+  private displaySplitWindowImage(image: any) {
+    if( this.splitIdx !== this.focusedSplitIdx && !this.splitAction) {
+      return
+    }
+    this.image.nativeElement.src = image;
+    this.originalImage = this.image.nativeElement.src;
+    this.cdr.detectChanges();
+    /** To focus on the selected split window, which will call grid component */
+
+    this.store.dispatch(new SetSelectedSplitWindowId('element1'));
+    // this.store.dispatch(new SetSelectedSplitWindowId(this.splitService.selectedElement))
   }
 
   private getTotalImageList() {
@@ -333,7 +342,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
     );
 
     // const {grids, gridMode} = this.ctViewerService.getGridMode(this.gridId);
-    console.log(' splitMode', this.splitMode, this.splitService.selectedElement, this.tempObservable)
+    // console.log(' splitMode', this.splitMode, this.splitService.selectedElement, this.tempObservable)
 
     if (this.splitMode > 1) {
       if (this.splitService.selectedElement === 'element1') { // first split window
@@ -362,7 +371,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   //
   private splitWindowProcess2() {
     const rendering$: Observable<any> = this.requestRenderingSplitWindow$[this.splitService.selectedElement];
-    console.log('----- rendering$, this.tempObservable', rendering$, this.tempObservable)
+    // console.log('----- rendering$, this.tempObservable', rendering$, this.tempObservable)
     zip(this.tempObservable, rendering$).pipe(
       // takeUntil(this.unsubscribe$)
       // tap( val => console.log('---zip', val)),
@@ -390,12 +399,31 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
   }
   nextImage() {
-    this.image.nativeElement.src = this.carouselService.getNextImage(this.category);
-    this.originalImage = this.image.nativeElement.src;
+    //console.log('--nextImage this.splitIdx, this.focusedSplitIdx', this.splitIdx, this.focusedSplitIdx, this.splitAction)
+    const splitState = this.getSplitState[this.focusedSplitIdx];
+    console.log('--nextImage this.splitIdx, this.focusedSplitIdx', this.currentCategory, splitState)
+    if( this.currentCategory !== splitState) return;
+    if( this.splitIdx !== this.focusedSplitIdx && !this.splitAction) return
+
+    const image = this.carouselService.getNextImage(this.category, this.splitService.selectedElement);
+    this.displaySplitWindowImage(image);
+    // this.originalImage = this.image.nativeElement.src;
+    // this.image.nativeElement.src = this.carouselService.getNextImage(this.category);
+    // this.originalImage = this.image.nativeElement.src;
   }
   prevImage() {
-    this.image.nativeElement.src = this.carouselService.getPrevImage();
-    this.originalImage = this.image.nativeElement.src;
+    // console.log('-- prevImage this.splitIdx, this.focusedSplitIdx', this.splitIdx, this.focusedSplitIdx, this.splitAction)
+    const splitState = this.getSplitState[this.focusedSplitIdx];
+    console.log('--prevImage this.splitIdx, this.focusedSplitIdx', this.currentCategory, splitState)
+
+    if( this.currentCategory !== splitState) return;
+    if( this.splitIdx !== this.focusedSplitIdx && !this.splitAction) return
+
+    const image = this.carouselService.getPrevImage(this.splitService.selectedElement);
+    this.displaySplitWindowImage(image);
+    // his.originalImage = this.image.nativeElement.src;
+    // this.image.nativeElement.src = this.carouselService.getPrevImage();
+    // this.originalImage = this.image.nativeElement.src;
     // console.log('current index - prev', this.carouselService.currentImageIndex)
   }
   webWorkerProcess() {

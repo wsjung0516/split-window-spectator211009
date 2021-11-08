@@ -6,6 +6,7 @@ import {SetSelectedImageById} from "../../store/status/status.actions";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 import {StatusState} from "../../store/status/status.state";
 import {SplitService} from "../grid/split.service";
+import {ImageModel} from "./carousel-main/carousel-main.component";
 // import {StatusState} from "../../store/status/status.state";
 
 @Injectable({
@@ -23,16 +24,33 @@ export class CarouselService {
     if( this.imageService.getCacheUrlsByCategory(cat).length > this.splitService.currentImageIndex[element] + 1) {
       this.splitService.currentImageIndex[element] = this.splitService.currentImageIndex[element] + 1;
     }
-    this.store.dispatch(new SetSelectedImageById(this.splitService.currentImageIndex[element]));
+    const image: ImageModel = {
+      imageId: this.splitService.currentImageIndex[element],
+      category: cat,
+      url: '',
+      blob: '',
+      title: ''
+    }
+
+    this.store.dispatch(new SetSelectedImageById(image));
+    // this.store.dispatch(new SetSelectedImageById(this.splitService.currentImageIndex[element]));
     return this.imageService.getCacheImage(cat, this.splitService.currentImageIndex[element]);
     // return this.imageService.getCacheImage(this.category, this.currentImageIndex);
   }
-  getPrevImage(element: any) {
+  getPrevImage(cat: string, element: any) {
     if( this.splitService.currentImageIndex[element] > 0) {
       this.splitService.currentImageIndex[element] = this.splitService.currentImageIndex[element] - 1;
     }
     // console.log('-- prev this.currentImageIndex', this.currentImageIndex )
-    this.store.dispatch(new SetSelectedImageById(this.splitService.currentImageIndex[element]));
+    const image: ImageModel = {
+      imageId: this.splitService.currentImageIndex[element],
+      category: cat,
+      url: '',
+      blob: '',
+      title: ''
+    }
+
+    this.store.dispatch(new SetSelectedImageById(image));
     return this.imageService.getCacheImage(this.category, this.splitService.currentImageIndex[element]);
   }
   getSelectedImageByUrl(url: string, element: any) {

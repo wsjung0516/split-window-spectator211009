@@ -31,7 +31,7 @@ export class SetFocusedSplit {
 }
 export class SetSelectedImageById {
   public static readonly type = '[Status] Selected image id';
-  constructor(public payload: number ) { }
+  constructor(public payload: ImageModel ) { }
 }
 export class SetSelectedImageByUrl {
   public static readonly type = '[Status] Selected image url';

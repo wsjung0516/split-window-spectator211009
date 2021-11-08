@@ -25,7 +25,7 @@ export interface StatusStateModel {
   seriesUrls: string[]; //
   currentCategory: string;
   focusedSplit: number;
-  selectedImageId: number;
+  selectedImageId: ImageModel;
   selectedImageUrl: string;
   splitMode: number;
   splitState: string[];
@@ -47,7 +47,13 @@ export interface StatusStateModel {
     seriesUrls: [],
     currentCategory: '',
     focusedSplit: 0, // 0: split1, 1: split2, 2: split3, 3: split4
-    selectedImageId: 0,
+    selectedImageId: {
+      imageId: 0,
+      category: 'animal',
+      url: '',
+      blob: '',
+      title: ''
+    },
     selectedImageUrl: '',
     splitMode: 1, // 1: active --> split1, 2: active --> split1, split2
     splitState: ['animal', 'house', 'baby', 'forest'],
@@ -168,7 +174,8 @@ export class StatusState {
   }
   @Action(SetSelectedImageById)
   public setSelectedImageById({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSelectedImageById) {
-    patchState({selectedImageId: payload})
+    const imageId = getState().selectedImageId;
+    patchState({selectedImageId: {...imageId, ...payload}})
   }
   @Action(SetSelectedImageByUrl)
   public setSelectedImageByUrl({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetSelectedImageByUrl) {

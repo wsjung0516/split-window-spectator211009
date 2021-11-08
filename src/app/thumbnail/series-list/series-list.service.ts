@@ -7,6 +7,7 @@ import {
   SetSelectedSeriesById
 } from "../../../store/status/status.actions";
 import {Store} from "@ngxs/store";
+import {ImageModel} from "../../carousel/carousel-main/carousel-main.component";
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,14 @@ export class SeriesListService {
     // Select series and get the image list.
     this.store.dispatch(new SetSelectedSeriesById(ev.seriesId));
     // Focusing the first thumbnail_item
-    this.store.dispatch(new SetSelectedImageById(0));
+    const image: ImageModel = {
+      imageId: 0,
+      category: ev.category,
+      url: '',
+      blob: '',
+      title: ''
+    }
+    this.store.dispatch(new SetSelectedImageById(image));
     // Enable display the first image in the main window
     this.store.dispatch(new SetIsImageLoaded({idx:0}));
   }

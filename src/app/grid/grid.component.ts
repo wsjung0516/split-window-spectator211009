@@ -92,7 +92,7 @@ export class GridComponent implements OnInit {
   ngOnInit(): void {
     /** Triggered from app.component.html */
     this.splitMode$.pipe(skip(1), takeUntil(this.unsubscribe$)).subscribe((val)=> {
-      console.log('****************** splitMode$', val)
+      // console.log('****************** splitMode$', val)
       if (val === 1) {
         this.tiles = [...this.tiles1];
       } else if (val === 2) {
@@ -104,7 +104,7 @@ export class GridComponent implements OnInit {
       }
       this.mcols = this.tiles[this.tiles.length - 1].mcols;
       this.mheight = this.tiles[this.tiles.length - 1].mheight;
-      console.log(' mcols mheight', this.mcols, this.mheight)
+      // console.log(' mcols mheight', this.mcols, this.mheight)
 
       this.store.dispatch(new SetSplitAction(true));
 
@@ -129,7 +129,7 @@ export class GridComponent implements OnInit {
   }
   onSelectTemplate(ev: any) {
     // const elementId = ev;
-    console.log('-- ev',ev)
+    // console.log('-- ev',ev)
     this.selectedTemplate = ev;
     let idx;
     if( ev === 'element1' ) idx = 0;

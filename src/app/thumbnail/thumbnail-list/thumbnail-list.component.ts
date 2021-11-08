@@ -77,9 +77,9 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
 
   @Input() category: string;
   @Select(StatusState.getImageUrls)  getImageUrls$: Observable<string[]>;
-  @SelectSnapshot(StatusState.getSelectedImageById)  getCurrentImageById: number;
+  // @SelectSnapshot(StatusState.getSelectedImageById)  getCurrentImageById: ImageModel;
   @SelectSnapshot(StatusState.getActiveSplit)  activeSplit: number;
-  @Select(StatusState.getSelectedImageById)  getSelectedImageById$: Observable<number>;
+  @Select(StatusState.getSelectedImageById)  getSelectedImageById$: Observable<ImageModel>;
   @Select(StatusState.getCurrentCategory) currentCategory$: Observable<string>;
   @ViewChild(CdkVirtualScrollViewport, { static: true }) viewPort: CdkVirtualScrollViewport;
 
@@ -110,7 +110,7 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
     ).subscribe(() => {
       this.currentImages = this.imageService.cachedThumbnailImages.map(val => val.image)
         .filter(val => val.category === this.category);
-         console.log('this.currentImages -2', this.category)
+         // console.log('this.currentImages -2', this.category)
       this.cdr.detectChanges();
     });
     /** When scrollbar is dragged,  then update thumbnail-list scroll offset */
@@ -125,23 +125,22 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
     //
     this.getSelectedImageById$.pipe(
       takeUntil(this.unsubscribe$)
-    ).subscribe( val => {
+    ).subscribe( image => {
       this.addClass = {
         class:'selected_item',
-        imageId: val
+        imageId: image.imageId
       }
       // To synchronize with the current selected item, after when it is activated by clicking item-list
-      const el = this.splitService.elements[this.activeSplit];
-      this.splitService.currentImageIndex[el] = val;
-      // console.log(' scrolled index', val);
-      // this.viewPort.scrollToOffset(val, 'smooth');
-       setTimeout(() => this.viewPort.scrollToIndex(val, 'smooth'),200);
+      // const el = this.splitService.elements[this.activeSplit];
+      // this.splitService.currentImageIndex[el] = val;
+
+       setTimeout(() => this.viewPort.scrollToIndex(image.imageId, 'smooth'),200);
     })
 
   }
   onSelectItem(ev:ImageModel) {
     // console.log( '--- thumbnail-list id', ev.imageId )
-    this.store.dispatch(new SetSelectedImageById(ev.imageId));
+    this.store.dispatch(new SetSelectedImageById(ev));
     this.category = ev.category;
     this.addClass = {
       class: 'selected_item',

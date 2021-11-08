@@ -42,7 +42,10 @@ export interface ImageModel {
   template: `
     <div>
       <div class="w-auto h-auto">
-        <mat-progress-bar mode="determinate" [value]="progress[categoryIdx]"></mat-progress-bar>
+        <div class="m-1">
+          <mat-progress-bar mode="determinate" [value]="progress[categoryIdx]"></mat-progress-bar>
+        </div>
+
         <div class="">
           <div class="m-1">
             <img class="object-cover" #img>
@@ -53,8 +56,7 @@ export interface ImageModel {
     </div>
 
   `,
-  styles: [
-  ],
+  styles: [],
 
 })
 export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -71,7 +73,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('img') image: ElementRef;
   // to check if image loading is started from webworker.
   @Select(StatusState.getIsImageLoaded) getIsImageLoaded$: Observable<boolean>;
-  @Select(StatusState.getSelectedImageById) getSelectedImageById$: Observable<number>;
+  @Select(StatusState.getSelectedImageById) getSelectedImageById$: Observable<ImageModel>;
   @Select(StatusState.getSelectedSeriesById) getSelectedSeriesById$: Observable<number>;
   @Select(StatusState.getSelectedSplitWindowId) getSelectedSplitWindowId$: Observable<number>;
   @SelectSnapshot(StatusState.getSplitState) getSplitState: string[];
@@ -132,9 +134,10 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
 
     /** Display image at the main window whenever clinking thumbnail_item */
     this.getSelectedImageById$.pipe(skip(1))
-      .subscribe(id => {
-        const image = this.carouselService.getSelectedImageById(this.category, id)
-        this.displaySplitWindowImage(image);
+      .subscribe(image => {
+        const img = this.carouselService.getSelectedImageById(image.category, image.imageId)
+        // const img = this.carouselService.getSelectedImageById(this.category, image.imageId)
+        this.displaySplitWindowImage(img);
         // this.image.nativeElement.src = this.carouselService.getSelectedImageById(this.category, id)
         // this.cdr.detectChanges();
       })
@@ -222,6 +225,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
     })
   }
   private displaySplitWindowImage(image: any) {
+    // console.log('-- this.focusedSplitIdx, this.splitIdx, this.splitAction', this.focusedSplitIdx, this.splitIdx, this.splitAction)
     if( this.splitIdx !== this.focusedSplitIdx && !this.splitAction) {
       return
     }
@@ -399,27 +403,24 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
   }
   nextImage() {
-    //console.log('--nextImage this.splitIdx, this.focusedSplitIdx', this.splitIdx, this.focusedSplitIdx, this.splitAction)
-    const splitState = this.getSplitState[this.focusedSplitIdx];
-    console.log('--nextImage this.splitIdx, this.focusedSplitIdx', this.currentCategory, splitState)
-    if( this.currentCategory !== splitState) return;
+    // const splitState = this.getSplitState[this.focusedSplitIdx];
+    // console.log('--nextImage this.splitIdx, this.focusedSplitIdx', this.currentCategory, splitState)
     if( this.splitIdx !== this.focusedSplitIdx && !this.splitAction) return
 
-    const image = this.carouselService.getNextImage(this.category, this.splitService.selectedElement);
+    const image = this.carouselService.getNextImage(this.currentCategory, this.splitService.selectedElement);
     this.displaySplitWindowImage(image);
     // this.originalImage = this.image.nativeElement.src;
     // this.image.nativeElement.src = this.carouselService.getNextImage(this.category);
     // this.originalImage = this.image.nativeElement.src;
   }
   prevImage() {
-    // console.log('-- prevImage this.splitIdx, this.focusedSplitIdx', this.splitIdx, this.focusedSplitIdx, this.splitAction)
-    const splitState = this.getSplitState[this.focusedSplitIdx];
-    console.log('--prevImage this.splitIdx, this.focusedSplitIdx', this.currentCategory, splitState)
-
-    if( this.currentCategory !== splitState) return;
+    //
+    // const splitState = this.getSplitState[this.focusedSplitIdx];
+    // console.log('--prevImage this.splitIdx, this.focusedSplitIdx', this.currentCategory, splitState)
+    //
     if( this.splitIdx !== this.focusedSplitIdx && !this.splitAction) return
 
-    const image = this.carouselService.getPrevImage(this.splitService.selectedElement);
+    const image = this.carouselService.getPrevImage(this.currentCategory, this.splitService.selectedElement);
     this.displaySplitWindowImage(image);
     // his.originalImage = this.image.nativeElement.src;
     // this.image.nativeElement.src = this.carouselService.getPrevImage();

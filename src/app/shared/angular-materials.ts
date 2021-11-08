@@ -8,6 +8,7 @@ import {CarouselMainComponent} from "../carousel/carousel-main/carousel-main.com
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatMenuModule} from "@angular/material/menu";
 import {ScrollingModule} from "@angular/cdk/scrolling";
+import {MatIconModule} from "@angular/material/icon";
 const materials = [
   MatRadioModule,
   MatButtonModule,
@@ -16,6 +17,7 @@ const materials = [
   MatToolbarModule,
   MatMenuModule,
   ScrollingModule,
+  MatIconModule
 ]
 
 @NgModule({

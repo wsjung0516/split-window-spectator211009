@@ -26,7 +26,7 @@ export class SelectColorDirective implements OnInit, OnChanges, OnDestroy {
     @HostBinding('style.zIndex') zIndex: number;
     @HostListener('mouseover') onMouseOver() {
         if( this.selectedTemplate !== this.sTemplate) {
-            this.border = '2px solid blue';
+            this.border = '3px solid blue';
         }
     }
     @HostListener('click') onClick() {

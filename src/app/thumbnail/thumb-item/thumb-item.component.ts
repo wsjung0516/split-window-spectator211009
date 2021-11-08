@@ -42,7 +42,7 @@ export class ThumbItemComponent implements OnInit, AfterViewInit, OnChanges {
   }
   @Input() originalImage: ImageModel;
   @Output() selected: EventEmitter<ImageModel> = new EventEmitter<ImageModel>();
-  @SelectSnapshot(StatusState.getSelectedImageById) selectedImageId: number;
+  @SelectSnapshot(StatusState.getSelectedImageById) selectedImageId: ImageModel;
 
   borderColor: string ;
   constructor(
@@ -58,13 +58,13 @@ export class ThumbItemComponent implements OnInit, AfterViewInit, OnChanges {
     this.cdr.markForCheck();
   }
   get borderStyle() {
-    return {'border-color': this.originalImage.imageId === this.selectedImageId ? 'blue' : 'yellow'}
+    return {'border-color': this.originalImage.imageId === this.selectedImageId.imageId ? 'blue' : 'yellow'}
   }
   ngOnChanges(changes: SimpleChanges) {
     this.borderColor = 'none_selected_item'
       this.cdr.markForCheck();
     // console.log('this.selectedImageId, this.originalImage.imageId ', this.selectedImageId, this.originalImage.imageId)
-    if( this.selectedImageId === this.originalImage.imageId) {
+    if( this.selectedImageId.imageId === this.originalImage.imageId) {
       this.borderColor = 'selected_item';
       this.cdr.markForCheck();
 

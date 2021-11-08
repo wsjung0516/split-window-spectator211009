@@ -38,7 +38,13 @@ describe('Status store', () => {
     seriesUrls: [],
     currentCategory: '',
     focusedSplit: 0,
-    selectedImageId: 0,
+    selectedImageId: {
+      imageId: 0,
+      category: 'animal',
+      url: '',
+      blob: '',
+      title: ''
+    },
     selectedImageUrl: '',
     splitMode: 1,
     splitState: ['animal'],

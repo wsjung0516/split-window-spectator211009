@@ -39,7 +39,7 @@ describe('CarouselService', () => {
     splitService.currentImageIndex[el] = 0;
     // spectator.service.currentImageIndex = 0;
     spyOn(spectator.service, 'getPrevImage').and.callThrough();
-    spectator.service.getPrevImage(el);
+    spectator.service.getPrevImage('', el);
     expect(spectator.service.getPrevImage).toHaveBeenCalled();
     expect(splitService.currentImageIndex[el]).toEqual(0);
   })

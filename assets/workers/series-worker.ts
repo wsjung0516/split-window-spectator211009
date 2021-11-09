@@ -1,5 +1,5 @@
 import {DoWork, runWorker} from "observable-webworker";
-import {from, Observable, of} from "rxjs";
+import {defer, from, Observable, of} from "rxjs";
 import {concatMap, map, switchMap, tap } from "rxjs/operators";
 import {seriesAjaxData} from "../../app/utils/ajaxComm";
 
@@ -12,15 +12,16 @@ export class SeriesWorker implements DoWork<{}, {}> {
       map( (val: any) => oriData = val),
       switchMap((arr: any[]) => {
         return  from(arr).pipe(
-          concatMap( val => {
+          concatMap( async val => {
             const url = val.url;
-            return seriesAjaxData(url);
+            return await seriesAjaxData(url)
           }),
           map( (res, idx) => {
+            // console.log('--- axios --', res)
             return {
               seriesId: idx,
               url: oriData[idx].url,
-              blob: res,
+              blob: res.data,
               category: oriData[idx].category
             }
           })

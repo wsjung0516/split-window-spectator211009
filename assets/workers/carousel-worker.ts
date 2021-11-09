@@ -11,7 +11,7 @@ async function getCarouselImage({data}: any) {
     for (let i = 0; i < rData.length; i++) {
         await seriesAjaxData(rData[i].url)
           .then( async (res1: any) => {
-           // console.log('----res1', res1)
+            // console.log('----res1', res1)
             sData = {
               imageId: rData[i].id,
               url: rData[i].url,

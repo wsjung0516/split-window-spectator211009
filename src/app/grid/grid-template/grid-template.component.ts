@@ -15,10 +15,16 @@ import {SetFocusedSplit, SetSplitAction} from "../../../store/status/status.acti
     <ng-template [appGridTemplate]="'element1'" let-height=height> <!-- to get proper template -->
       <div [style.height]="height" >
         <div>
-          <button [disabled]="selectedSplit[0]" mat-mini-fab class="fab-bottom-left" (click)="onLeftButton('element1')">
+          <button [disabled]="selectedSplit[0]" mat-mini-fab class="fab-bottom-left"
+                  matTooltip="Can use arrow keys"
+                  [matTooltipPosition]="'above'"
+                  (click)="onLeftButton('element1')">
             <mat-icon>keyboard_arrow_left</mat-icon>
           </button>
-          <button [disabled]="selectedSplit[0]" mat-mini-fab class="fab-bottom-right" (click)="onRightButton('element1')">
+          <button [disabled]="selectedSplit[0]" mat-mini-fab class="fab-bottom-right"
+                  matTooltip="Can use arrow keys"
+                  [matTooltipPosition]="'above'"
+                  (click)="onRightButton('element1')">
             <mat-icon>keyboard_arrow_right</mat-icon>
           </button>
         </div>
@@ -29,10 +35,16 @@ import {SetFocusedSplit, SetSplitAction} from "../../../store/status/status.acti
     <ng-template [appGridTemplate]="'element2'" let-height=height>
       <div [style.height]="height" >
         <div>
-          <button [disabled]="selectedSplit[1]" mat-mini-fab class="fab-bottom-left" (click)="onLeftButton('element2')">
+          <button [disabled]="selectedSplit[1]" mat-mini-fab class="fab-bottom-left"
+                  matTooltip="Can use arrow keys"
+                  [matTooltipPosition]="'above'"
+                  (click)="onLeftButton('element2')">
             <mat-icon>keyboard_arrow_left</mat-icon>
           </button>
-          <button [disabled]="selectedSplit[1]" mat-mini-fab class="fab-bottom-right" (click)="onRightButton('element2')">
+          <button [disabled]="selectedSplit[1]" mat-mini-fab class="fab-bottom-right"
+                  matTooltip="Can use arrow keys"
+                  [matTooltipPosition]="'above'"
+                  (click)="onRightButton('element2')">
             <mat-icon>keyboard_arrow_right</mat-icon>
           </button>
         </div>
@@ -43,10 +55,16 @@ import {SetFocusedSplit, SetSplitAction} from "../../../store/status/status.acti
     <ng-template [appGridTemplate]="'element3'" let-height=height>
       <div [style.height]="height">
         <div>
-          <button [disabled]="selectedSplit[2]" mat-mini-fab class="fab-bottom-left" (click)="onLeftButton('element3')">
+          <button [disabled]="selectedSplit[2]" mat-mini-fab class="fab-bottom-left"
+                  matTooltip="Can use arrow keys"
+                  [matTooltipPosition]="'above'"
+                  (click)="onLeftButton('element3')">
             <mat-icon>keyboard_arrow_left</mat-icon>
           </button>
-          <button [disabled]="selectedSplit[2]" mat-mini-fab class="fab-bottom-right" (click)="onRightButton('element3')">
+          <button [disabled]="selectedSplit[2]" mat-mini-fab class="fab-bottom-right"
+                  matTooltip="Can use arrow keys"
+                  [matTooltipPosition]="'above'"
+                  (click)="onRightButton('element3')">
             <mat-icon>keyboard_arrow_right</mat-icon>
           </button>
         </div>
@@ -57,10 +75,16 @@ import {SetFocusedSplit, SetSplitAction} from "../../../store/status/status.acti
     <ng-template [appGridTemplate]="'element4'" let-height=height>
       <div [style.height]="height">
         <div>
-          <button [disabled]="selectedSplit[3]" mat-mini-fab class="fab-bottom-left" (click)="onLeftButton('element4')">
+          <button [disabled]="selectedSplit[3]" mat-mini-fab class="fab-bottom-left"
+                  matTooltip="Can use arrow keys"
+                  [matTooltipPosition]="'above'"
+                  (click)="onLeftButton('element4')">
             <mat-icon>keyboard_arrow_left</mat-icon>
           </button>
-          <button [disabled]="selectedSplit[3]" mat-mini-fab class="fab-bottom-right" (click)="onRightButton('element4')">
+          <button [disabled]="selectedSplit[3]" mat-mini-fab class="fab-bottom-right"
+                  matTooltip="Can use arrow keys"
+                  [matTooltipPosition]="'above'"
+                  (click)="onRightButton('element4')">
             <mat-icon>keyboard_arrow_right</mat-icon>
           </button>
         </div>

@@ -9,6 +9,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatMenuModule} from "@angular/material/menu";
 import {ScrollingModule} from "@angular/cdk/scrolling";
 import {MatIconModule} from "@angular/material/icon";
+import {MatTooltipModule} from "@angular/material/tooltip";
 const materials = [
   MatRadioModule,
   MatButtonModule,
@@ -17,7 +18,8 @@ const materials = [
   MatToolbarModule,
   MatMenuModule,
   ScrollingModule,
-  MatIconModule
+  MatIconModule,
+  MatTooltipModule
 ]
 
 @NgModule({

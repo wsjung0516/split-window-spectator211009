@@ -14,7 +14,7 @@ import {
 } from "@angular/cdk/scrolling";
 import {Select, Store} from "@ngxs/store";
 import {StatusState} from "../../../store/status/status.state";
-import {from, Observable, Subject} from "rxjs";
+import {from, Observable, of, Subject} from "rxjs";
 import {CarouselService} from "../../carousel/carousel.service";
 import {ImageService} from "../../carousel/image.service";
 import {map, skip, switchMap, takeUntil, tap} from "rxjs/operators";
@@ -26,6 +26,7 @@ import {SeriesItemService} from "../series-item/series-item.service";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 import {CacheSeriesService} from "../cache-series.service";
 import {SeriesListService} from "./series-list.service";
+import {fromWorker} from "observable-webworker";
 
 export interface SeriesModel {
   seriesId: number;
@@ -133,15 +134,6 @@ export class SeriesListComponent implements OnInit, OnDestroy {
     });
     //
     this.webWorkerProcess();
-    /** Start series worker with the initial values */
-    this.seriesService.getSeriesObject()
-      .subscribe((val:any) => {
-        // console.log('-- val', val)
-        const data: any = {
-          body: val
-        }
-        this.seriesWorker.postMessage(data);
-      });
     //
     /** Move scroll position by the selected series */
     this.getSelectedSeriesById$.pipe(
@@ -170,21 +162,50 @@ export class SeriesListComponent implements OnInit, OnDestroy {
 */
   }
   webWorkerProcess() {
-    if (typeof Worker !== 'undefined') {
-      // console.log(' import.meta.url',  import.meta.url)
-      this.seriesWorker = new Worker(new URL('src/assets/workers/series-worker.ts', import.meta.url));
-      this.seriesWorker.onmessage = ( data: any) => {
-        const series: any = this.imageService.readFile(data.data.blob)
-        series.subscribe( (obj:any) => {
-          // console.log('--- data', data.data.url);
-          data.data.blob = obj;
-          // this.seriesService.saveSeries = [data.data];
-          this.store.dispatch(new SetIsSeriesLoaded(true));
-          this.store.dispatch(new SetSeriesUrls([data.data.url]))
-          this.cacheSeriesService.checkAndCacheSeries(data.data);
-        })
-      };
-    }
+    /** Start series worker with the initial values */
+    this.seriesService.getSeriesObject()
+      .subscribe((val:any[]) => {
+        // console.log('-getSeriesObject- val', val)
+        const input$ = of(val);
+
+        if (!this.seriesWorker) {
+          this.seriesWorker = new Worker(new URL('src/assets/workers/series-worker', import.meta.url), {type: 'module'})
+        }
+        fromWorker<{}, {}>(
+          () => this.seriesWorker,
+          input$,
+        ).subscribe((data: any) => {
+          const series: any = this.imageService.readFile(data.blob)
+          series.subscribe( (obj:any) => {
+            // console.log('--- data', data.url);
+            data.blob = obj;
+            // this.seriesService.saveSeries = [data.data];
+            this.store.dispatch(new SetIsSeriesLoaded(true));
+            this.store.dispatch(new SetSeriesUrls([data.url]))
+            this.cacheSeriesService.checkAndCacheSeries(data);
+          })
+
+        }, error => console.error(error))
+      });
+
+
+    /*
+        if (typeof Worker !== 'undefined') {
+          // console.log(' import.meta.url',  import.meta.url)
+          this.seriesWorker = new Worker(new URL('src/assets/workers/series-worker.ts', import.meta.url));
+          this.seriesWorker.onmessage = ( data: any) => {
+            const series: any = this.imageService.readFile(data.data.blob)
+            series.subscribe( (obj:any) => {
+              // console.log('--- data', data.data.url);
+              data.data.blob = obj;
+              // this.seriesService.saveSeries = [data.data];
+              this.store.dispatch(new SetIsSeriesLoaded(true));
+              this.store.dispatch(new SetSeriesUrls([data.data.url]))
+              this.cacheSeriesService.checkAndCacheSeries(data.data);
+            })
+          };
+        }
+    */
   }
 
 

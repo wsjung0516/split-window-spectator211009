@@ -409,23 +409,14 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const image = this.carouselService.getNextImage(this.currentCategory, this.splitService.selectedElement);
     this.displaySplitWindowImage(image);
-    // this.originalImage = this.image.nativeElement.src;
-    // this.image.nativeElement.src = this.carouselService.getNextImage(this.category);
-    // this.originalImage = this.image.nativeElement.src;
   }
   prevImage() {
-    //
     // const splitState = this.getSplitState[this.focusedSplitIdx];
     // console.log('--prevImage this.splitIdx, this.focusedSplitIdx', this.currentCategory, splitState)
-    //
     if( this.splitIdx !== this.focusedSplitIdx && !this.splitAction) return
 
     const image = this.carouselService.getPrevImage(this.currentCategory, this.splitService.selectedElement);
     this.displaySplitWindowImage(image);
-    // his.originalImage = this.image.nativeElement.src;
-    // this.image.nativeElement.src = this.carouselService.getPrevImage();
-    // this.originalImage = this.image.nativeElement.src;
-    // console.log('current index - prev', this.carouselService.currentImageIndex)
   }
   webWorkerProcess() {
     if (typeof Worker !== 'undefined') {

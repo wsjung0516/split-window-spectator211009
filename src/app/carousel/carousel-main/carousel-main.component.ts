@@ -179,8 +179,13 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
       this.splitService.isFinishedRendering[this.splitService.selectedElement].next(this.splitService.selectedElement)
       resolve('')
       setTimeout(() => {
-        if(this.worker[this.splitIdx] && this.splitAction ) this.worker[this.splitIdx].terminate();
-      },10000);
+        if(this.worker[this.splitIdx] ) {
+          this.worker[this.splitIdx].terminate();
+          this.worker[this.splitIdx] = undefined;
+          // console.log(' terimnate this.worker[this.splitIdx] ', this.splitIdx)
+        }
+        // if(this.worker[this.splitIdx] && this.splitAction ) this.worker[this.splitIdx].terminate();
+      },5000);
 
     })
   }
@@ -308,6 +313,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   webWorkerProcess() {
     if (typeof Worker !== 'undefined') {
       if( !this.worker[this.splitIdx]) {
+        // console.log('this.worker[this.splitIdx]', this.worker[this.splitIdx], this.splitIdx)
         this.worker[this.splitIdx] = new Worker(new URL('src/assets/workers/carousel-worker.ts', import.meta.url));
         this.worker[this.splitIdx].onmessage = (data: any) => {
           this.progress[this.categoryIdx] = ((data.data.imageId + 1)/ this.imageCount[this.categoryIdx] * 100).toFixed(0).toString();

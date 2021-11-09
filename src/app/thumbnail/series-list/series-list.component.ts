@@ -27,6 +27,7 @@ import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 import {CacheSeriesService} from "../cache-series.service";
 import {SeriesListService} from "./series-list.service";
 import {fromWorker} from "observable-webworker";
+import {SplitService} from "../../grid/split.service";
 
 export interface SeriesModel {
   seriesId: number;
@@ -108,6 +109,7 @@ export class SeriesListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private seriesService: SeriesItemService,
     private cacheSeriesService: CacheSeriesService,
+    private splitService: SplitService,
     private sls: SeriesListService
   ) { }
 
@@ -150,16 +152,10 @@ export class SeriesListComponent implements OnInit, OnDestroy {
 
   }
   onSelectSeries(ev:SeriesModel) {
-    // console.log(' onSelectSeries');
+    //console.log(' onSelectSeries - selectedElement', this.splitService.selectedElement);
     this.store.dispatch(new SetSplitAction(false));
+    this.splitService.currentImageIndex[this.splitService.selectedElement] = 0;
     this.sls.selectSeries(ev);
-/*
-    // Focusing the selected series
-    this.addClass = {
-      class: 'selected_item',
-      index: ev.seriesId
-    }
-*/
   }
   webWorkerProcess() {
     /** Start series worker with the initial values */

@@ -1,3 +1,4 @@
+/*
 export const seriesAjaxData = (url: string) => {
   let prom = new Promise(function (resolve, reject) {
     if (!!XMLHttpRequest) {
@@ -30,3 +31,12 @@ export const seriesAjaxData = (url: string) => {
   });
   return prom;
 };
+*/
+
+
+import axios from "axios";
+
+export const seriesAjaxData = async (url: string) => {
+  return await axios.get(url, {responseType: 'blob'} );
+    // .then( val => console.log('axios val',val))
+}

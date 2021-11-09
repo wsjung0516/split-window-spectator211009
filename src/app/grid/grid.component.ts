@@ -13,6 +13,8 @@ import {
 import {SeriesListService} from "../thumbnail/series-list/series-list.service";
 import {CacheSeriesService} from "../thumbnail/cache-series.service";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
+import {CarouselService} from "../carousel/carousel.service";
+import {SplitService} from "./split.service";
 export interface Tile {
   mcols: number;
   mheight: string;
@@ -79,13 +81,15 @@ export class GridComponent implements OnInit {
   // @ViewChild('gridContainer', {read: ViewContainerRef}) gridContainer: ViewContainerRef;
   @Select(StatusState.getSplitMode) splitMode$: Observable<any>;
   @Select(StatusState.getSelectedSplitWindowId) selectedSplitWindow$: Observable<string>;
-  @SelectSnapshot(StatusState.getCurrentCategory) category: string;
+  @SelectSnapshot(StatusState.getCurrentCategory) currentCategory: string;
 
   @ViewChild('gridTemplate', { static: true }) gridTemplate: GridTemplateComponent;
 
   constructor(private store: Store,
               private sls: SeriesListService,
               private cacheSeriesService: CacheSeriesService,
+              private carouselService: CarouselService,
+              private splitService: SplitService
 
   ) { }
 
@@ -115,12 +119,6 @@ export class GridComponent implements OnInit {
       takeUntil(this.unsubscribe$)
     ).subscribe( val => {
       this.onSelectTemplate(val)
-      const series = this.cacheSeriesService.getCachedSeriesByCat(this.category)
-      //console.log(' ********* series', series, val);
-
-      // this.sls.selectSeries(series)
-      // this.store.dispatch(new SetSelectedSeriesById(series.seriesId));
-
     });
 
   }
@@ -138,5 +136,9 @@ export class GridComponent implements OnInit {
     if( ev === 'element4' ) idx = 3;
     this.store.dispatch(new SetFocusedSplit(idx));
     this.store.dispatch(new SetSplitAction(false));
+    //
+    this.carouselService.getNextImage(this.currentCategory, this.splitService.selectedElement);
+    this.splitService.selectedElement = ev;
+
   }
 }

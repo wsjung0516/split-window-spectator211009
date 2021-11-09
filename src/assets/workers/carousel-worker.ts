@@ -7,32 +7,37 @@ async function getCarouselImage({data}: any) {
   let res1, sData;
   const rData = data.body;
   let tUrl: string;
-  // console.log('--------------- cornerstone')
   if (rData) {
     for (let i = 0; i < rData.length; i++) {
-      try {
-        res1 = await seriesAjaxData(rData[i].url);
-        sData = {
-          imageId: rData[i].id,
-          url: rData[i].url,
-          blob: res1,
-          category: data.category,
-          title: rData[i].title
-        }
-      } catch (e) {
-        sData = {
-          url: rData[i].url,
-          blob: e,
-        }
-      }
-      // console.log('indx', i, rData[i].url)
-      postMessage(sData,data.origin);
-      await checkIfImageCached( rData[i].url, i);
+        await seriesAjaxData(rData[i].url)
+          .then( async (res1: any) => {
+           // console.log('----res1', res1)
+            sData = {
+              imageId: rData[i].id,
+              url: rData[i].url,
+              blob: res1.data,
+              category: data.category,
+              title: rData[i].title
+            }
+            postMessage(sData,data.origin);
+            await checkIfImageCached( rData[i].url, i);
 
-      await sleep(50);
+            await sleep(50);
+
+          }).catch( async (e) => {
+            sData = {
+              url: rData[i].url,
+              blob: e,
+            }
+            postMessage(sData,data.origin);
+            await checkIfImageCached( rData[i].url, i);
+
+            await sleep(50);
+
+          })
     }
   }
-};
+}
 
 
 addEventListener('message', async (e) => {

@@ -292,7 +292,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
       category: this.category
     }
 
-    this.worker[this.splitIdx].postMessage(data)
+    if(this.worker[this.splitIdx]) this.worker[this.splitIdx].postMessage(data)
     // this.worker[this.categoryIdx].postMessage(data)
   }
 
@@ -323,6 +323,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
             body: data.data.url,
             category: this.category
           }
+          // console.log(' _data',data.data.url)
           this.worker[this.splitIdx].postMessage(JSON.parse(JSON.stringify(_data)))
         };
       }

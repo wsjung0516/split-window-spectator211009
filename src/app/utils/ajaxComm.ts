@@ -38,5 +38,4 @@ import axios from "axios";
 
 export const seriesAjaxData = async (url: string) => {
   return await axios.get(url, {responseType: 'blob' } );
-    // .then( val => console.log('axios val',val))
 }

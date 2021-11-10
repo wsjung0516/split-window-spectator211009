@@ -42,7 +42,7 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
         <cdk-virtual-scroll-viewport
                                      class="cdk-scroll-viewport"
                                      orientation="horizontal" >
-          <ng-container *cdkVirtualFor="let item of currentImages" >
+          <ng-container *cdkVirtualFor="let item of currentImages">
 
             <app-thumb-item [originalImage]="item"
                             [addClass]="addClass"
@@ -97,6 +97,9 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
     private splitService: SplitService
   ) { }
+  TrackByFunctio() {
+
+    }
 
   ngOnInit(): void {
 
@@ -110,6 +113,7 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
     ).subscribe(() => {
       this.currentImages = this.imageService.cachedThumbnailImages.map(val => val.image)
         .filter(val => val.category === this.category);
+
          // console.log('this.currentImages -2', this.category)
       this.cdr.detectChanges();
     });

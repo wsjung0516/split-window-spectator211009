@@ -5,12 +5,9 @@ import {skip, takeUntil, tap} from "rxjs/operators";
 import {Select, Store} from "@ngxs/store";
 import {StatusState} from "../../store/status/status.state";
 import {
-  SetCurrentCategory,
   SetFocusedSplit,
-  SetSelectedSeriesById, SetSplitAction,
-  SetSplitMode
+  SetSplitAction,
 } from "../../store/status/status.actions";
-import {SeriesListService} from "../thumbnail/series-list/series-list.service";
 import {CacheSeriesService} from "../thumbnail/cache-series.service";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 import {CarouselService} from "../carousel/carousel.service";
@@ -86,7 +83,6 @@ export class GridComponent implements OnInit {
   @ViewChild('gridTemplate', { static: true }) gridTemplate: GridTemplateComponent;
 
   constructor(private store: Store,
-              private sls: SeriesListService,
               private cacheSeriesService: CacheSeriesService,
               private carouselService: CarouselService,
               private splitService: SplitService

@@ -185,6 +185,8 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
           // console.log(' terimnate this.worker[this.splitIdx] ', this.splitIdx)
         }
         // if(this.worker[this.splitIdx] && this.splitAction ) this.worker[this.splitIdx].terminate();
+        /** Because each split window has it's own webworker, and this webworker will be remained
+         *  if it is not terminated immediately */
       },5000);
 
     })
@@ -239,8 +241,9 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
     this.imageService.getTotalImageList(this._queryUrl)
       .subscribe((val: any) => {
         const category = this._queryUrl && this._queryUrl.split('.')[0].split('/')[2];
-
         const urls = this.imageService.getCacheUrls();
+        /** Try to display if there are any cached image before check additional loading  */
+        this.store.dispatch(new SetImageUrls([]));
         // console.log(' val', val)
         this.checkIfAdditionalLoading(val, category, urls).then((res: any) => {
           // console.log('-- remained url', res.length)
@@ -291,7 +294,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
       body: val,
       category: this.category
     }
-
+    /** Send additional urls to webworker */
     if(this.worker[this.splitIdx]) this.worker[this.splitIdx].postMessage(data)
     // this.worker[this.categoryIdx].postMessage(data)
   }
@@ -324,6 +327,9 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
             category: this.category
           }
           // console.log(' _data',data.data.url)
+          /** Send the signal of completing loading one image of all the images
+           * that was sent to webworker as bundle urls
+           * This means for being ready to receiving the next image*/
           this.worker[this.splitIdx].postMessage(JSON.parse(JSON.stringify(_data)))
         };
       }
@@ -355,12 +361,10 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
     /**
      * When it comes to rendering of split-windows,
      * each window need to wait until the previous window finished rendering.
-     * The signal of finished is come from the v-toolbox.
      * -----------------
-     * 1. The end of processing of ct-image, emit event of "isStartedRendering$" for each split window.
-     * 2. As soon as take the event of "isStartedRendering$" start processing nodule-list,
-     *    which can make series-list, nodule-list.
-     * 3. After end of making series-list, nodule-list, emit event of "isFinishedRendering$"
+     * 1. The end of processing of image, emit event of "isStartedRendering$" for each split window.
+     * 2. As soon as take the event of "isStartedRendering$" start processing .
+     * 3. display the first image and emit event of "isFinishedRendering$"
      *    for each split window.
      * */
       //

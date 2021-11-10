@@ -20,14 +20,14 @@ import {ImageService} from "../../carousel/image.service";
 import {map, skip, switchMap, takeUntil, tap} from "rxjs/operators";
 import {
   SetCurrentCategory, SetIsImageLoaded,
-  SetIsSeriesLoaded, SetSeriesUrls, SetSplitAction,
+  SetIsSeriesLoaded, SetSelectedImageById, SetSelectedSeriesById, SetSeriesUrls, SetSplitAction,
 } from "../../../store/status/status.actions";
 import {SeriesItemService} from "../series-item/series-item.service";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 import {CacheSeriesService} from "../cache-series.service";
-import {SeriesListService} from "./series-list.service";
 import {fromWorker} from "observable-webworker";
 import {SplitService} from "../../grid/split.service";
+import {ImageModel} from "../../carousel/carousel-main/carousel-main.component";
 
 export interface SeriesModel {
   seriesId: number;
@@ -110,7 +110,6 @@ export class SeriesListComponent implements OnInit, OnDestroy {
     private seriesService: SeriesItemService,
     private cacheSeriesService: CacheSeriesService,
     private splitService: SplitService,
-    private sls: SeriesListService
   ) { }
 
   ngOnInit(): void {
@@ -155,7 +154,21 @@ export class SeriesListComponent implements OnInit, OnDestroy {
     //console.log(' onSelectSeries - selectedElement', this.splitService.selectedElement);
     this.store.dispatch(new SetSplitAction(false));
     this.splitService.currentImageIndex[this.splitService.selectedElement] = 0;
-    this.sls.selectSeries(ev);
+    // Setting the current selected category
+    this.store.dispatch(new SetCurrentCategory(ev.category));
+    // Select series and get the image list.
+    this.store.dispatch(new SetSelectedSeriesById(ev.seriesId));
+    // Focusing the first thumbnail_item
+    const image: ImageModel = {
+      imageId: 0,
+      category: ev.category,
+      url: '',
+      blob: '',
+      title: ''
+    }
+    this.store.dispatch(new SetSelectedImageById(image));
+    // Enable display the first image in the main window
+    this.store.dispatch(new SetIsImageLoaded({idx:0}));
   }
   webWorkerProcess() {
     /** Start series worker with the initial values */
@@ -183,25 +196,6 @@ export class SeriesListComponent implements OnInit, OnDestroy {
 
         }, error => console.error(error))
       });
-
-
-    /*
-        if (typeof Worker !== 'undefined') {
-          // console.log(' import.meta.url',  import.meta.url)
-          this.seriesWorker = new Worker(new URL('src/assets/workers/series-worker.ts', import.meta.url));
-          this.seriesWorker.onmessage = ( data: any) => {
-            const series: any = this.imageService.readFile(data.data.blob)
-            series.subscribe( (obj:any) => {
-              // console.log('--- data', data.data.url);
-              data.data.blob = obj;
-              // this.seriesService.saveSeries = [data.data];
-              this.store.dispatch(new SetIsSeriesLoaded(true));
-              this.store.dispatch(new SetSeriesUrls([data.data.url]))
-              this.cacheSeriesService.checkAndCacheSeries(data.data);
-            })
-          };
-        }
-    */
   }
 
 

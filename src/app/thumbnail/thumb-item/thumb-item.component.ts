@@ -16,7 +16,7 @@ import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 @Component({
   selector: 'app-thumb-item',
   template: `
-    <div class="mx-1">
+    <div class="mx-1 mt-1 ">
       <div class="{{borderColor}}" (click)="selected.emit(originalImage)">
         <img #img >
       </div>
@@ -25,7 +25,7 @@ import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
   styles: [`
   img {
     width: 90px;
-    height:65px;
+    height:60px;
     object-fit: fill;
   }
   .selected_item {

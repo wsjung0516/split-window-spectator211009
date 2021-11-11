@@ -45,7 +45,7 @@ export interface ImageModel {
 
         <div class="">
           <div class="m-1">
-            <img class="object-cover" #img>
+            <img class="object-scale-down" #img>
           </div>
         </div>
       </div>

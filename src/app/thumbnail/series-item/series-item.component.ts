@@ -16,7 +16,7 @@ import {mark} from "@angular/compiler-cli/src/ngtsc/perf/src/clock";
 @Component({
   selector: 'app-series-item',
   template: `
-    <div class="mx-1">
+    <div class="m-2">
       <div class="{{borderColor}}" (click)="selected.emit(seriesImage)">
         <img id="seriesImage" #img>
       </div>
@@ -24,8 +24,8 @@ import {mark} from "@angular/compiler-cli/src/ngtsc/perf/src/clock";
   `,
   styles: [`
     img {
-      width: 90px;
-      height:65px;
+      width: 145px;
+      height:100px;
       object-fit: fill;
     }
     .selected_item {

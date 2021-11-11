@@ -51,7 +51,7 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
       <div class="cdk-scroll-source" style="width: 98%">
         <cdk-virtual-scroll-viewport
                                      class="cdk-scroll-viewport"
-                                     orientation="horizontal"
+                                     orientation="vertical"
                                     >
 <!--          <ng-container *cdkVirtualFor="let item of currentSeries$ | async" >-->
           <ng-container *cdkVirtualFor="let item of currentSeries" >
@@ -69,15 +69,16 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
   `,
   styles: [`
     .cdk-scroll-source {
-      writing-mode: vertical-lr;
+      writing-mode: horizontal-tb;
+      /*writing-mode: vertical-lr;*/
     }
     .cdk-scroll-source .cdk-scroll-viewport {
-      height: 90px;
+      height: 650px;
       width: 100%;
     }
     .cdk-scroll-source .cdk-scroll-viewport .cdk-virtual-scroll-content-wrapper {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
     }
   `
   ],

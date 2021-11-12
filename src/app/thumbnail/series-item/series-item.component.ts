@@ -12,6 +12,7 @@ import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 import {StatusState} from "../../../store/status/status.state";
 import {SeriesModel} from "../series-list/series-list.component";
 import {mark} from "@angular/compiler-cli/src/ngtsc/perf/src/clock";
+import {category_list} from "../../carousel/carousel-main/carousel-main.component";
 
 @Component({
   selector: 'app-series-item',
@@ -37,6 +38,7 @@ import {mark} from "@angular/compiler-cli/src/ngtsc/perf/src/clock";
 export class SeriesItemComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild('img') image: ElementRef;
   @Input() seriesImage: SeriesModel;
+  @Input() idx: number;
   @Input() addClass: any;
   @Output() selected: EventEmitter<any> = new EventEmitter();
   @SelectSnapshot(StatusState.getSelectedSeriesById) selectedSeriesById: number;
@@ -47,11 +49,16 @@ export class SeriesItemComponent implements OnInit, OnChanges, AfterViewInit {
 
   ngOnInit(): void {}
   ngAfterViewInit() {
-    this.image.nativeElement.src = this.seriesImage.blob;
-    this.cdr.markForCheck();
+    const cat = category_list[this.idx];
+    /** Prevent from displaying image randomly due to loading speed */
+    if (cat === this.seriesImage.category) {
+      this.image.nativeElement.src = this.seriesImage.blob;
+      this.cdr.markForCheck();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    // console.log('changes', changes)
     this.borderColor = 'none_selected_item'
     this.cdr.markForCheck();
     if( this.selectedSeriesById === this.seriesImage.seriesId) {

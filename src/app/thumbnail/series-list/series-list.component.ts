@@ -54,9 +54,10 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
                                      orientation="vertical"
                                     >
 <!--          <ng-container *cdkVirtualFor="let item of currentSeries$ | async" >-->
-          <ng-container *cdkVirtualFor="let item of currentSeries" >
+          <ng-container *cdkVirtualFor="let item of currentSeries; let idx=index" >
 
             <app-series-item [seriesImage]="item"
+                             [idx] = idx
                             [addClass]="addClass"
                             (selected) = onSelectSeries($event)>
             </app-series-item>

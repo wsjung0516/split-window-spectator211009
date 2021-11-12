@@ -71,7 +71,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   @Select(StatusState.getIsImageLoaded) getIsImageLoaded$: Observable<boolean>;
   @Select(StatusState.getSelectedImageById) getSelectedImageById$: Observable<ImageModel>;
   @Select(StatusState.getSelectedSeriesById) getSelectedSeriesById$: Observable<number>;
-  @Select(StatusState.getSelectedSplitWindowId) getSelectedSplitWindowId$: Observable<number>;
+  //
   @SelectSnapshot(StatusState.getSplitState) getSplitState: string[];
   @SelectSnapshot(StatusState.getCurrentCategory) currentCategory: string;
   @SelectSnapshot(StatusState.getWebworkerWorkingStatus) getWebworkerWorkingStatus: boolean;
@@ -234,7 +234,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
       if( this.splitMode -1  === splitIdx)
         this.store.dispatch(new SetSplitAction(false));
     }
-    // this.store.dispatch(new SetSelectedSplitWindowId(this.splitService.selectedElement))
+    //
   }
 
   private getTotalImageList() {

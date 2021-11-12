@@ -77,7 +77,7 @@ export class GridComponent implements OnInit {
   selectedTemplate: string = this.tiles[0].templateName;
   // @ViewChild('gridContainer', {read: ViewContainerRef}) gridContainer: ViewContainerRef;
   @Select(StatusState.getSplitMode) splitMode$: Observable<any>;
-  @Select(StatusState.getSelectedSplitWindowId) selectedSplitWindow$: Observable<string>;
+  @Select(StatusState.getSelectedSplitWindowId) selectedSplitWindowId$: Observable<string>;
   @SelectSnapshot(StatusState.getCurrentCategory) currentCategory: string;
 
   @ViewChild('gridTemplate', { static: true }) gridTemplate: GridTemplateComponent;
@@ -110,10 +110,11 @@ export class GridComponent implements OnInit {
 
     });
     /** Call from displayTheFirstImage <-- carousel-main.component */
-    this.selectedSplitWindow$.pipe(
+    this.selectedSplitWindowId$.pipe(
       // skip(1),
       takeUntil(this.unsubscribe$)
     ).subscribe( val => {
+      console.log('-- this.selectedSplitWindowId$ is called');
       this.onSelectTemplate(val)
     });
 
@@ -133,7 +134,7 @@ export class GridComponent implements OnInit {
     this.store.dispatch(new SetFocusedSplit(idx));
     this.store.dispatch(new SetSplitAction(false));
     //
-    this.carouselService.getNextImage(this.currentCategory, this.splitService.selectedElement);
+    // this.carouselService.getNextImage(this.currentCategory, this.splitService.selectedElement);
     this.splitService.selectedElement = ev;
 
   }

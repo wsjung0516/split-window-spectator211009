@@ -13,18 +13,18 @@ import {SetFocusedSplit, SetSplitAction} from "../../../store/status/status.acti
   selector: 'app-grid-template',
   template: `
     <ng-template [appGridTemplate]="'element1'" let-height=height> <!-- to get proper template -->
-      <div [style.height]="height" >
+      <div [style.height]="height">
         <div>
           <button [disabled]="selectedSplit[0]" mat-mini-fab class="fab-bottom-left"
                   matTooltip="Can use arrow keys"
                   [matTooltipPosition]="'above'"
-                  (click)="onLeftButton('element1')">
+                  (click)="onLeftArrowButton('element1')">
             <mat-icon>keyboard_arrow_left</mat-icon>
           </button>
           <button [disabled]="selectedSplit[0]" mat-mini-fab class="fab-bottom-right"
                   matTooltip="Can use arrow keys"
                   [matTooltipPosition]="'above'"
-                  (click)="onRightButton('element1')">
+                  (click)="onRightArrowButton('element1')">
             <mat-icon>keyboard_arrow_right</mat-icon>
           </button>
         </div>
@@ -33,18 +33,18 @@ import {SetFocusedSplit, SetSplitAction} from "../../../store/status/status.acti
       </div>
     </ng-template>
     <ng-template [appGridTemplate]="'element2'" let-height=height>
-      <div [style.height]="height" >
+      <div [style.height]="height">
         <div>
           <button [disabled]="selectedSplit[1]" mat-mini-fab class="fab-bottom-left"
                   matTooltip="Can use arrow keys"
                   [matTooltipPosition]="'above'"
-                  (click)="onLeftButton('element2')">
+                  (click)="onLeftArrowButton('element2')">
             <mat-icon>keyboard_arrow_left</mat-icon>
           </button>
           <button [disabled]="selectedSplit[1]" mat-mini-fab class="fab-bottom-right"
                   matTooltip="Can use arrow keys"
                   [matTooltipPosition]="'above'"
-                  (click)="onRightButton('element2')">
+                  (click)="onRightArrowButton('element2')">
             <mat-icon>keyboard_arrow_right</mat-icon>
           </button>
         </div>
@@ -58,13 +58,13 @@ import {SetFocusedSplit, SetSplitAction} from "../../../store/status/status.acti
           <button [disabled]="selectedSplit[2]" mat-mini-fab class="fab-bottom-left"
                   matTooltip="Can use arrow keys"
                   [matTooltipPosition]="'above'"
-                  (click)="onLeftButton('element3')">
+                  (click)="onLeftArrowButton('element3')">
             <mat-icon>keyboard_arrow_left</mat-icon>
           </button>
           <button [disabled]="selectedSplit[2]" mat-mini-fab class="fab-bottom-right"
                   matTooltip="Can use arrow keys"
                   [matTooltipPosition]="'above'"
-                  (click)="onRightButton('element3')">
+                  (click)="onRightArrowButton('element3')">
             <mat-icon>keyboard_arrow_right</mat-icon>
           </button>
         </div>
@@ -78,13 +78,13 @@ import {SetFocusedSplit, SetSplitAction} from "../../../store/status/status.acti
           <button [disabled]="selectedSplit[3]" mat-mini-fab class="fab-bottom-left"
                   matTooltip="Can use arrow keys"
                   [matTooltipPosition]="'above'"
-                  (click)="onLeftButton('element4')">
+                  (click)="onLeftArrowButton('element4')">
             <mat-icon>keyboard_arrow_left</mat-icon>
           </button>
           <button [disabled]="selectedSplit[3]" mat-mini-fab class="fab-bottom-right"
                   matTooltip="Can use arrow keys"
                   [matTooltipPosition]="'above'"
-                  (click)="onRightButton('element4')">
+                  (click)="onRightArrowButton('element4')">
             <mat-icon>keyboard_arrow_right</mat-icon>
           </button>
         </div>
@@ -144,14 +144,14 @@ export class GridTemplateComponent implements OnInit, OnDestroy {
   getTemplate( name: string): TemplateRef<any> {
     return this.templateRef.toArray().find( x => x.name === name).template;
   }
-  onLeftButton(element: string) {
+  onLeftArrowButton(element: string) {
     this.store.dispatch(new SetSplitAction(false));
     const idx = this.splitService.elements.findIndex(val => val === element);
     this.carouselService.getPrevImage(this.currentCategory, element);
     this.store.dispatch(new SetFocusedSplit(idx));
 
   }
-  onRightButton(element: string) {
+  onRightArrowButton(element: string) {
     this.store.dispatch(new SetSplitAction(false));
     const idx = this.splitService.elements.findIndex(val => val === element);
     this.carouselService.getNextImage(this.currentCategory, element);

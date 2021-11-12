@@ -122,6 +122,7 @@ export class SeriesListComponent implements OnInit, OnDestroy {
       takeUntil(this.unsubscribe$),
       tap((url) => {
         this.currentSeries = [...this.cacheSeriesService.cachedSeries]
+        // console.log(' -- this.currentSeries', this.currentSeries)
         this.cdr.detectChanges()
       })
     ).subscribe()

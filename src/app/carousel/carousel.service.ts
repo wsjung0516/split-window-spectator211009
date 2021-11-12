@@ -31,9 +31,14 @@ export class CarouselService {
       blob: '',
       title: ''
     }
+    /**
+     * new SetSelectedImageById --> getSelectedImageById(carousel-main.compoment)
+     * new SetSelectedSplitWindow(carousel-main.component displayFirstImage)
+     * --> onSelectTemplate (grid component)
+     * */
 
     this.store.dispatch(new SetSelectedImageById(image));
-    // this.store.dispatch(new SetSelectedImageById(this.splitService.currentImageIndex[element]));
+    //
     return this.imageService.getCacheImage(cat, this.splitService.currentImageIndex[element]);
     // return this.imageService.getCacheImage(this.category, this.currentImageIndex);
   }

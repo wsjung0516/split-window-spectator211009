@@ -65,14 +65,8 @@ export class CacheSeriesService {
   }
 
   checkAndCacheSeries(data: SeriesModel) {
-    // const file = downscaleImage(data.blob, 'image/jpeg', 150,0.7);
-    // file.then( val => {
-    //   // console.log(' --- file', val)
-    //   data.blob = val;
-    //   this._cachedSeries.push(data);
-    // })
     this._cachedSeries.push(data);
-}
+  }
   readFile (blob: any): Observable<string>  {
     return new Observable((obs: any) => {
       const reader = new FileReader();

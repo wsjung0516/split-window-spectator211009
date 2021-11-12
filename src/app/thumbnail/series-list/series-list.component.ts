@@ -116,10 +116,11 @@ export class SeriesListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     /** Default category */
     this.store.dispatch(new SetCurrentCategory('animal'));
-
+    /** Display series list  */
     this.seriesUrls$.pipe(
+      skip(1),
       takeUntil(this.unsubscribe$),
-      tap((series) => {
+      tap((url) => {
         this.currentSeries = [...this.cacheSeriesService.cachedSeries]
         this.cdr.detectChanges()
       })
@@ -190,9 +191,9 @@ export class SeriesListComponent implements OnInit, OnDestroy {
             // console.log('--- data', data.url);
             data.blob = obj;
             // this.seriesService.saveSeries = [data.data];
+            this.cacheSeriesService.checkAndCacheSeries(data);
             this.store.dispatch(new SetIsSeriesLoaded(true));
             this.store.dispatch(new SetSeriesUrls([data.url]))
-            this.cacheSeriesService.checkAndCacheSeries(data);
           })
 
         }, error => console.error(error))

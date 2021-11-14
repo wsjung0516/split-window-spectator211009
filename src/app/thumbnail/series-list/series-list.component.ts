@@ -19,6 +19,7 @@ import {CarouselService} from "../../carousel/carousel.service";
 import {ImageService} from "../../carousel/image.service";
 import {map, skip, switchMap, takeUntil, tap} from "rxjs/operators";
 import {
+  SetCategoryList,
   SetCurrentCategory, SetIsImageLoaded,
   SetIsSeriesLoaded, SetSelectedImageById, SetSelectedSeriesById, SetSeriesUrls, SetSplitAction,
 } from "../../../store/status/status.actions";
@@ -123,8 +124,10 @@ export class SeriesListComponent implements OnInit, OnDestroy {
       takeUntil(this.unsubscribe$),
       tap((url) => {
         this.currentSeries = [...this.cacheSeriesService.cachedSeries]
-        // console.log(' -- this.currentSeries', this.currentSeries)
         this.cdr.detectChanges()
+        const cat = this.currentSeries.map(val => val.category)
+        // console.log(' -- urls', urls)
+        this.store.dispatch(new SetCategoryList(cat));
       })
     ).subscribe()
 

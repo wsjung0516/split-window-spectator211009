@@ -1,18 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {EMPTY, Observable, of} from 'rxjs';
-import {map, switchMap, tap} from 'rxjs/operators';
-import {category_list, ImageModel} from "../carousel/carousel-main/carousel-main.component";
+import { Observable, of} from 'rxjs';
+import {map} from 'rxjs/operators';
 import {SeriesModel} from "./series-list/series-list.component";
-import {downscaleImage} from "../utils/down-scale-image";
-// import {category_list, ImageModel} from "./carousel-main/carousel-main.component";
-
-/*
-interface CachedImage {
-  url: string;
-  blob: Blob;
-}
-*/
+import {StatusState} from "../../store/status/status.state";
+import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 
 @Injectable({
   providedIn: 'root'
@@ -25,14 +17,14 @@ export class CacheSeriesService {
     url: string
   }[] = [];
   private _cachedSeries: SeriesModel[] =[];
-
+  @SelectSnapshot(StatusState.getCategoryList) category_list: string[];
   constructor(private http: HttpClient) { }
 
   isThisUrlCached(url: string) {
     return this._cacheUrls.find(val => val.url === url);
   }
   setCacheUrl(data:any) { // data: SeriesModel
-    const cIdx: any = category_list.findIndex( val => val === data.category) + 1;
+    const cIdx: any = this.category_list.findIndex( val => val === data.category) + 1;
     const nIdx = data.seriesId < 10 ? (cIdx * 10 + data.seriesId) : (cIdx * 100 + data.seriesId);
     const nUrl = { idx: nIdx, category: data.category, url: data.url};
     // [{idx:10, url:'aaa'}, {idx:11, url:'bbb'}]

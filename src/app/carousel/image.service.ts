@@ -2,7 +2,7 @@ import {Injectable, OnDestroy} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {from, Observable, of, Subject} from 'rxjs';
 import {filter, map, mergeMap, pluck, switchMap, takeLast, takeUntil, tap, toArray} from 'rxjs/operators';
-import {category_list, ImageModel} from "./carousel-main/carousel-main.component";
+import {ImageModel} from "./carousel-main/carousel-main.component";
 import {StatusState} from "../../store/status/status.state";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 import {downscaleImage} from "../utils/down-scale-image";
@@ -30,13 +30,14 @@ export class ImageService implements  OnDestroy {
     image: ImageModel
   }[] = [];
   @SelectSnapshot(StatusState.getCurrentCategory) category: string;
+  @SelectSnapshot(StatusState.getCategoryList) category_list: string[];
   constructor(private http: HttpClient) { }
 
   isThisUrlCached(url: string) {
     return this._cacheUrls.find(val => val.url === url);
   }
   setCacheUrl(data:any) { // data: ImageModel
-    const cIdx: any = category_list.findIndex( val => val === data.category) + 1;
+    const cIdx: any = this.category_list.findIndex( val => val === data.category) + 1;
     const nIdx = data.imageId < 10 ? (cIdx * 10 + data.imageId) : (cIdx * 100 + data.imageId);
     const nUrl = { idx: nIdx, category: data.category, url: data.url};
     // [{idx:10, url:'aaa'}, {idx:11, url:'bbb'}]
@@ -52,7 +53,7 @@ export class ImageService implements  OnDestroy {
   }
 
   set cachedImages(data: any) { // data: ImageModel
-    const cIdx: any = category_list.findIndex( val => val === data.category) + 1;
+    const cIdx: any = this.category_list.findIndex( val => val === data.category) + 1;
     const nIdx = data.imageId < 10 ? (cIdx * 10 + data.imageId) : (cIdx * 100 + data.imageId);
     const image: ImageModel = data.image;
     this._cachedImages.push({idx:nIdx, category:data.category, image:image});
@@ -76,7 +77,7 @@ export class ImageService implements  OnDestroy {
   }
 
   getCacheImage(cat: string, idx: number) {
-    const cIdx: any = category_list.findIndex( val => val === cat) + 1;
+    const cIdx: any = this.category_list.findIndex( val => val === cat) + 1;
     const nIdx = idx < 10 ? (cIdx * 10 + idx) : (cIdx * 100 + idx);
     const index = this._cachedImages.findIndex(image => image.idx === nIdx);
     if (index > -1) {
@@ -87,7 +88,7 @@ export class ImageService implements  OnDestroy {
   }
 
   checkAndCacheImage(data: ImageModel) {
-    const cIdx: any = category_list.findIndex( val => val === data.category) + 1;
+    const cIdx: any = this.category_list.findIndex( val => val === data.category) + 1;
     const nIdx = data.imageId < 10 ? (cIdx * 10 + data.imageId) : (cIdx * 100 + data.imageId);
     //
     const ret = this._cacheUrls.find( val => val.idx === nIdx)

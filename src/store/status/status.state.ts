@@ -1,6 +1,6 @@
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import {
-  SetActiveSplit,
+  SetActiveSplit, SetCategoryList,
   SetCurrentCategory, SetCurrentSplitOperation, SetFocusedSplit,
   SetImageUrls,
   SetIsImageLoaded,
@@ -24,6 +24,7 @@ export interface StatusStateModel {
   imageUrls: string[]; //
   seriesUrls: string[]; //
   currentCategory: string;
+  category_list: string[];
   focusedSplit: number;
   selectedImageId: ImageModel;
   selectedImageUrl: string;
@@ -46,6 +47,7 @@ export interface StatusStateModel {
     imageUrls: [],
     seriesUrls: [],
     currentCategory: '',
+    category_list:['animal', 'house', 'baby', 'forest', 'happiness', 'love', 'sea','banana', 'mountain'],
     focusedSplit: 0, // 0: split1, 1: split2, 2: split3, 3: split4
     selectedImageId: {
       imageId: 0,
@@ -93,6 +95,10 @@ export class StatusState {
   @Selector()
   public static getCurrentCategory(state: StatusStateModel) {
     return state.currentCategory;
+  }
+  @Selector()
+  public static getCategoryList(state: StatusStateModel) {
+    return state.category_list;
   }
   @Selector()
   public static getFocusedSplit(state: StatusStateModel) {
@@ -167,6 +173,10 @@ export class StatusState {
   @Action(SetCurrentCategory)
   public setCurrentCategory({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetCurrentCategory) {
     patchState({currentCategory: payload})
+  }
+  @Action(SetCategoryList)
+  public setCategoryList({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetCategoryList) {
+    patchState({category_list: payload})
   }
   @Action(SetFocusedSplit)
   public setFocusedSplit({patchState,getState}: StateContext<StatusStateModel>, { payload }: SetFocusedSplit) {

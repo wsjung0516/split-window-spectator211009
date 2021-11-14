@@ -25,7 +25,7 @@ import {CacheSeriesService} from "../../thumbnail/cache-series.service";
 import {fromWorker} from "observable-webworker";
 import {SplitService} from "../../grid/split.service";
 
-export const category_list = ['animal', 'house', 'baby', 'forest', 'happiness', 'love', 'sea','banana', 'mountain']
+// export const category_list = ['animal', 'house', 'baby', 'forest', 'happiness', 'love', 'sea','banana', 'mountain']
 export interface ImageModel {
   imageId: number,
   category: string,
@@ -74,6 +74,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   //
   @SelectSnapshot(StatusState.getSplitState) getSplitState: string[];
   @SelectSnapshot(StatusState.getCurrentCategory) currentCategory: string;
+  @SelectSnapshot(StatusState.getCategoryList) category_list: string[];
   @SelectSnapshot(StatusState.getWebworkerWorkingStatus) getWebworkerWorkingStatus: boolean;
   @Select(StatusState.getSeriesUrls) getSeriesUrls$: Observable<any>;
   @Select(StatusState.getSplitMode) splitMode$: Observable<any>;
@@ -139,7 +140,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
     this.category = this.getSplitState[eIdx];
     this.splitIdx = eIdx;
     this._queryUrl = `assets/json/${this.category}.json`;
-    this.categoryIdx = category_list.findIndex(val => val === this.category);
+    this.categoryIdx = this.category_list.findIndex(val => val === this.category);
     this.splitService.selectedElement = this.splitService.elements[eIdx];
     if (this.splitMode === 1) {
        this.splitService.resetSplitWindowProcessing();
@@ -149,10 +150,9 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private makingSplitWindowBySelectedSeries(cIdx: number) {
-    this.category = category_list[cIdx];
-    // this.splitIdx = this.splitService.elements.findIndex(val => val === this.splitService.selectedElement);
+    this.category = this.category_list[cIdx];
     this._queryUrl = `assets/json/${this.category}.json`;
-    this.categoryIdx = category_list.findIndex(val => val === this.category);
+    this.categoryIdx = this.category_list.findIndex(val => val === this.category);
     this.makingSplitWindow();
   }
 
@@ -198,7 +198,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
         /**
          * When change split mode, if image is not in the cached (based on category)
          * then borrow image from series list, which is already cached.
-         * Because image should be displayed immediately
+         * This technique is needed because image should be displayed immediately
          */
         const tImage = this.carouselService.getSelectedImageById(this.category, 0);
         if( tImage ) {

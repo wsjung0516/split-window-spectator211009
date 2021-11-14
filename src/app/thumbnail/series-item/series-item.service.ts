@@ -1,9 +1,10 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {SeriesModel} from "../series-list/series-list.component";
 import {HttpClient} from "@angular/common/http";
-import {category_list} from "../../carousel/carousel-main/carousel-main.component";
 import {map, mergeMap, switchMap, takeUntil, tap, toArray} from "rxjs/operators";
 import {from, Observable, Subject} from "rxjs";
+import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
+import {StatusState} from "../../../store/status/status.state";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import {from, Observable, Subject} from "rxjs";
 export class SeriesItemService implements OnDestroy{
   unsubscribe = new Subject();
   unsubscribe$ = this.unsubscribe.asObservable();
-
+  @SelectSnapshot(StatusState.getCategoryList) category_list: string[];
   constructor(private http: HttpClient) { }
   private currentSeries: {
     seriesId: number;
@@ -30,7 +31,7 @@ export class SeriesItemService implements OnDestroy{
 
   getSeriesObject(): Observable<any[]> {
      const url_base = 'assets/json/';
-     return from( category_list).pipe(
+     return from( this.category_list).pipe(
        takeUntil(this.unsubscribe$),
        map( cat => `${url_base}${cat}.json`),
        mergeMap( url => this.http.get(url)),
@@ -40,7 +41,7 @@ export class SeriesItemService implements OnDestroy{
            url: dat.data[0].url,
            seriesId: index + 1,
            blob: '',
-           category: category_list[index]
+           category: this.category_list[index]
          }
        }),
        toArray()

@@ -3,7 +3,6 @@ import { SeriesItemService } from './series-item.service';
 import {NgxsModule} from "@ngxs/store";
 import {StatusState} from "../../../store/status/status.state";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {category_list, ImageModel} from "../../carousel/carousel-main/carousel-main.component";
 import {SeriesModel} from "../series-list/series-list.component";
 import {Observable} from "rxjs";
 import {NgxsSelectSnapshotModule} from "@ngxs-labs/select-snapshot";
@@ -31,7 +30,8 @@ describe('SeriesItemService', () => {
     // spyOn(http,'get').and.callThrough();
     const series: Observable<SeriesModel[]> = spectator.service.getSeriesObject();
     series.subscribe( val => {
-      expect(val.length).toEqual(category_list.length);
+      expect(val.length).toEqual(5);
+      // expect(val.length).toEqual(category_list.length);
       console.log(' val', val);
     })
   })

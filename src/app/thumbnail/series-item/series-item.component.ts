@@ -11,8 +11,6 @@ import {
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 import {StatusState} from "../../../store/status/status.state";
 import {SeriesModel} from "../series-list/series-list.component";
-import {mark} from "@angular/compiler-cli/src/ngtsc/perf/src/clock";
-import {category_list} from "../../carousel/carousel-main/carousel-main.component";
 
 @Component({
   selector: 'app-series-item',
@@ -49,12 +47,8 @@ export class SeriesItemComponent implements OnInit, OnChanges, AfterViewInit {
 
   ngOnInit(): void {}
   ngAfterViewInit() {
-    const cat = category_list[this.idx];
-    /** Prevent from displaying image randomly due to loading speed */
-    if (cat === this.seriesImage.category) {
-      this.image.nativeElement.src = this.seriesImage.blob;
-      this.cdr.markForCheck();
-    }
+    this.image.nativeElement.src = this.seriesImage.blob;
+    this.cdr.markForCheck();
   }
 
   ngOnChanges(changes: SimpleChanges) {

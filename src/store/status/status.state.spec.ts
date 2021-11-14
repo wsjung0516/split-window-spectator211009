@@ -1,6 +1,7 @@
 import { NgxsModule, Store } from '@ngxs/store';
 import { StatusState, StatusStateModel } from './status.state';
 import {
+  SetCategoryList,
   SetCurrentSplitOperation,
   SetImageUrls,
   SetIsImageLoaded,
@@ -37,6 +38,7 @@ describe('Status store', () => {
     imageUrls: [],
     seriesUrls: [],
     currentCategory: '',
+    category_list: [],
     focusedSplit: 0,
     selectedImageId: {
       imageId: 0,
@@ -127,10 +129,16 @@ describe('Status store', () => {
     const actual2 = store.selectSnapshot(StatusState.getSplitState);
     expect(actual2).toEqual(expectedState2);
   });
-  fit(' SetCurrentSplitOperations ', () => {
+  it(' SetCurrentSplitOperations ', () => {
     store.dispatch(new SetCurrentSplitOperation({element: 'element1'}));
     const actual = store.selectSnapshot(StatusState.getCurrentSplitOperation);
     expect(actual).toEqual({element: 'element1'});
+    //
+  });
+  fit(' SetCategoryList ', () => {
+    store.dispatch(new SetCategoryList(['happiness', 'love', 'sea','banana', 'mountain']));
+    const actual = store.selectSnapshot(StatusState.getCategoryList);
+    expect(actual).toEqual(['happiness', 'love', 'sea','banana', 'mountain']);
     //
   });
 

@@ -25,6 +25,10 @@ export class SetCurrentCategory {
   public static readonly type = '[Status] Current category';
   constructor(public payload: string ) { }
 }
+export class SetCategoryList {
+  public static readonly type = '[Status] Category list';
+  constructor(public payload: string[] ) { }
+}
 export class SetFocusedSplit {
   public static readonly type = '[Status] Focused split';
   constructor(public payload: number ) { }

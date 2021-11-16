@@ -16,7 +16,7 @@ export class SeriesWorker implements DoWork<{}, {}> {
             const url = val.url;
             return await seriesAjaxData(url)
           }),
-          delay(300),
+          delay(400),
           map( (res, idx) => {
             console.log('--- axios --', res, idx, oriData[idx].category)
             return {

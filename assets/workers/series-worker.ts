@@ -17,7 +17,7 @@ export class SeriesWorker implements DoWork<{}, {}> {
             return await XMLHttpComm(url)
           }),
           map( (res, idx) => {
-            console.log('--- axios --', res, idx, oriData[idx].category)
+            // console.log('--- axios --', res, idx, oriData[idx].category)
             return {
               seriesId: idx,
               url: oriData[idx].url,

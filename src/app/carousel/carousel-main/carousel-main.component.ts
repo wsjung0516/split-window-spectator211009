@@ -414,7 +414,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
       const idx = this.splitService.elements.findIndex(val => val === element)
       this.splitService.selectedElement = element;
       /** When change split mode, need to set the first signal to prepare processing
-       * each split window one by one */
+       * because each split window do process one by one */
       this.store.dispatch(new SetCurrentSplitOperation({element: this.splitService.selectedElement}));
 
       this.makingSplitWindowBySelectedSeries(this.categoryIdx);

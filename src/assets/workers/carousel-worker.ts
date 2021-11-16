@@ -1,4 +1,4 @@
-import {seriesAjaxData} from "../../app/utils/ajaxComm";
+import {axiosCommData} from "../../app/utils/axiosComm";
 
 var _stop: boolean;
 var cachedInstance: any;
@@ -9,7 +9,7 @@ async function getCarouselImage({data}: any) {
   let tUrl: string;
   if (rData) {
     for (let i = 0; i < rData.length; i++) {
-        await seriesAjaxData(rData[i].url)
+        await axiosCommData(rData[i].url)
           .then( async (res1: any) => {
             // console.log('----res1', res1)
             sData = {

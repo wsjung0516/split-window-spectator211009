@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component, Injectable,
+  Component,
   Input,
   OnDestroy,
   OnInit,
@@ -9,8 +9,6 @@ import {
 } from '@angular/core';
 import {
   CdkVirtualScrollViewport,
-  FixedSizeVirtualScrollStrategy,
-  VIRTUAL_SCROLL_STRATEGY
 } from "@angular/cdk/scrolling";
 import {Select, Store} from "@ngxs/store";
 import {StatusState} from "../../../store/status/status.state";
@@ -19,7 +17,6 @@ import {CarouselService} from "../../carousel/carousel.service";
 import {ImageService} from "../../carousel/image.service";
 import {map, skip, switchMap, takeUntil, tap} from "rxjs/operators";
 import {
-  SetCategoryList,
   SetCurrentCategory, SetIsImageLoaded,
   SetIsSeriesLoaded, SetSelectedImageById, SetSelectedSeriesById, SetSeriesUrls, SetSplitAction,
 } from "../../../store/status/status.actions";
@@ -36,26 +33,16 @@ export interface SeriesModel {
   blob: string;
   category: string
 }
-@Injectable()
-export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy {
-  constructor() {
-    /** Below value is assumed, that could contains at most 100 image pixel data at one time.
-     * If less than this value, the image data tend to be shuffled by sharing memory usage while scrolling  */
-    super(90, 1000, 1000); // (itemSize, minBufferPx, maxBufferPx)
-  }
-}
-
 @Component({
   selector: 'app-series-list',
   template: `
     <div class="">
       <div class="cdk-scroll-source" style="width: 98%">
-        <cdk-virtual-scroll-viewport
+        <cdk-virtual-scroll-viewport itemSize="90"
                                      class="cdk-scroll-viewport"
                                      orientation="vertical"
                                     >
-<!--          <ng-container *cdkVirtualFor="let item of currentSeries$ | async" >-->
-          <ng-container *cdkVirtualFor="let item of currentSeries; let idx=index" >
+          <ng-container *cdkVirtualFor="let item of currentSeries; let idx=index; templateCacheSize:0" >
 
             <app-series-item [seriesImage]="item"
                              [idx] = idx
@@ -84,9 +71,7 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
     }
   `
   ],
-  providers: [{provide: VIRTUAL_SCROLL_STRATEGY, useClass: CustomVirtualScrollStrategy}],
   changeDetection: ChangeDetectionStrategy.OnPush
-
 })
 export class SeriesListComponent implements OnInit, OnDestroy {
 
@@ -104,7 +89,6 @@ export class SeriesListComponent implements OnInit, OnDestroy {
   idx = 0;
   seriesWorker: Worker;
   currentSeries: SeriesModel[] = [];
-  testValue:any;
   constructor(
     private carouselService: CarouselService,
     private imageService: ImageService,
@@ -124,10 +108,8 @@ export class SeriesListComponent implements OnInit, OnDestroy {
       takeUntil(this.unsubscribe$),
       tap((url) => {
         this.currentSeries = [...this.cacheSeriesService.cachedSeries]
+        // console.log(' -- this.currentSeries', this.currentSeries)
         this.cdr.detectChanges()
-        const cat = this.currentSeries.map(val => val.category)
-        // console.log(' -- urls', urls)
-        this.store.dispatch(new SetCategoryList(cat));
       })
     ).subscribe()
 
@@ -158,7 +140,7 @@ export class SeriesListComponent implements OnInit, OnDestroy {
 
   }
   onSelectSeries(ev:SeriesModel) {
-    //console.log(' onSelectSeries - selectedElement', this.splitService.selectedElement);
+    // console.log(' onSelectSeries - ev', ev);
     this.store.dispatch(new SetSplitAction(false));
     this.splitService.currentImageIndex[this.splitService.selectedElement] = 0;
     // Setting the current selected category
@@ -181,7 +163,6 @@ export class SeriesListComponent implements OnInit, OnDestroy {
     /** Start series worker with the initial values */
     this.seriesService.getSeriesObject()
       .subscribe((val:any[]) => {
-        // console.log('-getSeriesObject- val', val)
         const input$ = of(val);
 
         if (!this.seriesWorker) {
@@ -193,9 +174,8 @@ export class SeriesListComponent implements OnInit, OnDestroy {
         ).subscribe((data: any) => {
           const series: any = this.imageService.readFile(data.blob)
           series.subscribe( (obj:any) => {
-            // console.log('--- data', data.url);
+            // console.log('--- series list - webWorkerProcess - data', data.category);
             data.blob = obj;
-            // this.seriesService.saveSeries = [data.data];
             this.cacheSeriesService.checkAndCacheSeries(data);
             this.store.dispatch(new SetIsSeriesLoaded(true));
             this.store.dispatch(new SetSeriesUrls([data.url]))

@@ -45,7 +45,8 @@ export class SeriesItemComponent implements OnInit, OnChanges, AfterViewInit {
 
   constructor(private cdr: ChangeDetectorRef) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
   ngAfterViewInit() {
     this.image.nativeElement.src = this.seriesImage.blob;
     this.cdr.markForCheck();

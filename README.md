@@ -46,7 +46,11 @@ window별로 통제가 가능하다.
 
 
 ## Overall diagram
-![](src/assets/md/images/overall.png)
+![](src/assets/md/images/split-structure.png)
+* Series list: 화면 좌측의 category 별로 표시되는 image list
+* Thumbnail list: 화면에 상단에 category 별로 표시되는 image list
+* Main viewer: 화면에 가운데, category별고 구분된 이미지중에서 선택된 이미지가 표시되는 부분
+      split window 선택시 grid형태로 분리되어 표시됨.
 ~~~
 1: category 를 선택하면 선택한 정보를 전달한다.
 2: thumbnail 정보가 update되면 이 사항을 thumbnail list가 인식한다.

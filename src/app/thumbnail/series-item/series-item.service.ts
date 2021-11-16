@@ -20,14 +20,6 @@ export class SeriesItemService implements OnDestroy{
     blob: Blob;
     category: string
   }[] = [];
-/*
-  set saveSeries(data: any[] ) {  // data: SeriesModel
-    this.currentSeries = {...this.currentSeries, ...data};
-  }
-  get getSeries() {  // data: SeriesModel
-    return this.currentSeries;
-  }
-*/
 
   getSeriesObject(): Observable<any[]> {
      const url_base = 'assets/json/';

@@ -114,7 +114,6 @@ export class GridComponent implements OnInit {
       // skip(1),
       takeUntil(this.unsubscribe$)
     ).subscribe( val => {
-      console.log('-- this.selectedSplitWindowId$ is called');
       this.onSelectTemplate(val)
     });
 

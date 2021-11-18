@@ -26,7 +26,6 @@ export class SeriesWorker implements DoWork<{}, {}> {
               category: oriData[idx].category
             }
           }),
-          delay(300)
         )
       })
     );

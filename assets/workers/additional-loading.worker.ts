@@ -27,7 +27,6 @@ export class LoadingWorker implements DoWork<{}, string[]> {
               // to recursive operation
               tap((req) => re = req),
               takeLast(1),
-
           )
           }),
         )

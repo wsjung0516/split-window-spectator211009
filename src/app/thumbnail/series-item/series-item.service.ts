@@ -1,7 +1,6 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import {SeriesModel} from "../series-list/series-list.component";
 import {HttpClient} from "@angular/common/http";
-import {map, mergeMap, switchMap, takeUntil, tap, toArray} from "rxjs/operators";
+import {concatMap, map, takeUntil, toArray} from "rxjs/operators";
 import {from, Observable, Subject} from "rxjs";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 import {StatusState} from "../../../store/status/status.state";
@@ -26,8 +25,7 @@ export class SeriesItemService implements OnDestroy{
      return from( this.category_list).pipe(
        takeUntil(this.unsubscribe$),
        map( cat => `${url_base}${cat}.json`),
-       mergeMap( url => this.http.get(url)),
-       // tap( (val: any) => console.log('--- val',val.data[0].url)),
+       concatMap( url => this.http.get(url)),
        map( (dat: any, index) => {
           return {
            url: dat.data[0].url,

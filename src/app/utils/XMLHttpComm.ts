@@ -1,3 +1,4 @@
+/**
 export const XMLHttpComm = (url: string) => {
   let prom = new Promise(function (resolve, reject) {
     if (!!XMLHttpRequest) {
@@ -24,20 +25,17 @@ export const XMLHttpComm = (url: string) => {
           }
         }
       };
-      request.open("GET", url += '?' + (new Date()).getTime(), true);
-      // request.setRequestHeader("Cache-Control", "no-cache");
+      request.open("GET", url, true);
+      // request.setRequestHeader('Cache-Control', 'no-cache');
       request.send();
     }
   });
   return prom;
 };
-
-/*
-import axios from "axios";
-
-export const XMLHttpComm = async (url: string) => {
-
-  return await axios.get(url += '?' + (new Date()).getTime(), {responseType: 'blob'} );
-}
 */
 
+
+import axios from "axios";
+export const XMLHttpComm = async (url: string) => {
+  return await axios.get(url, {responseType: 'blob'} ).then(val => val.data);
+}

@@ -36,12 +36,13 @@ import {SeriesModel} from "../series-list/series-list.component";
 export class SeriesItemComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild('img') image: ElementRef;
   @Input() seriesImage: SeriesModel;
-  @Input() idx: number;
   @Input() addClass: any;
   @Output() selected: EventEmitter<any> = new EventEmitter();
   @SelectSnapshot(StatusState.getSelectedSeriesById) selectedSeriesById: number;
+  @SelectSnapshot(StatusState.getCategoryList) category_list: string[];
 
   borderColor: any;
+  rNumber: string
 
   constructor(private cdr: ChangeDetectorRef) { }
 
@@ -66,11 +67,6 @@ export class SeriesItemComponent implements OnInit, OnChanges, AfterViewInit {
 
     }
     if( changes.seriesImage && changes.seriesImage.currentValue && this.image) {
-      // this.image.nativeElement.src = changes.seriesImage.currentValue.blob;
-      // this.cdr.markForCheck();
-
-
-
     }
   }
 }

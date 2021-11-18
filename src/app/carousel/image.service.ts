@@ -1,7 +1,7 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {from, Observable, of, Subject} from 'rxjs';
-import {filter, map, mergeMap, pluck, switchMap, takeLast, takeUntil, tap, toArray} from 'rxjs/operators';
+import {Observable, Subject} from 'rxjs';
+import { map} from 'rxjs/operators';
 import {ImageModel} from "./carousel-main/carousel-main.component";
 import {StatusState} from "../../store/status/status.state";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";

@@ -70,14 +70,13 @@ export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy 
   `
   ],
   providers: [{provide: VIRTUAL_SCROLL_STRATEGY, useClass: CustomVirtualScrollStrategy}],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 
 })
 export class ThumbnailListComponent implements OnInit, OnDestroy {
 
   @Input() category: string;
   @Select(StatusState.getImageUrls)  getImageUrls$: Observable<string[]>;
-  // @SelectSnapshot(StatusState.getSelectedImageById)  getCurrentImageById: ImageModel;
   @SelectSnapshot(StatusState.getActiveSplit)  activeSplit: number;
   @Select(StatusState.getSelectedImageById)  getSelectedImageById$: Observable<ImageModel>;
   @Select(StatusState.getCurrentCategory) currentCategory$: Observable<string>;
@@ -95,11 +94,7 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
     private imageService: ImageService,
     private store: Store,
     private cdr: ChangeDetectorRef,
-    private splitService: SplitService
   ) { }
-  TrackByFunctio() {
-
-    }
 
   ngOnInit(): void {
 
@@ -134,6 +129,7 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
         class:'selected_item',
         imageId: image.imageId
       }
+      this.cdr.detectChanges();
       // To synchronize with the current selected item, after when it is activated by clicking item-list
       // const el = this.splitService.elements[this.activeSplit];
       // this.splitService.currentImageIndex[el] = val;

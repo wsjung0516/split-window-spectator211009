@@ -1,24 +1,28 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
   HostListener,
-  Input, OnDestroy,
+  Input,
+  OnDestroy,
   OnInit,
   ViewChild
 } from '@angular/core';
 import {CarouselService} from "../carousel.service";
 import {ImageService} from "../image.service";
-import {defer, EMPTY, from, Observable, of, Subject, zip} from "rxjs";
+import {defer, EMPTY, Observable, of, Subject, zip} from "rxjs";
 import {Select, Store} from "@ngxs/store";
 import {StatusState} from "../../../store/status/status.state";
 import {
   SetCurrentSplitOperation,
   SetImageUrls,
-  SetIsImageLoaded, SetSelectedSplitWindowId, SetSplitAction,
+  SetIsImageLoaded,
+  SetSelectedSplitWindowId,
+  SetSplitAction,
 } from "../../../store/status/status.actions";
-import {delay, filter, map, skip, switchMap, take, takeUntil, tap} from "rxjs/operators";
+import {filter, skip, switchMap, take, takeUntil} from "rxjs/operators";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 import {SeriesItemService} from "../../thumbnail/series-item/series-item.service";
 import {CacheSeriesService} from "../../thumbnail/cache-series.service";
@@ -53,6 +57,7 @@ export interface ImageModel {
 
   `,
   styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
 
 })
 export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -368,15 +373,15 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
      *    for each split window.
      * */
       //
-    const isFinished$ = this.getCurrentSplitOperation$.pipe( // To know the end of image processing
+    const isFinished$ = this.getCurrentSplitOperation$.pipe( // 1 To know the end of image processing
         switchMap((val:any) => {
-          this.splitService.selectedElement = val.element;
+          this.splitService.selectedElement = val.element; // 2
           return this.splitService.isFinishedRendering$[val.element].pipe(take(1));
         }),
-        take(1),
+        take(1), // 3
       );
 
-    const isStarted$ = this.getCurrentSplitOperation$.pipe( // To know the start of image processing
+    const isStarted$ = this.getCurrentSplitOperation$.pipe( // 4 To know the start of image processing
       switchMap((val: any) => {
         this.splitService.selectedElement = val.element;
         return this.splitService.isStartedRendering$[val.element].pipe(take(1));
@@ -385,29 +390,30 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
     );
 
     if (this.splitMode > 1) {
-      if (this.splitService.selectedElement === 'element1') { // first split window
+      if (this.splitService.selectedElement === 'element1') { // 5 first split window
         this.tempObservable = defer(() => of(EMPTY).pipe());
       } else if (this.splitService.selectedElement === 'element2') {
-        this.tempObservable = zip(isStarted$, isFinished$).pipe(
-          filter((val: any) => val[1] === 'element1')
+        this.tempObservable = zip(isStarted$, isFinished$).pipe( //['element2','element1']
+          filter((val: any) => val[1] === 'element1') // 6
         );
       } else if (this.splitService.selectedElement === 'element3') {
-        this.tempObservable = zip(isStarted$, isFinished$).pipe(
+        this.tempObservable = zip(isStarted$, isFinished$).pipe( //['element3','element2']
           filter((val: any) => val[1] === 'element2'),
         );
       } else if (this.splitService.selectedElement === 'element4') {
-        this.tempObservable = zip(isStarted$, isFinished$).pipe(
+        this.tempObservable = zip(isStarted$, isFinished$).pipe( //['element4','element3']
           filter((val: any) => val[1] === 'element3'),
         );
       }
     } else {
-      this.tempObservable = defer(() => of(EMPTY).pipe());
+      this.tempObservable = defer(() => of(EMPTY).pipe()); // 7
     }
   }
   //
   private splitWindowProcess2() {
     const rendering$: Observable<any> = this.requestRenderingSplitWindow$[this.splitService.selectedElement];
-    zip(this.tempObservable, rendering$).pipe(
+    // 8
+    zip(this.tempObservable, rendering$).pipe( // 9
       take(1),
     ).subscribe(([temp, element]) => {
       /** Start processing ct-viewer after finished processing for previous split window*/
@@ -417,7 +423,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
        * because each split window do process one by one */
       this.store.dispatch(new SetCurrentSplitOperation({element: this.splitService.selectedElement}));
 
-      this.makingSplitWindowBySelectedSeries(this.categoryIdx);
+      this.makingSplitWindowBySelectedSeries(this.categoryIdx); // 10
     });
   }
 ///////////////////////////////////////////////////////

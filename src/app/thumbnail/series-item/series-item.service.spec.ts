@@ -1,6 +1,6 @@
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 import { SeriesItemService } from './series-item.service';
-import {NgxsModule} from "@ngxs/store";
+import {NgxsModule, Store} from "@ngxs/store";
 import {StatusState} from "../../../store/status/status.state";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {SeriesModel} from "../series-list/series-list.component";
@@ -17,7 +17,7 @@ describe('SeriesItemService', () => {
       NgxsSelectSnapshotModule.forRoot(),
       HttpClientModule
     ],
-    providers:[HttpClient]
+    providers:[HttpClient, Store]
   });
 
   beforeEach(() => spectator = createService());
@@ -26,13 +26,14 @@ describe('SeriesItemService', () => {
     expect(spectator.service).toBeTruthy();
   });
   it(' should get series image', () => {
-    const http = spectator.inject(HttpClient);
+    // const http = spectator.inject(HttpClient);
     // spyOn(http,'get').and.callThrough();
+    const store = spectator.inject(Store);
+    const category_list = store.selectSnapshot(StatusState.getCategoryList);
     const series: Observable<SeriesModel[]> = spectator.service.getSeriesObject();
     series.subscribe( val => {
-      expect(val.length).toEqual(5);
-      // expect(val.length).toEqual(category_list.length);
-      console.log(' val', val);
+      console.log(' category_list', category_list);
+      expect(val.length).toEqual(category_list.length);
     })
   })
 });

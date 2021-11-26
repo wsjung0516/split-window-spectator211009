@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import {ImageService} from "./image.service";
-// import {Observable} from "rxjs";
 import {Store} from "@ngxs/store";
 import {SetSelectedImageById} from "../../store/status/status.actions";
 import {SelectSnapshot} from "@ngxs-labs/select-snapshot";
 import {StatusState} from "../../store/status/status.state";
 import {SplitService} from "../grid/split.service";
 import {ImageModel} from "./carousel-main/carousel-main.component";
-// import {StatusState} from "../../store/status/status.state";
 
 @Injectable({
   providedIn: 'root'

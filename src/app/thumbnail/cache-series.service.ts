@@ -23,23 +23,12 @@ export class CacheSeriesService {
   isThisUrlCached(url: string) {
     return this._cacheUrls.find(val => val.url === url);
   }
-  setCacheUrl(data:any) { // data: SeriesModel
-    const cIdx: any = this.category_list.findIndex( val => val === data.category) + 1;
-    const nIdx = data.seriesId < 10 ? (cIdx * 10 + data.seriesId) : (cIdx * 100 + data.seriesId);
-    const nUrl = { idx: nIdx, category: data.category, url: data.url};
-    // [{idx:10, url:'aaa'}, {idx:11, url:'bbb'}]
-    this._cacheUrls = [...this._cacheUrls,nUrl];
-    // console.log(' nUrl', nUrl, this._cacheUrls, cIdx)
-  }
   getCachedSeriesByCat(cat: string) { // data: SeriesModel
     return  this._cachedSeries.filter(val => val.category === cat)[0];
   }
 
   getCacheUrls() {
     return this._cacheUrls;
-  }
-  getCacheUrlsByCategory(cat: string) {
-    return this._cacheUrls.filter(val => val.category === cat);
   }
 
   // @ts-ignore

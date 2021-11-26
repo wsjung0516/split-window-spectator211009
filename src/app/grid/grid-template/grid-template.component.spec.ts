@@ -5,18 +5,30 @@ import {CarouselMainComponent} from "../../carousel/carousel-main/carousel-main.
 import {GridTemplateDirective} from "../directives/grid-template.directive";
 import {MockComponents, ngMocks} from "ng-mocks";
 import {TemplateRef} from "@angular/core";
+import {ImageService} from "../../carousel/image.service";
+import {CacheSeriesService} from "../../thumbnail/cache-series.service";
+import {NgxsModule, Store} from "@ngxs/store";
+import {StatusState} from "../../../store/status/status.state";
+import {SetFocusedSplit} from "../../../store/status/status.actions";
 
 
 describe('GridTemplateComponent', () => {
   let spectator: Spectator<GridTemplateComponent>;
   const createComponent = createComponentFactory({
     component: GridTemplateComponent,
+    imports: [NgxsModule.forRoot([StatusState])],
     declarations: [GridTemplateDirective],
     componentMocks: [CarouselMainComponent],
+    providers: [Store],
+    mocks: [ImageService, CacheSeriesService]
 
   });
 
-  beforeEach(()=> spectator = createComponent())
+  beforeEach(()=> {
+    spectator = createComponent();
+    const store = spectator.inject(Store);
+    store.dispatch(new SetFocusedSplit(0));
+  })
   it('should create', () => {
     expect(spectator.component).toBeTruthy();
   });

@@ -7,7 +7,7 @@ import {ImageService} from "../../carousel/image.service";
 import {HttpClient} from "@angular/common/http";
 import {ThumbItemComponent} from "../thumb-item/thumb-item.component";
 import {ImageModel} from "../../carousel/carousel-main/carousel-main.component";
-import {NgxsModule} from "@ngxs/store";
+import {NgxsModule, Store} from "@ngxs/store";
 import {StatusState} from "../../../store/status/status.state";
 import {CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 
@@ -20,7 +20,7 @@ describe('ThumbnailListComponent', () => {
 
     ],
     declarations: [ThumbItemComponent, CdkVirtualScrollViewport],
-    providers: [CarouselService, ImageService],
+    providers: [CarouselService, ImageService, Store],
     mocks: [HttpClient]
   })
 
@@ -31,10 +31,20 @@ describe('ThumbnailListComponent', () => {
   it('should create', () => {
     expect(spectator).toBeTruthy();
   });
-  it('should be the cached image length same the thumbnail list lenght', () => {
+  const tImage: ImageModel = {
+    imageId: 1,
+    url: '',
+    category: 'animal',
+    blob: '',
+    title: ''
+  }
+
+  it('onSelectItem', () => {
     spectator.setInput("category", "animal");
-    const service = spectator.inject(ImageService);
-    const list_length = service.getCacheUrls().length;
-    expect(list_length).toEqual(spectator.component.item_list.length);
+    const store = spectator.inject(Store)
+    spectator.component.onSelectItem(tImage);
+    const image = store.selectSnapshot(StatusState.getSelectedImageById)
+
+    expect(image).toEqual(tImage);
   })
 });

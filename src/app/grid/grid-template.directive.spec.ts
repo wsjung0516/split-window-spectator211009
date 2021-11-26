@@ -2,7 +2,7 @@ import { GridTemplateDirective } from './directives/grid-template.directive';
 import {TemplateRef} from "@angular/core";
 import {createDirectiveFactory, SpectatorDirective} from "@ngneat/spectator";
 
-describe('GridTemplateDirective', () => {
+xdescribe('GridTemplateDirective', () => {
   let spectator: SpectatorDirective<GridTemplateDirective>;
   const createDirective = createDirectiveFactory({
     directive: GridTemplateDirective,
@@ -10,7 +10,7 @@ describe('GridTemplateDirective', () => {
   })
   beforeEach(() => spectator = createDirective(`<div *appGridTemplate></div>`))
 
-  it('should create an instance', () => {
+  xit('should create an instance', () => {
     expect(spectator.element).toBeTruthy();
   });
 });

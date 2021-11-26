@@ -1,4 +1,4 @@
-import {ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
+import {ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 
 import { ThumbItemComponent } from './thumb-item.component';
 import {createComponentFactory, Spectator} from "@ngneat/spectator";
@@ -8,6 +8,8 @@ import {ImageService} from "../../carousel/image.service";
 import {NgxsModule, Store} from "@ngxs/store";
 import {StatusState} from "../../../store/status/status.state";
 import {NgxsSelectSnapshotModule} from "@ngxs-labs/select-snapshot";
+import {SeriesModel} from "../series-list/series-list.component";
+import {SetSelectedImageById} from "../../../store/status/status.actions";
 
 describe('ThumbItemComponent', () => {
   let spectator: Spectator<ThumbItemComponent>;
@@ -19,8 +21,8 @@ describe('ThumbItemComponent', () => {
       NgxsSelectSnapshotModule.forRoot()
     ],
 
-    providers: [HttpClient],
-    mocks: [Store],
+    providers: [HttpClient, Store],
+    // mocks: [Store],
     detectChanges: false
   });
   const tImage: ImageModel = {
@@ -42,16 +44,20 @@ describe('ThumbItemComponent', () => {
   it('should create', () => {
     expect(spectator).toBeTruthy();
   });
-  it('should be the same Imput() Image and Output() image', () => {
+  it('should be the same Input() Image and Output() image', () => {
+    const store = spectator.inject(Store);
+    store.dispatch( new SetSelectedImageById(tImage))
     const expected: any = {
       imageId: 1,
       url: '',
       category: 'animal',
-      blob: ''
+      blob: '',
+      title: ''
     }
     spectator.component.selected.subscribe( result => {
+      // console.log(' result', result)
       expect(result).toEqual(expected)
     });
-    spectator.click('div')
+    spectator.click('img')
   })
 });

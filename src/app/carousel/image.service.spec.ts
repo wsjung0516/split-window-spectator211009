@@ -3,15 +3,25 @@ import { ImageService } from './image.service';
 import {HttpClient, HttpHandler} from "@angular/common/http";
 import {cold} from "jasmine-marbles";
 import {ImageModel} from "./carousel-main/carousel-main.component";
+import {NgxsSelectSnapshotModule} from "@ngxs-labs/select-snapshot";
+import {NgxsModule, Store} from "@ngxs/store";
+import {SetCategoryList, SetCurrentCategory} from "../../store/status/status.actions";
+import {StatusState} from "../../store/status/status.state";
 
 describe('ImageService', () => {
   let spectator: SpectatorService<ImageService>;
   const createService = createServiceFactory({
     service: ImageService,
-    providers: [HttpClient, HttpHandler]
+    providers: [HttpClient, HttpHandler, Store],
+    imports: [NgxsModule.forRoot([StatusState]), NgxsSelectSnapshotModule],
   });
 
-  beforeEach(() => spectator = createService());
+  beforeEach(() => {
+    spectator = createService()
+    const store = spectator.inject(Store);
+    const category_list = ['animal', 'house','sea']
+    store.dispatch(new SetCategoryList(category_list));
+  });
   const queryUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Animal_diversity.png/230px-Animal_diversity.png';
   const API_PATH = 'assets/json/animal.json';
 
@@ -54,7 +64,7 @@ describe('ImageService', () => {
   const expectedUrls: any[] = [
     { idx: 10, category: 'animal', url: 'aaaaa'},
     { idx: 11, category: 'animal', url: 'bbbbb'},
-    { idx: 90, category: 'sea', url: 'ccccc'},
+    { idx: 30, category: 'sea', url: 'ccccc'},
   ]
 
   it(' Should add image urls', () => {
@@ -64,6 +74,7 @@ describe('ImageService', () => {
     service.checkAndCacheImage(cachedUrl3);
     service.checkAndCacheImage(added);
     const urls = service.getCacheUrls();
+    console.log(' urls --', urls);
     expect(urls).toEqual(expectedUrls)
   })
   const expectedUrls2: any[] = [
@@ -80,12 +91,12 @@ describe('ImageService', () => {
     expect(urls).toEqual(expectedUrls2)
   })
 
-  const rObj = { cat: 'animal', idx:1};
-  it(' Should add image to cachedImage', () => {
+  const rObj = { cat: 'animal', idx:0};
+  it(' checkAndCacheImage -- Should add image to cachedImage', () => {
     const service = spectator.service;
     service.checkAndCacheImage(cachedUrl1);
     const ret = service.getCacheImage(rObj.cat, rObj.idx);
-    const expected = 'ablob';
+    const expected = 'bloba';
     expect(ret).toEqual(expected)
   })
 });

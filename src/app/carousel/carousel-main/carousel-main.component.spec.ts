@@ -8,24 +8,33 @@ import {HttpClient} from "@angular/common/http";
 import {StatusState} from "../../../store/status/status.state";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {fakeAsync, tick} from "@angular/core/testing";
+import {NgxsSelectSnapshotModule} from "@ngxs-labs/select-snapshot";
+import {SetCategoryList, SetSplitState} from "../../../store/status/status.actions";
 
-xdescribe('CarouselMainComponent', () => {
+describe('CarouselMainComponent', () => {
   let spectator: Spectator<CarouselMainComponent>;
   const createComponent = createComponentFactory({
     component: CarouselMainComponent,
     imports: [
       NgxsModule.forRoot([StatusState]),
-      MatProgressBarModule
+      MatProgressBarModule,
+      NgxsSelectSnapshotModule
     ],
     providers:[
       CarouselService,
       ImageService,
+      Store
     ],
-    mocks: [Store, HttpClient],
+    mocks: [HttpClient],
     detectChanges: false
   });
   beforeEach(() =>{
     spectator = createComponent();
+    const store = spectator.inject(Store);
+    const category_list = ['animal','house'];
+    const split_state = {idx:0, category: 'animal'};
+    store.dispatch(new SetSplitState(split_state))
+    store.dispatch(new SetCategoryList(category_list));
   })
 
   it('should create', () => {
@@ -42,13 +51,13 @@ xdescribe('CarouselMainComponent', () => {
       blob: '',
       title: ''
     }
-    const expected = [{idx: 10, category:'', url:'aaaaa'},
-                      {idx: 11, category:'', url:'ccccc'}]
+    const expected = [{idx: 10, category:'animal', url:'aaaaa'},
+                      {idx: 11, category:'animal', url:'ccccc'}]
     const aaaaa =
         {
-          imageId: 1,
+          imageId: 0,
           url:'aaaaa',
-          category: '',
+          category: 'animal',
           blob: '',
           title:''
         }
@@ -56,7 +65,7 @@ xdescribe('CarouselMainComponent', () => {
         {
           imageId: 1,
           url:'ccccc',
-          category: '',
+          category: 'animal',
           blob: '',
           title: ''
         }
@@ -79,7 +88,7 @@ xdescribe('CarouselMainComponent', () => {
     spectator.setInput({
       queryElement: 'element1'
     })
-    expect(spectator.component.categoryIdx).toEqual(1)
+    expect(spectator.component.categoryIdx).toEqual(0)
   })
   const _cacheUrls = [
     { idx: 10, category: 'animal', url: 'aaaaa'},
@@ -96,15 +105,13 @@ xdescribe('CarouselMainComponent', () => {
     { url: 'ccccc'},
     { url: 'ddddd'},
   ];
-
-/*
-  fit(' to exclude images that is loaded already',fakeAsync(()=> {
+  /** Postpone, not able to test webworker */
+  xit(' to exclude images that is loaded already',fakeAsync(()=> {
     spectator.component.checkIfAdditionalLoading(requestUrls, 'animal', _cacheUrls).then( result => {
       expect(result).toEqual(requestResult);
       tick();
     });
   }))
-*/
 
 
 });

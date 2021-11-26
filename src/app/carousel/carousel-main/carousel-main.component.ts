@@ -73,7 +73,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('img') image: ElementRef;
   // to check if image loading is started from webworker.
-  @Select(StatusState.getIsImageLoaded) getIsImageLoaded$: Observable<boolean>;
+  @Select(StatusState.getIsImageLoaded) getIsImageLoaded$: Observable<any>;
   @Select(StatusState.getSelectedImageById) getSelectedImageById$: Observable<ImageModel>;
   @Select(StatusState.getSelectedSeriesById) getSelectedSeriesById$: Observable<number>;
   //
@@ -172,9 +172,9 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private makeTheFirstImage() {
     this.getIsImageLoaded$ && this.getIsImageLoaded$.pipe(skip(1),take(1))
-      .subscribe(async (res: any) => {
+      .subscribe(async () => {
 
-        await this.displayTheFirstImage(res);
+        await this.displayTheFirstImage();
         await this.signalFinished();
       })
   }
@@ -197,7 +197,7 @@ export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
     })
   }
 
-  private async displayTheFirstImage(res: any) {
+  private async displayTheFirstImage() {
     return new Promise( resolve => {
         this.splitService.isStartedRendering[this.splitService.selectedElement].next(this.splitService.selectedElement)
         /**

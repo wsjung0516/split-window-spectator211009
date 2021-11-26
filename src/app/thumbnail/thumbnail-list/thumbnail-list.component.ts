@@ -121,7 +121,10 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
       this.idx = this.viewPort.measureScrollOffset();
       // console.log(' idx', this.idx)
     });
-    //
+    /**
+     * Triggered from series-list.component ( onSelectSeries),
+     *      carousel.service (getPrevImage, getNextImage)
+     */
     this.getSelectedImageById$.pipe(
       takeUntil(this.unsubscribe$)
     ).subscribe( image => {
@@ -131,9 +134,6 @@ export class ThumbnailListComponent implements OnInit, OnDestroy {
       }
       this.cdr.detectChanges();
       // To synchronize with the current selected item, after when it is activated by clicking item-list
-      // const el = this.splitService.elements[this.activeSplit];
-      // this.splitService.currentImageIndex[el] = val;
-
        setTimeout(() => this.viewPort.scrollToIndex(image.imageId, 'smooth'),200);
     })
 

@@ -32,7 +32,7 @@ describe('SeriesItemComponent', () => {
       blob: undefined
     };
     spectator.setInput('seriesImage', image);
-    const src = spectator.component.image.nativeElement.src;
+    const src = spectator.component.seriesImage;
     expect(src).toEqual(image)
   })
 });

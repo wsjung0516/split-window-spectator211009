@@ -3,12 +3,17 @@ import {HttpClient, HttpHandler} from "@angular/common/http";
 import {cold} from "jasmine-marbles";
 import {CacheSeriesService} from "./cache-series.service";
 import {SeriesModel} from "./series-list/series-list.component";
+import {NgxsSelectSnapshotModule} from "@ngxs-labs/select-snapshot";
+import {Store} from "@ngxs/store";
+import {ImageService} from "../carousel/image.service";
 
 describe('CacheSeriesService', () => {
   let spectator: SpectatorService<CacheSeriesService>;
   const createService = createServiceFactory({
     service: CacheSeriesService,
-    providers: [HttpClient, HttpHandler]
+    providers: [HttpClient, HttpHandler, ImageService],
+    imports: [NgxsSelectSnapshotModule],
+    mocks: [Store]
   });
 
   beforeEach(() => spectator = createService());
@@ -66,28 +71,10 @@ describe('CacheSeriesService', () => {
     { idx: 90, category: 'sea', url: 'ccccc'},
   ]
 
-  it(' Should add image urls', () => {
-    const service = spectator.service;
-    service.checkAndCacheSeries(cachedUrl1);
-    service.checkAndCacheSeries(cachedUrl2);
-    service.checkAndCacheSeries(cachedUrl3);
-    service.checkAndCacheSeries(added);
-    const urls = service.getCacheUrls();
-    expect(urls).toEqual(expectedUrls)
-  })
   const expectedUrls2: any[] = [
     { idx: 10, category: 'animal', url: 'aaaaa'},
     { idx: 11, category: 'animal', url: 'bbbbb'},
   ]
-  it(' get urls by category', () => {
-    const service = spectator.service;
-    service.checkAndCacheSeries(cachedUrl1);
-    service.checkAndCacheSeries(cachedUrl2);
-    service.checkAndCacheSeries(cachedUrl3);
-    service.checkAndCacheSeries(added);
-    const urls = service.getCacheUrlsByCategory('animal');
-    expect(urls).toEqual(expectedUrls2)
-  })
 
   const rObj = { cat: 'animal', idx:0};
   it(' Should get series from cachedSeries', () => {
@@ -95,5 +82,11 @@ describe('CacheSeriesService', () => {
     service.checkAndCacheSeries(cachedUrl1);
     const ret = service.cachedSeries;
     expect(ret).toEqual([cachedUrl1])
+  })
+  it(' getCachedSeriesByCat', () => {
+    const service = spectator.service;
+    service.checkAndCacheSeries(cachedUrl1);
+    const ret = service.getCachedSeriesByCat('animal');
+    expect(ret).toEqual(cachedUrl1)
   })
 });

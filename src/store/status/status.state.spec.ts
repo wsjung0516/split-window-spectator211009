@@ -79,7 +79,7 @@ describe('Status store', () => {
   it('should create an action and add an item', () => {
     store.dispatch(new SetIsImageLoaded({idx:0}));
     const actual = store.selectSnapshot(StatusState.getIsImageLoaded);
-    expect(actual).toEqual(true);
+    expect(actual).toEqual({idx:0});
     expect(store.dispatch).toHaveBeenCalledOnceWith(new SetIsImageLoaded( {idx:0}));
   });
   const expected2 =
@@ -98,17 +98,6 @@ describe('Status store', () => {
     expect(actual).toEqual(1);
     expect(store.dispatch).toHaveBeenCalledOnceWith(new SetSelectedSeriesById( 1));
   });
-  it(' SetIsImageLoaded ', () => {
-    store.dispatch(new SetIsImageLoaded({idx:0}));
-    const actual = store.selectSnapshot(StatusState.getIsImageLoaded);
-    expect(actual).toEqual(true);
-    store.dispatch(new SetIsImageLoaded({idx:0}));
-    const actual2 = store.selectSnapshot(StatusState.getIsImageLoaded);
-    expect(actual2).toEqual(false);
-    store.dispatch(new SetIsImageLoaded({idx:0}));
-    const actual3 = store.selectSnapshot(StatusState.getIsImageLoaded);
-    expect(actual3).toEqual(true);
-  });
   const expectedUrls = ['aaaaa','bbbbb'];
   it(' images array is same when [] is added ', () => {
     store.dispatch(new SetImageUrls([series.url]));
@@ -118,8 +107,8 @@ describe('Status store', () => {
     expect(actual).toEqual(expectedUrls);
   });
   const splitState = ['animal', 'house', 'baby', 'forest'];
-  const expectedState = ['animal','mountain','sea', 'house'];
-  const expectedState2 = ['baby','mountain','sea', 'house'];
+  const expectedState = ['animal','house','sea', 'forest'];
+  const expectedState2 = ['baby','house','sea', 'forest'];
   it(' SetSplitState, input category with selected series ', () => {
     store.dispatch(new SetSplitState({idx:2, category:'sea'}));
     const actual = store.selectSnapshot(StatusState.getSplitState);
@@ -135,7 +124,7 @@ describe('Status store', () => {
     expect(actual).toEqual({element: 'element1'});
     //
   });
-  fit(' SetCategoryList ', () => {
+  it(' SetCategoryList ', () => {
     store.dispatch(new SetCategoryList(['happiness', 'love', 'sea','banana', 'mountain']));
     const actual = store.selectSnapshot(StatusState.getCategoryList);
     expect(actual).toEqual(['happiness', 'love', 'sea','banana', 'mountain']);

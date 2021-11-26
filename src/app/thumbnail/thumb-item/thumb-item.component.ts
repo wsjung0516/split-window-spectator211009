@@ -63,7 +63,7 @@ export class ThumbItemComponent implements OnInit, AfterViewInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     this.borderColor = 'none_selected_item'
       this.cdr.markForCheck();
-    // console.log('this.selectedImageId, this.originalImage.imageId ', this.selectedImageId, this.originalImage.imageId)
+    // console.log('this.selectedImageId, this.originalImage.imageId ', this.selectedImageId.imageId, this.originalImage.imageId)
     if( this.selectedImageId.imageId === this.originalImage.imageId) {
       this.borderColor = 'selected_item';
       this.cdr.markForCheck();

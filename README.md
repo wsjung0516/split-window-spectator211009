@@ -33,7 +33,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
   is finished, immediately The next split window starts working.
 * Each split window consists of a separate component. Therefore, each split window
   must have its own variable. A unique variable for each split window is kept in the service program.
-  This is the difficult part of the program.
+  This is the difficult part of the program. [Details](src/assets/md/grid.md)
+
 
 * Each split window is assigned by category, and each split window
   The start and end points of drawing should be stored in global variables.

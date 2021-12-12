@@ -1,0 +1,3150 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>split-window-spectator211009 documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">split-window-spectator211009 documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  CarouselMainComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/carousel/carousel-main/carousel-main.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-carousel-main</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div&gt;
+  &lt;div class&#x3D;&quot;w-auto h-auto&quot;&gt;
+    &lt;div class&#x3D;&quot;m-1&quot;&gt;
+      &lt;mat-progress-bar mode&#x3D;&quot;determinate&quot; [value]&#x3D;&quot;progress[categoryIdx]&quot;&gt;&lt;/mat-progress-bar&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;&quot;&gt;
+      &lt;div class&#x3D;&quot;m-1&quot;&gt;
+        &lt;img class&#x3D;&quot;object-scale-down&quot; #img&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#_queryUrl" >_queryUrl</a>
+                            </li>
+                            <li>
+                                <a href="#activeSplit$" >activeSplit$</a>
+                            </li>
+                            <li>
+                                <a href="#category" >category</a>
+                            </li>
+                            <li>
+                                <a href="#category_list" >category_list</a>
+                            </li>
+                            <li>
+                                <a href="#categoryIdx" >categoryIdx</a>
+                            </li>
+                            <li>
+                                <a href="#currentCategory" >currentCategory</a>
+                            </li>
+                            <li>
+                                <a href="#focusedSplitIdx" >focusedSplitIdx</a>
+                            </li>
+                            <li>
+                                <a href="#getCurrentSplitOperation$" >getCurrentSplitOperation$</a>
+                            </li>
+                            <li>
+                                <a href="#getIsImageLoaded$" >getIsImageLoaded$</a>
+                            </li>
+                            <li>
+                                <a href="#getSelectedImageById$" >getSelectedImageById$</a>
+                            </li>
+                            <li>
+                                <a href="#getSelectedSeriesById$" >getSelectedSeriesById$</a>
+                            </li>
+                            <li>
+                                <a href="#getSeriesUrls$" >getSeriesUrls$</a>
+                            </li>
+                            <li>
+                                <a href="#getSplitState" >getSplitState</a>
+                            </li>
+                            <li>
+                                <a href="#getWebworkerWorkingStatus" >getWebworkerWorkingStatus</a>
+                            </li>
+                            <li>
+                                <a href="#image" >image</a>
+                            </li>
+                            <li>
+                                <a href="#imageCount" >imageCount</a>
+                            </li>
+                            <li>
+                                <a href="#originalImage" >originalImage</a>
+                            </li>
+                            <li>
+                                <a href="#progress" >progress</a>
+                            </li>
+                            <li>
+                                <a href="#requestRenderingSplitWindow$" >requestRenderingSplitWindow$</a>
+                            </li>
+                            <li>
+                                <a href="#selectedSplitWindow" >selectedSplitWindow</a>
+                            </li>
+                            <li>
+                                <a href="#splitAction" >splitAction</a>
+                            </li>
+                            <li>
+                                <a href="#splitIdx" >splitIdx</a>
+                            </li>
+                            <li>
+                                <a href="#splitMode" >splitMode</a>
+                            </li>
+                            <li>
+                                <a href="#splitMode$" >splitMode$</a>
+                            </li>
+                            <li>
+                                <a href="#tempObservable" >tempObservable</a>
+                            </li>
+                            <li>
+                                <a href="#unsubscribe" >unsubscribe</a>
+                            </li>
+                            <li>
+                                <a href="#unsubscribe$" >unsubscribe$</a>
+                            </li>
+                            <li>
+                                <a href="#worker" >worker</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#checkIfAdditionalLoading" >checkIfAdditionalLoading</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#displaySplitWindowImage" >displaySplitWindowImage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#displayTheFirstImage" >displayTheFirstImage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getTotalImageList" >getTotalImageList</a>
+                            </li>
+                            <li>
+                                <a href="#handleKey" >handleKey</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#makeCachedImage" >makeCachedImage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#makeTheFirstImage" >makeTheFirstImage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#makingSplitWindow" >makingSplitWindow</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#makingSplitWindowByGrid" >makingSplitWindowByGrid</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#makingSplitWindowBySelectedSeries" >makingSplitWindowBySelectedSeries</a>
+                            </li>
+                            <li>
+                                <a href="#nextImage" >nextImage</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#prevImage" >prevImage</a>
+                            </li>
+                            <li>
+                                <a href="#saveCacheImage" >saveCacheImage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#signalFinished" >signalFinished</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#splitWindowProcess1" >splitWindowProcess1</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#splitWindowProcess2" >splitWindowProcess2</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#webworkerPostMessage" >webworkerPostMessage</a>
+                            </li>
+                            <li>
+                                <a href="#webWorkerProcess" >webWorkerProcess</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#queryElement" >queryElement</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#window:keydown" >window:keydown</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#queryElement" >queryElement</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(carouselService: <a href="../injectables/CarouselService.html" target="_self">CarouselService</a>, imageService: <a href="../injectables/ImageService.html" target="_self">ImageService</a>, store: Store, splitService: <a href="../injectables/SplitService.html" target="_self">SplitService</a>, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>, seriesItemService: <a href="../injectables/SeriesItemService.html" target="_self">SeriesItemService</a>, cacheSeriesService: <a href="../injectables/CacheSeriesService.html" target="_self">CacheSeriesService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:110</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>carouselService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CarouselService.html" target="_self" >CarouselService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>imageService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ImageService.html" target="_self" >ImageService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                    <code>Store</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>splitService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SplitService.html" target="_self" >SplitService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>cdr</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>seriesItemService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SeriesItemService.html" target="_self" >SeriesItemService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>cacheSeriesService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CacheSeriesService.html" target="_self" >CacheSeriesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="queryElement"></a>
+                        <b>queryElement</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:64</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="window:keydown"></a>
+                    <span class="name">
+                        <span ><b>window:keydown</b></span>
+                        <a href="#window:keydown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>window:keydown(event: KeyboardEvent)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:106</a></div>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkIfAdditionalLoading"></a>
+                    <span class="name">
+                        <span ><b>checkIfAdditionalLoading</b></span>
+                        <a href="#checkIfAdditionalLoading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkIfAdditionalLoading(val: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, category: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, urls: literal type[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="277"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:277</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>val</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>category</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>urls</td>
+                                    <td>
+                                            <code>literal type[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displaySplitWindowImage"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>displaySplitWindowImage</b></span>
+                        <a href="#displaySplitWindowImage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>displaySplitWindowImage(image: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="218"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:218</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>image</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayTheFirstImage"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>displayTheFirstImage</b></span>
+                        <a href="#displayTheFirstImage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>displayTheFirstImage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="200"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:200</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTotalImageList"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getTotalImageList</b></span>
+                        <a href="#getTotalImageList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getTotalImageList()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="245"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:245</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleKey"></a>
+                    <span class="name">
+                        <span ><b>handleKey</b></span>
+                        <a href="#handleKey"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleKey(event: KeyboardEvent)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;window:keydown&#x27;, [&#x27;$event&#x27;])<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:106</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>KeyboardEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeCachedImage"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>makeCachedImage</b></span>
+                        <a href="#makeCachedImage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>makeCachedImage(data: <a href="../interfaces/ImageModel.html" target="_self">ImageModel</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="344"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:344</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="../interfaces/ImageModel.html" target="_self" >ImageModel</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makeTheFirstImage"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>makeTheFirstImage</b></span>
+                        <a href="#makeTheFirstImage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>makeTheFirstImage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="173"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:173</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makingSplitWindow"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>makingSplitWindow</b></span>
+                        <a href="#makingSplitWindow"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>makingSplitWindow()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="164"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:164</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makingSplitWindowByGrid"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>makingSplitWindowByGrid</b></span>
+                        <a href="#makingSplitWindowByGrid"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>makingSplitWindowByGrid(eIdx: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:144</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>eIdx</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="makingSplitWindowBySelectedSeries"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>makingSplitWindowBySelectedSeries</b></span>
+                        <a href="#makingSplitWindowBySelectedSeries"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>makingSplitWindowBySelectedSeries(cIdx: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="157"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:157</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>cIdx</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nextImage"></a>
+                    <span class="name">
+                        <span ><b>nextImage</b></span>
+                        <a href="#nextImage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>nextImage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="309"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:309</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="307"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:307</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="431"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:431</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:123</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prevImage"></a>
+                    <span class="name">
+                        <span ><b>prevImage</b></span>
+                        <a href="#prevImage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>prevImage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="315"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:315</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveCacheImage"></a>
+                    <span class="name">
+                        <span ><b>saveCacheImage</b></span>
+                        <a href="#saveCacheImage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>saveCacheImage(data: <a href="../interfaces/ImageModel.html" target="_self">ImageModel</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="357"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:357</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="../interfaces/ImageModel.html" target="_self" >ImageModel</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="signalFinished"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>signalFinished</b></span>
+                        <a href="#signalFinished"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>signalFinished()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="182"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:182</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="splitWindowProcess1"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>splitWindowProcess1</b></span>
+                        <a href="#splitWindowProcess1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>splitWindowProcess1()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="365"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:365</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="splitWindowProcess2"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>splitWindowProcess2</b></span>
+                        <a href="#splitWindowProcess2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>splitWindowProcess2()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="413"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:413</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="webworkerPostMessage"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>webworkerPostMessage</b></span>
+                        <a href="#webworkerPostMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>webworkerPostMessage(val: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="295"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:295</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>val</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="webWorkerProcess"></a>
+                    <span class="name">
+                        <span ><b>webWorkerProcess</b></span>
+                        <a href="#webWorkerProcess"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>webWorkerProcess()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="321"
+                            class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:321</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_queryUrl"></a>
+                    <span class="name">
+                        <span ><b>_queryUrl</b></span>
+                        <a href="#_queryUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:94</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activeSplit$"></a>
+                    <span class="name">
+                        <span ><b>activeSplit$</b></span>
+                        <a href="#activeSplit$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;number&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(StatusState.getActiveSplit)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="category"></a>
+                    <span class="name">
+                        <span ><b>category</b></span>
+                        <a href="#category"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:95</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="category_list"></a>
+                    <span class="name">
+                        <span ><b>category_list</b></span>
+                        <a href="#category_list"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @SelectSnapshot(StatusState.getCategoryList)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:82</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="categoryIdx"></a>
+                    <span class="name">
+                        <span ><b>categoryIdx</b></span>
+                        <a href="#categoryIdx"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:97</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentCategory"></a>
+                    <span class="name">
+                        <span ><b>currentCategory</b></span>
+                        <a href="#currentCategory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @SelectSnapshot(StatusState.getCurrentCategory)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="focusedSplitIdx"></a>
+                    <span class="name">
+                        <span ><b>focusedSplitIdx</b></span>
+                        <a href="#focusedSplitIdx"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @SelectSnapshot(StatusState.getFocusedSplit)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCurrentSplitOperation$"></a>
+                    <span class="name">
+                        <span ><b>getCurrentSplitOperation$</b></span>
+                        <a href="#getCurrentSplitOperation$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;literal type&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(StatusState.getCurrentSplitOperation)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getIsImageLoaded$"></a>
+                    <span class="name">
+                        <span ><b>getIsImageLoaded$</b></span>
+                        <a href="#getIsImageLoaded$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(StatusState.getIsImageLoaded)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSelectedImageById$"></a>
+                    <span class="name">
+                        <span ><b>getSelectedImageById$</b></span>
+                        <a href="#getSelectedImageById$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ImageModel.html" target="_self" >Observable&lt;ImageModel&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(StatusState.getSelectedImageById)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSelectedSeriesById$"></a>
+                    <span class="name">
+                        <span ><b>getSelectedSeriesById$</b></span>
+                        <a href="#getSelectedSeriesById$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;number&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(StatusState.getSelectedSeriesById)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSeriesUrls$"></a>
+                    <span class="name">
+                        <span ><b>getSeriesUrls$</b></span>
+                        <a href="#getSeriesUrls$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(StatusState.getSeriesUrls)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSplitState"></a>
+                    <span class="name">
+                        <span ><b>getSplitState</b></span>
+                        <a href="#getSplitState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @SelectSnapshot(StatusState.getSplitState)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getWebworkerWorkingStatus"></a>
+                    <span class="name">
+                        <span ><b>getWebworkerWorkingStatus</b></span>
+                        <a href="#getWebworkerWorkingStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @SelectSnapshot(StatusState.getWebworkerWorkingStatus)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="image"></a>
+                    <span class="name">
+                        <span ><b>image</b></span>
+                        <a href="#image"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;img&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="imageCount"></a>
+                    <span class="name">
+                        <span ><b>imageCount</b></span>
+                        <a href="#imageCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:98</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="originalImage"></a>
+                    <span class="name">
+                        <span ><b>originalImage</b></span>
+                        <a href="#originalImage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="progress"></a>
+                    <span class="name">
+                        <span ><b>progress</b></span>
+                        <a href="#progress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="requestRenderingSplitWindow$"></a>
+                    <span class="name">
+                        <span ><b>requestRenderingSplitWindow$</b></span>
+                        <a href="#requestRenderingSplitWindow$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;string&gt;[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:101</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedSplitWindow"></a>
+                    <span class="name">
+                        <span ><b>selectedSplitWindow</b></span>
+                        <a href="#selectedSplitWindow"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subject&lt;string&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:102</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="splitAction"></a>
+                    <span class="name">
+                        <span ><b>splitAction</b></span>
+                        <a href="#splitAction"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @SelectSnapshot(StatusState.getSplitAction)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="splitIdx"></a>
+                    <span class="name">
+                        <span ><b>splitIdx</b></span>
+                        <a href="#splitIdx"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="splitMode"></a>
+                    <span class="name">
+                        <span ><b>splitMode</b></span>
+                        <a href="#splitMode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @SelectSnapshot(StatusState.getSplitMode)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="splitMode$"></a>
+                    <span class="name">
+                        <span ><b>splitMode$</b></span>
+                        <a href="#splitMode$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(StatusState.getSplitMode)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tempObservable"></a>
+                    <span class="name">
+                        <span ><b>tempObservable</b></span>
+                        <a href="#tempObservable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:103</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unsubscribe"></a>
+                    <span class="name">
+                        <span ><b>unsubscribe</b></span>
+                        <a href="#unsubscribe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subject()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unsubscribe$"></a>
+                    <span class="name">
+                        <span ><b>unsubscribe$</b></span>
+                        <a href="#unsubscribe$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.unsubscribe.asObservable()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="worker"></a>
+                    <span class="name">
+                        <span ><b>worker</b></span>
+                        <a href="#worker"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Worker[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="queryElement"></a>
+                        <span class="name"><b>queryElement</b><a href="#queryElement"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>queryElement(el: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/carousel/carousel-main/carousel-main.component.ts:64</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>el</td>
+                                                    
+                                                            <td>
+                                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from &#x27;@angular/core&#x27;;
+import {CarouselService} from &quot;../carousel.service&quot;;
+import {ImageService} from &quot;../image.service&quot;;
+import {defer, EMPTY, Observable, of, Subject, zip} from &quot;rxjs&quot;;
+import {Select, Store} from &quot;@ngxs/store&quot;;
+import {StatusState} from &quot;../../../store/status/status.state&quot;;
+import {
+  SetCurrentSplitOperation,
+  SetImageUrls,
+  SetIsImageLoaded,
+  SetSelectedSplitWindowId,
+  SetSplitAction,
+} from &quot;../../../store/status/status.actions&quot;;
+import {filter, skip, switchMap, take, takeUntil} from &quot;rxjs/operators&quot;;
+import {SelectSnapshot} from &quot;@ngxs-labs/select-snapshot&quot;;
+import {SeriesItemService} from &quot;../../thumbnail/series-item/series-item.service&quot;;
+import {CacheSeriesService} from &quot;../../thumbnail/cache-series.service&quot;;
+import {fromWorker} from &quot;observable-webworker&quot;;
+import {SplitService} from &quot;../../grid/split.service&quot;;
+
+// export const category_list &#x3D; [&#x27;animal&#x27;, &#x27;house&#x27;, &#x27;baby&#x27;, &#x27;forest&#x27;, &#x27;happiness&#x27;, &#x27;love&#x27;, &#x27;sea&#x27;,&#x27;banana&#x27;, &#x27;mountain&#x27;]
+export interface ImageModel {
+  imageId: number,
+  category: string,
+  url: string,
+  blob: any,
+  title: string
+}
+
+@Component({
+  selector: &#x27;app-carousel-main&#x27;,
+  template: &#x60;
+    &lt;div&gt;
+      &lt;div class&#x3D;&quot;w-auto h-auto&quot;&gt;
+        &lt;div class&#x3D;&quot;m-1&quot;&gt;
+          &lt;mat-progress-bar mode&#x3D;&quot;determinate&quot; [value]&#x3D;&quot;progress[categoryIdx]&quot;&gt;&lt;/mat-progress-bar&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;&quot;&gt;
+          &lt;div class&#x3D;&quot;m-1&quot;&gt;
+            &lt;img class&#x3D;&quot;object-scale-down&quot; #img&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+  &#x60;,
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
+})
+export class CarouselMainComponent implements OnInit, AfterViewInit, OnDestroy {
+  @Input() set queryElement(el: string) {
+    let idx;
+    if (el &#x3D;&#x3D;&#x3D; &#x27;element1&#x27;) idx &#x3D; 0;
+    if (el &#x3D;&#x3D;&#x3D; &#x27;element2&#x27;) idx &#x3D; 1;
+    if (el &#x3D;&#x3D;&#x3D; &#x27;element3&#x27;) idx &#x3D; 2;
+    if (el &#x3D;&#x3D;&#x3D; &#x27;element4&#x27;) idx &#x3D; 3;
+
+    this.makingSplitWindowByGrid(idx);
+  }
+
+  @ViewChild(&#x27;img&#x27;) image: ElementRef;
+  // to check if image loading is started from webworker.
+  @Select(StatusState.getIsImageLoaded) getIsImageLoaded$: Observable&lt;any&gt;;
+  @Select(StatusState.getSelectedImageById) getSelectedImageById$: Observable&lt;ImageModel&gt;;
+  @Select(StatusState.getSelectedSeriesById) getSelectedSeriesById$: Observable&lt;number&gt;;
+  //
+  @SelectSnapshot(StatusState.getSplitState) getSplitState: string[];
+  @SelectSnapshot(StatusState.getCurrentCategory) currentCategory: string;
+  @SelectSnapshot(StatusState.getCategoryList) category_list: string[];
+  @SelectSnapshot(StatusState.getWebworkerWorkingStatus) getWebworkerWorkingStatus: boolean;
+  @Select(StatusState.getSeriesUrls) getSeriesUrls$: Observable&lt;any&gt;;
+  @Select(StatusState.getSplitMode) splitMode$: Observable&lt;any&gt;;
+  @SelectSnapshot(StatusState.getSplitMode) splitMode: number;
+  @SelectSnapshot(StatusState.getSplitAction) splitAction: boolean;
+  @SelectSnapshot(StatusState.getFocusedSplit) focusedSplitIdx: number;
+  @Select(StatusState.getCurrentSplitOperation) getCurrentSplitOperation$: Observable&lt;{}&gt;;
+  @Select(StatusState.getActiveSplit) activeSplit$: Observable&lt;number&gt;;
+  worker: Worker[] &#x3D; [];
+  unsubscribe &#x3D; new Subject();
+  unsubscribe$ &#x3D; this.unsubscribe.asObservable();
+  _queryUrl: string;
+  category: string;
+  splitIdx: number;
+  categoryIdx: any;
+  imageCount: any[] &#x3D; [];
+  progress: string[] &#x3D; [];
+  originalImage: any;
+  requestRenderingSplitWindow$: Observable&lt;string&gt;[] &#x3D; [];
+  selectedSplitWindow &#x3D; new Subject&lt;string&gt;();
+  tempObservable: Observable&lt;any&gt;;
+
+  @HostListener(&#x27;window:keydown&#x27;, [&#x27;$event&#x27;])
+  handleKey(event: KeyboardEvent) {
+    if (event.key &#x3D;&#x3D;&#x3D; &#x27;ArrowRight&#x27;) this.nextImage();
+    if (event.key &#x3D;&#x3D;&#x3D; &#x27;ArrowLeft&#x27;) this.prevImage();
+    // console.log( &#x27;key value&#x27;,event.key);
+  }
+
+  constructor(
+    private carouselService: CarouselService,
+    private imageService: ImageService,
+    private store: Store,
+    private splitService: SplitService,
+    private cdr: ChangeDetectorRef,
+    private seriesItemService: SeriesItemService,
+    private cacheSeriesService: CacheSeriesService,
+  ) {}
+
+
+  ngOnInit(): void {
+    // call from thumbnail-list, triggered by clicking image item.
+    this.splitWindowProcess1();
+    this.splitWindowProcess2()
+
+    /** Display image at the main window whenever clinking thumbnail_item */
+    this.getSelectedImageById$.pipe(skip(1))
+      .subscribe(image &#x3D;&gt; {
+        const img &#x3D; this.carouselService.getSelectedImageById(image.category, image.imageId)
+        this.displaySplitWindowImage(img);
+      })
+
+    /** New process start whenever clinking series_item */
+    this.getSelectedSeriesById$.pipe(
+      skip(1),
+      takeUntil(this.unsubscribe$),
+    ).subscribe((id: number) &#x3D;&gt; {
+      this.makingSplitWindowBySelectedSeries(id);
+    });
+  }
+
+  private makingSplitWindowByGrid(eIdx: number) {
+    this.category &#x3D; this.getSplitState[eIdx];
+    this.splitIdx &#x3D; eIdx;
+    this._queryUrl &#x3D; &#x60;assets/json/${this.category}.json&#x60;;
+    this.categoryIdx &#x3D; this.category_list.findIndex(val &#x3D;&gt; val &#x3D;&#x3D;&#x3D; this.category);
+    this.splitService.selectedElement &#x3D; this.splitService.elements[eIdx];
+    if (this.splitMode &#x3D;&#x3D;&#x3D; 1) {
+       this.splitService.resetSplitWindowProcessing();
+    }
+    // console.log(&#x27;----requestRenderingSplitWindow$&#x27;, this.requestRenderingSplitWindow$, this.splitService.selectedElement, eIdx);
+    this.requestRenderingSplitWindow$[this.splitService.selectedElement] &#x3D; of(this.splitService.selectedElement).pipe(take(1));
+  }
+
+  private makingSplitWindowBySelectedSeries(cIdx: number) {
+    this.category &#x3D; this.category_list[cIdx];
+    this._queryUrl &#x3D; &#x60;assets/json/${this.category}.json&#x60;;
+    this.categoryIdx &#x3D; this.category_list.findIndex(val &#x3D;&gt; val &#x3D;&#x3D;&#x3D; this.category);
+    this.makingSplitWindow();
+  }
+
+  private makingSplitWindow() {
+    // console.log(&#x27; --- makingSplitWindow &#x27;);
+    this.webWorkerProcess();
+    this.getTotalImageList();
+    this.makeTheFirstImage();
+
+  }
+
+
+  private makeTheFirstImage() {
+    this.getIsImageLoaded$ &amp;&amp; this.getIsImageLoaded$.pipe(skip(1),take(1))
+      .subscribe(async () &#x3D;&gt; {
+
+        await this.displayTheFirstImage();
+        await this.signalFinished();
+      })
+  }
+
+  private async signalFinished() {
+    return new Promise(resolve &#x3D;&gt; {
+      this.splitService.isFinishedRendering[this.splitService.selectedElement].next(this.splitService.selectedElement)
+      resolve(&#x27;&#x27;)
+      setTimeout(() &#x3D;&gt; {
+        if(this.worker[this.splitIdx] ) {
+          this.worker[this.splitIdx].terminate();
+          this.worker[this.splitIdx] &#x3D; undefined;
+          // console.log(&#x27; terimnate this.worker[this.splitIdx] &#x27;, this.splitIdx)
+        }
+        // if(this.worker[this.splitIdx] &amp;&amp; this.splitAction ) this.worker[this.splitIdx].terminate();
+        /** Because each split window has it&#x27;s own webworker, and this webworker will be remained
+         *  if it is not terminated immediately */
+      },5000);
+
+    })
+  }
+
+  private async displayTheFirstImage() {
+    return new Promise( resolve &#x3D;&gt; {
+        this.splitService.isStartedRendering[this.splitService.selectedElement].next(this.splitService.selectedElement)
+        /**
+         * When change split mode, if image is not in the cached (based on category)
+         * then borrow image from series list, which is already cached.
+         * This technique is needed because image should be displayed immediately
+         */
+        const tImage &#x3D; this.carouselService.getSelectedImageById(this.category, 0);
+        if( tImage ) {
+          this.displaySplitWindowImage(tImage)
+        } else {
+          const image &#x3D; this.cacheSeriesService.getCachedSeriesByCat(this.category).blob;
+          this.displaySplitWindowImage(image);
+        }
+        resolve(&#x27;&#x27;)
+    })
+  }
+  private displaySplitWindowImage(image: any) {
+    // console.log(&#x27;-- this.focusedSplitIdx, this.splitIdx, this.splitAction&#x27;, this.focusedSplitIdx, this.splitIdx, this.splitAction)
+    if( this.splitIdx !&#x3D;&#x3D; this.focusedSplitIdx &amp;&amp; !this.splitAction) {
+      return
+    }
+    this.image.nativeElement.src &#x3D; image;
+    this.originalImage &#x3D; this.image.nativeElement.src;
+    this.cdr.detectChanges();
+    /** To focus on the selected split window as the first window */
+    this.store.dispatch(new SetSelectedSplitWindowId(&#x27;element1&#x27;));
+
+    /**
+     * 1. In case, window is opened by split mode action,
+     * 2. and user clicked arrow button,
+     * 3. this time splitAction is true
+     * 4. reset splitAction false when the last split window is displayed.
+     * this can protect abnormal display
+     * */
+    if( this.splitAction &#x3D;&#x3D;&#x3D; true ) {
+      const splitIdx &#x3D; this.splitService.elements.findIndex(val &#x3D;&gt; val &#x3D;&#x3D;&#x3D; this.splitService.selectedElement)
+      // console.log(&#x27; splitIdx&#x27;, splitIdx);
+      if( this.splitMode -1  &#x3D;&#x3D;&#x3D; splitIdx)
+        this.store.dispatch(new SetSplitAction(false));
+    }
+    //
+  }
+
+  private getTotalImageList() {
+    this.imageService.getTotalImageList(this._queryUrl)
+      .subscribe((val: any) &#x3D;&gt; {
+        const category &#x3D; this._queryUrl &amp;&amp; this._queryUrl.split(&#x27;.&#x27;)[0].split(&#x27;/&#x27;)[2];
+        const urls &#x3D; this.imageService.getCacheUrls();
+        /** Try to display if there are any cached image before check additional loading  */
+        this.store.dispatch(new SetImageUrls([]));
+        // console.log(&#x27; val&#x27;, val)
+        this.checkIfAdditionalLoading(val, category, urls).then((res: any) &#x3D;&gt; {
+          // console.log(&#x27;-- remained url&#x27;, res.length)
+          if (res.length &gt; 0) { // If there is remained url that need loading image
+            this.imageCount[this.categoryIdx] &#x3D; res.length;
+            /** Send urls for loading images additionally */
+            this.webworkerPostMessage(res);
+          } else {
+            /** In this case, no webworker job is needed because all images are cached,
+             *  And display the first image.
+             */
+            this.store.dispatch(new SetIsImageLoaded({idx:0}));
+            this.progress[this.categoryIdx] &#x3D; &#x27;&#x27;;
+            /** Triggering loading every image, then thumbnail list is updated continuously */
+            this.store.dispatch(new SetImageUrls([]));
+          }
+
+        });
+      }, error &#x3D;&gt; {
+        throw Error(error)
+      });
+  }
+
+
+
+  checkIfAdditionalLoading(val: any, category: string, urls: { idx: number; category: string; url: string }[]) {
+    /** Check if image is cached already, then skip caching job
+     * or extract remained urls, which is needed loading image by using webworker */
+    return new Promise((resolve, reject) &#x3D;&gt; {
+      const input$ &#x3D; of({req: val, category, urls: urls});
+
+      if (!this.splitService.bWorker) {
+        this.splitService.bWorker &#x3D; new Worker(new URL(&#x27;src/assets/workers/additional-loading.worker&#x27;, import.meta.url), {type: &#x27;module&#x27;})
+      }
+      fromWorker&lt;{}, string[]&gt;(
+        () &#x3D;&gt; this.splitService.bWorker,
+        input$,
+      ).subscribe(res &#x3D;&gt; {
+        resolve(res)
+      }, error &#x3D;&gt; reject(error))
+    });
+  }
+
+  private webworkerPostMessage(val: any) {
+    // console.log(&#x27; val&#x27;, val.length)
+    const data: any &#x3D; {
+      msg: &#x27;download&#x27;,
+      body: val,
+      category: this.category
+    }
+    /** Send additional urls to webworker */
+    if(this.worker[this.splitIdx]) this.worker[this.splitIdx].postMessage(data)
+    // this.worker[this.categoryIdx].postMessage(data)
+  }
+
+  ngAfterViewInit() {
+  }
+  nextImage() {
+    if( this.splitIdx !&#x3D;&#x3D; this.focusedSplitIdx &amp;&amp; !this.splitAction) return
+
+    const image &#x3D; this.carouselService.getNextImage(this.currentCategory, this.splitService.selectedElement);
+    this.displaySplitWindowImage(image);
+  }
+  prevImage() {
+    if( this.splitIdx !&#x3D;&#x3D; this.focusedSplitIdx &amp;&amp; !this.splitAction) return
+
+    const image &#x3D; this.carouselService.getPrevImage(this.currentCategory, this.splitService.selectedElement);
+    this.displaySplitWindowImage(image);
+  }
+  webWorkerProcess() {
+    if (typeof Worker !&#x3D;&#x3D; &#x27;undefined&#x27;) {
+      if( !this.worker[this.splitIdx]) {
+        // console.log(&#x27;this.worker[this.splitIdx]&#x27;, this.worker[this.splitIdx], this.splitIdx)
+        this.worker[this.splitIdx] &#x3D; new Worker(new URL(&#x27;src/assets/workers/carousel-worker.ts&#x27;, import.meta.url));
+        this.worker[this.splitIdx].onmessage &#x3D; (data: any) &#x3D;&gt; {
+          this.progress[this.categoryIdx] &#x3D; ((data.data.imageId + 1)/ this.imageCount[this.categoryIdx] * 100).toFixed(0).toString();
+          this.makeCachedImage(data.data);
+          const _data: any &#x3D; {
+            msg: &#x27;completeCachedImage&#x27;,
+            body: data.data.url,
+            category: this.category
+          }
+          // console.log(&#x27; _data&#x27;,data.data.url)
+          /** Send the signal of completing loading one image of all the images
+           * that was sent to webworker as bundle urls
+           * This means for being ready to receiving the next image*/
+          this.worker[this.splitIdx].postMessage(JSON.parse(JSON.stringify(_data)))
+        };
+      }
+    }
+  }
+
+  private makeCachedImage(data: ImageModel) {
+    if(  !data.blob.type || !data.blob.size) {
+      // data is not Blob type.
+      return;
+    }
+    // console.log(&#x27;----data- category&#x27;,data.category)
+    const image: any &#x3D; this.imageService.readFile(data.blob)
+    image.subscribe((obj: any) &#x3D;&gt; {
+      data.blob &#x3D; obj;
+      this.saveCacheImage(data);
+    })
+  }
+
+  saveCacheImage(data: ImageModel) {
+    this.imageService.checkAndCacheImage(data)
+    /** Triggering that every image is loading, then thumbnail list is updated continuously */
+    this.store.dispatch(new SetImageUrls([data.url]));
+    /** To show the first image in the main window */
+    this.store.dispatch(new SetIsImageLoaded({idx:data.imageId}));
+  }
+///////////////////////////////////////////////////
+  private splitWindowProcess1() {
+    /**
+     * When it comes to rendering of split-windows,
+     * each window need to wait until the previous window finished rendering.
+     * -----------------
+     * 1. The end of processing of image, emit event of &quot;isStartedRendering$&quot; for each split window.
+     * 2. As soon as take the event of &quot;isStartedRendering$&quot; start processing .
+     * 3. display the first image and emit event of &quot;isFinishedRendering$&quot;
+     *    for each split window.
+     * */
+      //
+    const isFinished$ &#x3D; this.getCurrentSplitOperation$.pipe( // 1 To know the end of image processing
+        switchMap((val:any) &#x3D;&gt; {
+          this.splitService.selectedElement &#x3D; val.element; // 2
+          return this.splitService.isFinishedRendering$[val.element].pipe(take(1));
+        }),
+        take(1), // 3
+      );
+
+    const isStarted$ &#x3D; this.getCurrentSplitOperation$.pipe( // 4 To know the start of image processing
+      switchMap((val: any) &#x3D;&gt; {
+        this.splitService.selectedElement &#x3D; val.element;
+        return this.splitService.isStartedRendering$[val.element].pipe(take(1));
+      }),
+      take(1),
+    );
+
+    if (this.splitMode &gt; 1) {
+      if (this.splitService.selectedElement &#x3D;&#x3D;&#x3D; &#x27;element1&#x27;) { // 5 first split window
+        this.tempObservable &#x3D; defer(() &#x3D;&gt; of(EMPTY).pipe());
+      } else if (this.splitService.selectedElement &#x3D;&#x3D;&#x3D; &#x27;element2&#x27;) {
+        this.tempObservable &#x3D; zip(isStarted$, isFinished$).pipe( //[&#x27;element2&#x27;,&#x27;element1&#x27;]
+          filter((val: any) &#x3D;&gt; val[1] &#x3D;&#x3D;&#x3D; &#x27;element1&#x27;) // 6
+        );
+      } else if (this.splitService.selectedElement &#x3D;&#x3D;&#x3D; &#x27;element3&#x27;) {
+        this.tempObservable &#x3D; zip(isStarted$, isFinished$).pipe( //[&#x27;element3&#x27;,&#x27;element2&#x27;]
+          filter((val: any) &#x3D;&gt; val[1] &#x3D;&#x3D;&#x3D; &#x27;element2&#x27;),
+        );
+      } else if (this.splitService.selectedElement &#x3D;&#x3D;&#x3D; &#x27;element4&#x27;) {
+        this.tempObservable &#x3D; zip(isStarted$, isFinished$).pipe( //[&#x27;element4&#x27;,&#x27;element3&#x27;]
+          filter((val: any) &#x3D;&gt; val[1] &#x3D;&#x3D;&#x3D; &#x27;element3&#x27;),
+        );
+      }
+    } else {
+      this.tempObservable &#x3D; defer(() &#x3D;&gt; of(EMPTY).pipe()); // 7
+    }
+  }
+  //
+  private splitWindowProcess2() {
+    const rendering$: Observable&lt;any&gt; &#x3D; this.requestRenderingSplitWindow$[this.splitService.selectedElement];
+    // 8
+    zip(this.tempObservable, rendering$).pipe( // 9
+      take(1),
+    ).subscribe(([temp, element]) &#x3D;&gt; {
+      /** Start processing ct-viewer after finished processing for previous split window*/
+      const idx &#x3D; this.splitService.elements.findIndex(val &#x3D;&gt; val &#x3D;&#x3D;&#x3D; element)
+      this.splitService.selectedElement &#x3D; element;
+      /** When change split mode, need to set the first signal to prepare processing
+       * because each split window do process one by one */
+      this.store.dispatch(new SetCurrentSplitOperation({element: this.splitService.selectedElement}));
+
+      this.makingSplitWindowBySelectedSeries(this.categoryIdx); // 10
+    });
+  }
+///////////////////////////////////////////////////////
+
+  ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
+  }
+}
+</code></pre>
+    </div>
+
+
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div>  <div class="w-auto h-auto">    <div class="m-1">      <mat-progress-bar mode="determinate" [value]="progress[categoryIdx]"></mat-progress-bar>    </div>    <div class="">      <div class="m-1">        <img class="object-scale-down" #img>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CarouselMainComponent', 'selector': 'app-carousel-main'},{'name': 'GridComponent', 'selector': 'app-grid'},{'name': 'GridTemplateComponent', 'selector': 'app-grid-template'},{'name': 'SeriesItemComponent', 'selector': 'app-series-item'},{'name': 'SeriesListComponent', 'selector': 'app-series-list'},{'name': 'ThumbItemComponent', 'selector': 'app-thumb-item'},{'name': 'ThumbnailListComponent', 'selector': 'app-thumbnail-list'}];
+    var DIRECTIVES = [{'name': 'GridTemplateDirective', 'selector': '[appGridTemplate]'},{'name': 'SelectColorDirective', 'selector': '[selectColor]'}];
+    var ACTUAL_COMPONENT = {'name': 'CarouselMainComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CarouselMainComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

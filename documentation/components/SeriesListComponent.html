@@ -1,0 +1,1308 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>split-window-spectator211009 documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">split-window-spectator211009 documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  SeriesListComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/thumbnail/series-list/series-list.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-series-list</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code>
+    .cdk-scroll-source {
+      writing-mode: horizontal-tb;
+      /*writing-mode: vertical-lr;*/
+    }
+
+    .cdk-scroll-source .cdk-scroll-viewport {
+      height: 650px;
+      width: 100%;
+    }
+
+    .cdk-scroll-source .cdk-scroll-viewport .cdk-virtual-scroll-content-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+  </code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;&quot;&gt;
+  &lt;div class&#x3D;&quot;cdk-scroll-source&quot; style&#x3D;&quot;width: 98%&quot;&gt;
+    &lt;cdk-virtual-scroll-viewport itemSize&#x3D;&quot;90&quot;
+                                 class&#x3D;&quot;cdk-scroll-viewport&quot;
+                                 orientation&#x3D;&quot;vertical&quot;
+    &gt;
+      &lt;ng-container *cdkVirtualFor&#x3D;&quot;let item of currentSeries&quot;&gt;
+        &lt;app-series-item [seriesImage]&#x3D;&quot;item&quot;
+                         [addClass]&#x3D;&quot;addClass&quot;
+                         (selected)&#x3D;onSelectSeries($event)&gt;
+        &lt;/app-series-item&gt;
+      &lt;/ng-container&gt;
+    &lt;/cdk-virtual-scroll-viewport&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addClass" >addClass</a>
+                            </li>
+                            <li>
+                                <a href="#category_list" >category_list</a>
+                            </li>
+                            <li>
+                                <a href="#currentSeries" >currentSeries</a>
+                            </li>
+                            <li>
+                                <a href="#draggedInx" >draggedInx</a>
+                            </li>
+                            <li>
+                                <a href="#getSelectedSeriesById" >getSelectedSeriesById</a>
+                            </li>
+                            <li>
+                                <a href="#getSelectedSeriesById$" >getSelectedSeriesById$</a>
+                            </li>
+                            <li>
+                                <a href="#idx" >idx</a>
+                            </li>
+                            <li>
+                                <a href="#seriesUrls$" >seriesUrls$</a>
+                            </li>
+                            <li>
+                                <a href="#seriesWorker" >seriesWorker</a>
+                            </li>
+                            <li>
+                                <a href="#unsubscribe" >unsubscribe</a>
+                            </li>
+                            <li>
+                                <a href="#unsubscribe$" >unsubscribe$</a>
+                            </li>
+                            <li>
+                                <a href="#viewPort" >viewPort</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onSelectSeries" >onSelectSeries</a>
+                            </li>
+                            <li>
+                                <a href="#webWorkerProcess" >webWorkerProcess</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#category" >category</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(carouselService: <a href="../injectables/CarouselService.html" target="_self">CarouselService</a>, imageService: <a href="../injectables/ImageService.html" target="_self">ImageService</a>, store: Store, cdr: <a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank">ChangeDetectorRef</a>, seriesService: <a href="../injectables/SeriesItemService.html" target="_self">SeriesItemService</a>, cacheSeriesService: <a href="../injectables/CacheSeriesService.html" target="_self">CacheSeriesService</a>, splitService: <a href="../injectables/SplitService.html" target="_self">SplitService</a>, http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/thumbnail/series-list/series-list.component.ts:92</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>carouselService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CarouselService.html" target="_self" >CarouselService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>imageService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ImageService.html" target="_self" >ImageService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                    <code>Store</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>cdr</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/ChangeDetectorRef" target="_blank" >ChangeDetectorRef</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>seriesService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SeriesItemService.html" target="_self" >SeriesItemService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>cacheSeriesService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CacheSeriesService.html" target="_self" >CacheSeriesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>splitService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SplitService.html" target="_self" >SplitService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>http</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="category"></a>
+                        <b>category</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/thumbnail/series-list/series-list.component.ts:79</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="187"
+                            class="link-to-prism">src/app/thumbnail/series-list/series-list.component.ts:187</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/app/thumbnail/series-list/series-list.component.ts:106</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSelectSeries"></a>
+                    <span class="name">
+                        <span ><b>onSelectSeries</b></span>
+                        <a href="#onSelectSeries"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSelectSeries(ev: <a href="../interfaces/SeriesModel.html" target="_self">SeriesModel</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="143"
+                            class="link-to-prism">src/app/thumbnail/series-list/series-list.component.ts:143</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ev</td>
+                                    <td>
+                                                <code><a href="../interfaces/SeriesModel.html" target="_self" >SeriesModel</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="webWorkerProcess"></a>
+                    <span class="name">
+                        <span ><b>webWorkerProcess</b></span>
+                        <a href="#webWorkerProcess"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>webWorkerProcess()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="164"
+                            class="link-to-prism">src/app/thumbnail/series-list/series-list.component.ts:164</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addClass"></a>
+                    <span class="name">
+                        <span ><b>addClass</b></span>
+                        <a href="#addClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/thumbnail/series-list/series-list.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="category_list"></a>
+                    <span class="name">
+                        <span ><b>category_list</b></span>
+                        <a href="#category_list"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @SelectSnapshot(StatusState.getCategoryList)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/thumbnail/series-list/series-list.component.ts:82</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentSeries"></a>
+                    <span class="name">
+                        <span ><b>currentSeries</b></span>
+                        <a href="#currentSeries"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/SeriesModel.html" target="_self" >SeriesModel[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/thumbnail/series-list/series-list.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="draggedInx"></a>
+                    <span class="name">
+                        <span ><b>draggedInx</b></span>
+                        <a href="#draggedInx"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/thumbnail/series-list/series-list.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSelectedSeriesById"></a>
+                    <span class="name">
+                        <span ><b>getSelectedSeriesById</b></span>
+                        <a href="#getSelectedSeriesById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @SelectSnapshot(StatusState.getSelectedSeriesById)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/thumbnail/series-list/series-list.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSelectedSeriesById$"></a>
+                    <span class="name">
+                        <span ><b>getSelectedSeriesById$</b></span>
+                        <a href="#getSelectedSeriesById$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;number&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(StatusState.getSelectedSeriesById)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/thumbnail/series-list/series-list.component.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="idx"></a>
+                    <span class="name">
+                        <span ><b>idx</b></span>
+                        <a href="#idx"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/thumbnail/series-list/series-list.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="seriesUrls$"></a>
+                    <span class="name">
+                        <span ><b>seriesUrls$</b></span>
+                        <a href="#seriesUrls$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;string[]&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(StatusState.getSeriesUrls)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/thumbnail/series-list/series-list.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="seriesWorker"></a>
+                    <span class="name">
+                        <span ><b>seriesWorker</b></span>
+                        <a href="#seriesWorker"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Worker</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/thumbnail/series-list/series-list.component.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unsubscribe"></a>
+                    <span class="name">
+                        <span ><b>unsubscribe</b></span>
+                        <a href="#unsubscribe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subject()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/thumbnail/series-list/series-list.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unsubscribe$"></a>
+                    <span class="name">
+                        <span ><b>unsubscribe$</b></span>
+                        <a href="#unsubscribe$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.unsubscribe.asObservable()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/thumbnail/series-list/series-list.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="viewPort"></a>
+                    <span class="name">
+                        <span ><b>viewPort</b></span>
+                        <a href="#viewPort"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>CdkVirtualScrollViewport</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(CdkVirtualScrollViewport, {static: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/thumbnail/series-list/series-list.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from &#x27;@angular/core&#x27;;
+import {
+  CdkVirtualScrollViewport,
+} from &quot;@angular/cdk/scrolling&quot;;
+import {Select, Store} from &quot;@ngxs/store&quot;;
+import {StatusState} from &quot;../../../store/status/status.state&quot;;
+import {from, Observable, of, Subject} from &quot;rxjs&quot;;
+import {CarouselService} from &quot;../../carousel/carousel.service&quot;;
+import {ImageService} from &quot;../../carousel/image.service&quot;;
+import {skip, takeUntil, tap} from &quot;rxjs/operators&quot;;
+import {
+  SetCurrentCategory, SetIsImageLoaded,
+  SetIsSeriesLoaded, SetSelectedImageById, SetSelectedSeriesById, SetSeriesUrls, SetSplitAction,
+} from &quot;../../../store/status/status.actions&quot;;
+import {SeriesItemService} from &quot;../series-item/series-item.service&quot;;
+import {SelectSnapshot} from &quot;@ngxs-labs/select-snapshot&quot;;
+import {CacheSeriesService} from &quot;../cache-series.service&quot;;
+import {fromWorker} from &quot;observable-webworker&quot;;
+import {SplitService} from &quot;../../grid/split.service&quot;;
+import {ImageModel} from &quot;../../carousel/carousel-main/carousel-main.component&quot;;
+import {HttpClient} from &quot;@angular/common/http&quot;;
+
+export interface SeriesModel {
+  seriesId: number;
+  url: string;
+  blob: string;
+  category: string
+}
+
+@Component({
+  selector: &#x27;app-series-list&#x27;,
+  template: &#x60;
+    &lt;div class&#x3D;&quot;&quot;&gt;
+      &lt;div class&#x3D;&quot;cdk-scroll-source&quot; style&#x3D;&quot;width: 98%&quot;&gt;
+        &lt;cdk-virtual-scroll-viewport itemSize&#x3D;&quot;90&quot;
+                                     class&#x3D;&quot;cdk-scroll-viewport&quot;
+                                     orientation&#x3D;&quot;vertical&quot;
+        &gt;
+          &lt;ng-container *cdkVirtualFor&#x3D;&quot;let item of currentSeries&quot;&gt;
+            &lt;app-series-item [seriesImage]&#x3D;&quot;item&quot;
+                             [addClass]&#x3D;&quot;addClass&quot;
+                             (selected)&#x3D;onSelectSeries($event)&gt;
+            &lt;/app-series-item&gt;
+          &lt;/ng-container&gt;
+        &lt;/cdk-virtual-scroll-viewport&gt;
+      &lt;/div&gt;
+
+    &lt;/div&gt;
+  &#x60;,
+  styles: [&#x60;
+    .cdk-scroll-source {
+      writing-mode: horizontal-tb;
+      /*writing-mode: vertical-lr;*/
+    }
+
+    .cdk-scroll-source .cdk-scroll-viewport {
+      height: 650px;
+      width: 100%;
+    }
+
+    .cdk-scroll-source .cdk-scroll-viewport .cdk-virtual-scroll-content-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+  &#x60;
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class SeriesListComponent implements OnInit, OnDestroy {
+
+  @Input() category: string;
+  @Select(StatusState.getSeriesUrls) seriesUrls$: Observable&lt;string[]&gt;;
+  @SelectSnapshot(StatusState.getSelectedSeriesById) getSelectedSeriesById: number;
+  @SelectSnapshot(StatusState.getCategoryList) category_list: string[];
+  @Select(StatusState.getSelectedSeriesById) getSelectedSeriesById$: Observable&lt;number&gt;;
+  @ViewChild(CdkVirtualScrollViewport, {static: true}) viewPort: CdkVirtualScrollViewport;
+
+  unsubscribe &#x3D; new Subject();
+  unsubscribe$ &#x3D; this.unsubscribe.asObservable();
+  addClass: {} &#x3D; {};
+  draggedInx &#x3D; 0;
+  idx &#x3D; 0;
+  seriesWorker: Worker;
+  currentSeries: SeriesModel[] &#x3D; [];
+
+  constructor(
+    private carouselService: CarouselService,
+    private imageService: ImageService,
+    private store: Store,
+    private cdr: ChangeDetectorRef,
+    private seriesService: SeriesItemService,
+    private cacheSeriesService: CacheSeriesService,
+    private splitService: SplitService,
+    private http: HttpClient
+  ) {
+  }
+
+  ngOnInit(): void {
+    /** Default category */
+    this.store.dispatch(new SetCurrentCategory(&#x27;animal&#x27;));
+    /** Display series list  */
+    this.seriesUrls$.pipe(
+      skip(1),
+      takeUntil(this.unsubscribe$),
+      tap((url) &#x3D;&gt; {
+        this.currentSeries &#x3D; [...this.cacheSeriesService.cachedSeries]
+        this.cdr.detectChanges()
+      })
+    ).subscribe()
+
+    /** When scrollbar is dragged,  then update nodule-list scroll offset */
+    this.viewPort.scrolledIndexChange.pipe(takeUntil(this.unsubscribe$)).subscribe(val &#x3D;&gt; {
+      this.draggedInx &#x3D; val;
+    });
+    this.viewPort.elementScrolled().subscribe(event &#x3D;&gt; {
+      this.idx &#x3D; this.viewPort.measureScrollOffset();
+    });
+    //
+    this.webWorkerProcess();
+    //
+    /** Move scroll position by the selected series */
+    this.getSelectedSeriesById$.pipe(
+      skip(1),
+      takeUntil(this.unsubscribe$)
+    ).subscribe((val: number) &#x3D;&gt; {
+      this.addClass &#x3D; {
+        class: &#x27;selected_item&#x27;,
+        seriesId: val
+      }
+      setTimeout(() &#x3D;&gt; this.viewPort.scrollToIndex(val, &#x27;smooth&#x27;), 200);
+    })
+
+  }
+
+  onSelectSeries(ev: SeriesModel) {
+    // console.log(&#x27; onSelectSeries - ev&#x27;, ev);
+    this.store.dispatch(new SetSplitAction(false));
+    this.splitService.currentImageIndex[this.splitService.selectedElement] &#x3D; 0;
+    // Setting the current selected category
+    this.store.dispatch(new SetCurrentCategory(ev.category));
+    // Select series and get the image list.
+    this.store.dispatch(new SetSelectedSeriesById(ev.seriesId));
+    // Focusing the first thumbnail_item
+    const image: ImageModel &#x3D; {
+      imageId: 0,
+      category: ev.category,
+      url: &#x27;&#x27;,
+      blob: &#x27;&#x27;,
+      title: &#x27;&#x27;
+    }
+    this.store.dispatch(new SetSelectedImageById(image));
+    // Enable display the first image in the main window
+    this.store.dispatch(new SetIsImageLoaded({idx: 0}));
+  }
+
+  webWorkerProcess() {
+    /** Start series worker with the initial values */
+    this.seriesService.getSeriesObject()
+      .subscribe((val: any[]) &#x3D;&gt; {
+        const input$ &#x3D; of(val);
+
+        if (!this.seriesWorker) {
+          this.seriesWorker &#x3D; new Worker(new URL(&#x27;src/assets/workers/series-worker&#x27;, import.meta.url), {type: &#x27;module&#x27;})
+        }
+        fromWorker&lt;{}, {}&gt;(          () &#x3D;&gt; this.seriesWorker, input$)
+          .subscribe((data: any) &#x3D;&gt; {
+          const series: any &#x3D; this.imageService.readFile(data.blob)
+          series.subscribe((obj: any) &#x3D;&gt; {
+            // console.log(&#x27;--- series list - webWorkerProcess - data&#x27;, data.category);
+            data.blob &#x3D; obj;
+            this.cacheSeriesService.checkAndCacheSeries(data);
+            this.store.dispatch(new SetIsSeriesLoaded(true));
+            this.store.dispatch(new SetSeriesUrls([data.url]))
+          })
+        }, error &#x3D;&gt; console.error(error))
+      });
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
+    localStorage.clear();
+  }
+}
+
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="c-styleData">
+            <pre class="line-numbers"><code class="language-scss">
+    .cdk-scroll-source {
+      writing-mode: horizontal-tb;
+      /*writing-mode: vertical-lr;*/
+    }
+
+    .cdk-scroll-source .cdk-scroll-viewport {
+      height: 650px;
+      width: 100%;
+    }
+
+    .cdk-scroll-source .cdk-scroll-viewport .cdk-virtual-scroll-content-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+  
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="">  <div class="cdk-scroll-source" style="width: 98%">    <cdk-virtual-scroll-viewport itemSize="90"                                 class="cdk-scroll-viewport"                                 orientation="vertical"    >      <ng-container *cdkVirtualFor="let item of currentSeries">        <app-series-item [seriesImage]="item"                         [addClass]="addClass"                         (selected)=onSelectSeries($event)>        </app-series-item>      </ng-container>    </cdk-virtual-scroll-viewport>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CarouselMainComponent', 'selector': 'app-carousel-main'},{'name': 'GridComponent', 'selector': 'app-grid'},{'name': 'GridTemplateComponent', 'selector': 'app-grid-template'},{'name': 'SeriesItemComponent', 'selector': 'app-series-item'},{'name': 'SeriesListComponent', 'selector': 'app-series-list'},{'name': 'ThumbItemComponent', 'selector': 'app-thumb-item'},{'name': 'ThumbnailListComponent', 'selector': 'app-thumbnail-list'}];
+    var DIRECTIVES = [{'name': 'GridTemplateDirective', 'selector': '[appGridTemplate]'},{'name': 'SelectColorDirective', 'selector': '[selectColor]'}];
+    var ACTUAL_COMPONENT = {'name': 'SeriesListComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SeriesListComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,1174 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>split-window-spectator211009 documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">split-window-spectator211009 documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  GridTemplateComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/grid/grid-template/grid-template.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-grid-template</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code>
+    .fab-bottom-left {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      bottom: 50%;
+      z-index: 100;
+    }
+    .fab-bottom-right {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      bottom: 50%;
+      z-index: 100;
+    }
+  </code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;ng-template [appGridTemplate]&#x3D;&quot;&#x27;element1&#x27;&quot; let-height&#x3D;height&gt; &lt;!-- to get proper template --&gt;
+  &lt;div [style.height]&#x3D;&quot;height&quot;&gt;
+    &lt;div&gt;
+      &lt;button [disabled]&#x3D;&quot;selectedSplit[0]&quot; mat-mini-fab class&#x3D;&quot;fab-bottom-left&quot;
+              matTooltip&#x3D;&quot;Can use arrow keys&quot;
+              [matTooltipPosition]&#x3D;&quot;&#x27;above&#x27;&quot;
+              (click)&#x3D;&quot;onLeftArrowButton(&#x27;element1&#x27;)&quot;&gt;
+        &lt;mat-icon&gt;keyboard_arrow_left&lt;/mat-icon&gt;
+      &lt;/button&gt;
+      &lt;button [disabled]&#x3D;&quot;selectedSplit[0]&quot; mat-mini-fab class&#x3D;&quot;fab-bottom-right&quot;
+              matTooltip&#x3D;&quot;Can use arrow keys&quot;
+              [matTooltipPosition]&#x3D;&quot;&#x27;above&#x27;&quot;
+              (click)&#x3D;&quot;onRightArrowButton(&#x27;element1&#x27;)&quot;&gt;
+        &lt;mat-icon&gt;keyboard_arrow_right&lt;/mat-icon&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;app-carousel-main [queryElement]&#x3D;&quot;&#x27;element1&#x27;&quot;&gt;  &lt;!-- to make observable of making split window --&gt;
+    &lt;/app-carousel-main&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+&lt;ng-template [appGridTemplate]&#x3D;&quot;&#x27;element2&#x27;&quot; let-height&#x3D;height&gt;
+  &lt;div [style.height]&#x3D;&quot;height&quot;&gt;
+    &lt;div&gt;
+      &lt;button [disabled]&#x3D;&quot;selectedSplit[1]&quot; mat-mini-fab class&#x3D;&quot;fab-bottom-left&quot;
+              matTooltip&#x3D;&quot;Can use arrow keys&quot;
+              [matTooltipPosition]&#x3D;&quot;&#x27;above&#x27;&quot;
+              (click)&#x3D;&quot;onLeftArrowButton(&#x27;element2&#x27;)&quot;&gt;
+        &lt;mat-icon&gt;keyboard_arrow_left&lt;/mat-icon&gt;
+      &lt;/button&gt;
+      &lt;button [disabled]&#x3D;&quot;selectedSplit[1]&quot; mat-mini-fab class&#x3D;&quot;fab-bottom-right&quot;
+              matTooltip&#x3D;&quot;Can use arrow keys&quot;
+              [matTooltipPosition]&#x3D;&quot;&#x27;above&#x27;&quot;
+              (click)&#x3D;&quot;onRightArrowButton(&#x27;element2&#x27;)&quot;&gt;
+        &lt;mat-icon&gt;keyboard_arrow_right&lt;/mat-icon&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;app-carousel-main [queryElement]&#x3D;&quot;&#x27;element2&#x27;&quot;&gt;
+    &lt;/app-carousel-main&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+&lt;ng-template [appGridTemplate]&#x3D;&quot;&#x27;element3&#x27;&quot; let-height&#x3D;height&gt;
+  &lt;div [style.height]&#x3D;&quot;height&quot;&gt;
+    &lt;div&gt;
+      &lt;button [disabled]&#x3D;&quot;selectedSplit[2]&quot; mat-mini-fab class&#x3D;&quot;fab-bottom-left&quot;
+              matTooltip&#x3D;&quot;Can use arrow keys&quot;
+              [matTooltipPosition]&#x3D;&quot;&#x27;above&#x27;&quot;
+              (click)&#x3D;&quot;onLeftArrowButton(&#x27;element3&#x27;)&quot;&gt;
+        &lt;mat-icon&gt;keyboard_arrow_left&lt;/mat-icon&gt;
+      &lt;/button&gt;
+      &lt;button [disabled]&#x3D;&quot;selectedSplit[2]&quot; mat-mini-fab class&#x3D;&quot;fab-bottom-right&quot;
+              matTooltip&#x3D;&quot;Can use arrow keys&quot;
+              [matTooltipPosition]&#x3D;&quot;&#x27;above&#x27;&quot;
+              (click)&#x3D;&quot;onRightArrowButton(&#x27;element3&#x27;)&quot;&gt;
+        &lt;mat-icon&gt;keyboard_arrow_right&lt;/mat-icon&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;app-carousel-main [queryElement]&#x3D;&quot;&#x27;element3&#x27;&quot;&gt;
+    &lt;/app-carousel-main&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+&lt;ng-template [appGridTemplate]&#x3D;&quot;&#x27;element4&#x27;&quot; let-height&#x3D;height&gt;
+  &lt;div [style.height]&#x3D;&quot;height&quot;&gt;
+    &lt;div&gt;
+      &lt;button [disabled]&#x3D;&quot;selectedSplit[3]&quot; mat-mini-fab class&#x3D;&quot;fab-bottom-left&quot;
+              matTooltip&#x3D;&quot;Can use arrow keys&quot;
+              [matTooltipPosition]&#x3D;&quot;&#x27;above&#x27;&quot;
+              (click)&#x3D;&quot;onLeftArrowButton(&#x27;element4&#x27;)&quot;&gt;
+        &lt;mat-icon&gt;keyboard_arrow_left&lt;/mat-icon&gt;
+      &lt;/button&gt;
+      &lt;button [disabled]&#x3D;&quot;selectedSplit[3]&quot; mat-mini-fab class&#x3D;&quot;fab-bottom-right&quot;
+              matTooltip&#x3D;&quot;Can use arrow keys&quot;
+              [matTooltipPosition]&#x3D;&quot;&#x27;above&#x27;&quot;
+              (click)&#x3D;&quot;onRightArrowButton(&#x27;element4&#x27;)&quot;&gt;
+        &lt;mat-icon&gt;keyboard_arrow_right&lt;/mat-icon&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;app-carousel-main [queryElement]&#x3D;&quot;&#x27;element4&#x27;&quot;&gt;
+    &lt;/app-carousel-main&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#currentCategory" >currentCategory</a>
+                            </li>
+                            <li>
+                                <a href="#focusedSplit$" >focusedSplit$</a>
+                            </li>
+                            <li>
+                                <a href="#selectedSplit" >selectedSplit</a>
+                            </li>
+                            <li>
+                                <a href="#sElement" >sElement</a>
+                            </li>
+                            <li>
+                                <a href="#templateRef" >templateRef</a>
+                            </li>
+                            <li>
+                                <a href="#unsubscribe" >unsubscribe</a>
+                            </li>
+                            <li>
+                                <a href="#unsubscribe$" >unsubscribe$</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getTemplate" >getTemplate</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onLeftArrowButton" >onLeftArrowButton</a>
+                            </li>
+                            <li>
+                                <a href="#onRightArrowButton" >onRightArrowButton</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(carouselService: <a href="../injectables/CarouselService.html" target="_self">CarouselService</a>, store: Store, splitService: <a href="../injectables/SplitService.html" target="_self">SplitService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/grid/grid-template/grid-template.component.ts:122</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>carouselService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CarouselService.html" target="_self" >CarouselService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                    <code>Store</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>splitService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SplitService.html" target="_self" >SplitService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTemplate"></a>
+                    <span class="name">
+                        <span ><b>getTemplate</b></span>
+                        <a href="#getTemplate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getTemplate(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">src/app/grid/grid-template/grid-template.component.ts:144</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>name</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>TemplateRef&lt;any&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="160"
+                            class="link-to-prism">src/app/grid/grid-template/grid-template.component.ts:160</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/app/grid/grid-template/grid-template.component.ts:129</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onLeftArrowButton"></a>
+                    <span class="name">
+                        <span ><b>onLeftArrowButton</b></span>
+                        <a href="#onLeftArrowButton"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onLeftArrowButton(element: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="147"
+                            class="link-to-prism">src/app/grid/grid-template/grid-template.component.ts:147</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>element</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onRightArrowButton"></a>
+                    <span class="name">
+                        <span ><b>onRightArrowButton</b></span>
+                        <a href="#onRightArrowButton"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onRightArrowButton(element: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="154"
+                            class="link-to-prism">src/app/grid/grid-template/grid-template.component.ts:154</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>element</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentCategory"></a>
+                    <span class="name">
+                        <span ><b>currentCategory</b></span>
+                        <a href="#currentCategory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @SelectSnapshot(StatusState.getCurrentCategory)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/grid/grid-template/grid-template.component.ts:117</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="focusedSplit$"></a>
+                    <span class="name">
+                        <span ><b>focusedSplit$</b></span>
+                        <a href="#focusedSplit$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;number&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Select(StatusState.getFocusedSplit)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/grid/grid-template/grid-template.component.ts:116</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedSplit"></a>
+                    <span class="name">
+                        <span ><b>selectedSplit</b></span>
+                        <a href="#selectedSplit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/grid/grid-template/grid-template.component.ts:118</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sElement"></a>
+                    <span class="name">
+                        <span ><b>sElement</b></span>
+                        <a href="#sElement"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/grid/grid-template/grid-template.component.ts:120</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="templateRef"></a>
+                    <span class="name">
+                        <span ><b>templateRef</b></span>
+                        <a href="#templateRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../directives/GridTemplateDirective.html" target="_self" >QueryList&lt;GridTemplateDirective&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChildren(GridTemplateDirective)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/grid/grid-template/grid-template.component.ts:115</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unsubscribe"></a>
+                    <span class="name">
+                        <span ><b>unsubscribe</b></span>
+                        <a href="#unsubscribe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subject&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subject()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/grid/grid-template/grid-template.component.ts:121</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unsubscribe$"></a>
+                    <span class="name">
+                        <span ><b>unsubscribe$</b></span>
+                        <a href="#unsubscribe$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.unsubscribe.asObservable()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/grid/grid-template/grid-template.component.ts:122</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, OnDestroy, OnInit, QueryList, TemplateRef, ViewChildren} from &#x27;@angular/core&#x27;;
+import {GridTemplateDirective} from &quot;../directives/grid-template.directive&quot;;
+import {StatusState} from &quot;../../../store/status/status.state&quot;;
+import {Select, Store} from &quot;@ngxs/store&quot;;
+import {Observable, Subject} from &quot;rxjs&quot;;
+import {takeUntil} from &quot;rxjs/operators&quot;;
+import {SplitService} from &quot;../split.service&quot;;
+import {SelectSnapshot} from &quot;@ngxs-labs/select-snapshot&quot;;
+import {CarouselService} from &quot;../../carousel/carousel.service&quot;;
+import {SetFocusedSplit, SetSplitAction} from &quot;../../../store/status/status.actions&quot;;
+
+@Component({
+  selector: &#x27;app-grid-template&#x27;,
+  template: &#x60;
+    &lt;ng-template [appGridTemplate]&#x3D;&quot;&#x27;element1&#x27;&quot; let-height&#x3D;height&gt; &lt;!-- to get proper template --&gt;
+      &lt;div [style.height]&#x3D;&quot;height&quot;&gt;
+        &lt;div&gt;
+          &lt;button [disabled]&#x3D;&quot;selectedSplit[0]&quot; mat-mini-fab class&#x3D;&quot;fab-bottom-left&quot;
+                  matTooltip&#x3D;&quot;Can use arrow keys&quot;
+                  [matTooltipPosition]&#x3D;&quot;&#x27;above&#x27;&quot;
+                  (click)&#x3D;&quot;onLeftArrowButton(&#x27;element1&#x27;)&quot;&gt;
+            &lt;mat-icon&gt;keyboard_arrow_left&lt;/mat-icon&gt;
+          &lt;/button&gt;
+          &lt;button [disabled]&#x3D;&quot;selectedSplit[0]&quot; mat-mini-fab class&#x3D;&quot;fab-bottom-right&quot;
+                  matTooltip&#x3D;&quot;Can use arrow keys&quot;
+                  [matTooltipPosition]&#x3D;&quot;&#x27;above&#x27;&quot;
+                  (click)&#x3D;&quot;onRightArrowButton(&#x27;element1&#x27;)&quot;&gt;
+            &lt;mat-icon&gt;keyboard_arrow_right&lt;/mat-icon&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;app-carousel-main [queryElement]&#x3D;&quot;&#x27;element1&#x27;&quot;&gt;  &lt;!-- to make observable of making split window --&gt;
+        &lt;/app-carousel-main&gt;
+      &lt;/div&gt;
+    &lt;/ng-template&gt;
+    &lt;ng-template [appGridTemplate]&#x3D;&quot;&#x27;element2&#x27;&quot; let-height&#x3D;height&gt;
+      &lt;div [style.height]&#x3D;&quot;height&quot;&gt;
+        &lt;div&gt;
+          &lt;button [disabled]&#x3D;&quot;selectedSplit[1]&quot; mat-mini-fab class&#x3D;&quot;fab-bottom-left&quot;
+                  matTooltip&#x3D;&quot;Can use arrow keys&quot;
+                  [matTooltipPosition]&#x3D;&quot;&#x27;above&#x27;&quot;
+                  (click)&#x3D;&quot;onLeftArrowButton(&#x27;element2&#x27;)&quot;&gt;
+            &lt;mat-icon&gt;keyboard_arrow_left&lt;/mat-icon&gt;
+          &lt;/button&gt;
+          &lt;button [disabled]&#x3D;&quot;selectedSplit[1]&quot; mat-mini-fab class&#x3D;&quot;fab-bottom-right&quot;
+                  matTooltip&#x3D;&quot;Can use arrow keys&quot;
+                  [matTooltipPosition]&#x3D;&quot;&#x27;above&#x27;&quot;
+                  (click)&#x3D;&quot;onRightArrowButton(&#x27;element2&#x27;)&quot;&gt;
+            &lt;mat-icon&gt;keyboard_arrow_right&lt;/mat-icon&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;app-carousel-main [queryElement]&#x3D;&quot;&#x27;element2&#x27;&quot;&gt;
+        &lt;/app-carousel-main&gt;
+      &lt;/div&gt;
+    &lt;/ng-template&gt;
+    &lt;ng-template [appGridTemplate]&#x3D;&quot;&#x27;element3&#x27;&quot; let-height&#x3D;height&gt;
+      &lt;div [style.height]&#x3D;&quot;height&quot;&gt;
+        &lt;div&gt;
+          &lt;button [disabled]&#x3D;&quot;selectedSplit[2]&quot; mat-mini-fab class&#x3D;&quot;fab-bottom-left&quot;
+                  matTooltip&#x3D;&quot;Can use arrow keys&quot;
+                  [matTooltipPosition]&#x3D;&quot;&#x27;above&#x27;&quot;
+                  (click)&#x3D;&quot;onLeftArrowButton(&#x27;element3&#x27;)&quot;&gt;
+            &lt;mat-icon&gt;keyboard_arrow_left&lt;/mat-icon&gt;
+          &lt;/button&gt;
+          &lt;button [disabled]&#x3D;&quot;selectedSplit[2]&quot; mat-mini-fab class&#x3D;&quot;fab-bottom-right&quot;
+                  matTooltip&#x3D;&quot;Can use arrow keys&quot;
+                  [matTooltipPosition]&#x3D;&quot;&#x27;above&#x27;&quot;
+                  (click)&#x3D;&quot;onRightArrowButton(&#x27;element3&#x27;)&quot;&gt;
+            &lt;mat-icon&gt;keyboard_arrow_right&lt;/mat-icon&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;app-carousel-main [queryElement]&#x3D;&quot;&#x27;element3&#x27;&quot;&gt;
+        &lt;/app-carousel-main&gt;
+      &lt;/div&gt;
+    &lt;/ng-template&gt;
+    &lt;ng-template [appGridTemplate]&#x3D;&quot;&#x27;element4&#x27;&quot; let-height&#x3D;height&gt;
+      &lt;div [style.height]&#x3D;&quot;height&quot;&gt;
+        &lt;div&gt;
+          &lt;button [disabled]&#x3D;&quot;selectedSplit[3]&quot; mat-mini-fab class&#x3D;&quot;fab-bottom-left&quot;
+                  matTooltip&#x3D;&quot;Can use arrow keys&quot;
+                  [matTooltipPosition]&#x3D;&quot;&#x27;above&#x27;&quot;
+                  (click)&#x3D;&quot;onLeftArrowButton(&#x27;element4&#x27;)&quot;&gt;
+            &lt;mat-icon&gt;keyboard_arrow_left&lt;/mat-icon&gt;
+          &lt;/button&gt;
+          &lt;button [disabled]&#x3D;&quot;selectedSplit[3]&quot; mat-mini-fab class&#x3D;&quot;fab-bottom-right&quot;
+                  matTooltip&#x3D;&quot;Can use arrow keys&quot;
+                  [matTooltipPosition]&#x3D;&quot;&#x27;above&#x27;&quot;
+                  (click)&#x3D;&quot;onRightArrowButton(&#x27;element4&#x27;)&quot;&gt;
+            &lt;mat-icon&gt;keyboard_arrow_right&lt;/mat-icon&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;app-carousel-main [queryElement]&#x3D;&quot;&#x27;element4&#x27;&quot;&gt;
+        &lt;/app-carousel-main&gt;
+      &lt;/div&gt;
+    &lt;/ng-template&gt;
+  &#x60;,
+  styles: [&#x60;
+    .fab-bottom-left {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      bottom: 50%;
+      z-index: 100;
+    }
+    .fab-bottom-right {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      bottom: 50%;
+      z-index: 100;
+    }
+  &#x60;]
+})
+export class GridTemplateComponent implements OnInit, OnDestroy {
+
+  @ViewChildren(GridTemplateDirective) templateRef: QueryList&lt;GridTemplateDirective&gt;;
+  @Select(StatusState.getFocusedSplit) focusedSplit$: Observable&lt;number&gt;;
+  @SelectSnapshot(StatusState.getCurrentCategory) currentCategory: string;
+  selectedSplit: any[] &#x3D; [];
+
+  sElement: string;
+  unsubscribe: Subject&lt;any&gt; &#x3D; new Subject();
+  unsubscribe$ &#x3D; this.unsubscribe.asObservable();
+  constructor(
+    private carouselService: CarouselService,
+    private store: Store,
+    private splitService: SplitService
+  ) { }
+
+  ngOnInit(): void {
+    const el: any &#x3D; &#x27;element1&#x27;
+    this.selectedSplit[0] &#x3D; false;
+    this.focusedSplit$.pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe( val &#x3D;&gt; {
+      this.selectedSplit[0] &#x3D; true;
+      this.selectedSplit[1] &#x3D; true;
+      this.selectedSplit[2] &#x3D; true;
+      this.selectedSplit[3] &#x3D; true;
+
+      this.selectedSplit[val] &#x3D; false;
+      // console.log(&#x27; active split&#x27;, val)
+    })
+  }
+  getTemplate( name: string): TemplateRef&lt;any&gt; {
+    return this.templateRef.toArray().find( x &#x3D;&gt; x.name &#x3D;&#x3D;&#x3D; name).template;
+  }
+  onLeftArrowButton(element: string) {
+    this.store.dispatch(new SetSplitAction(false));
+    const idx &#x3D; this.splitService.elements.findIndex(val &#x3D;&gt; val &#x3D;&#x3D;&#x3D; element);
+    this.carouselService.getPrevImage(this.currentCategory, element);
+    this.store.dispatch(new SetFocusedSplit(idx));
+
+  }
+  onRightArrowButton(element: string) {
+    this.store.dispatch(new SetSplitAction(false));
+    const idx &#x3D; this.splitService.elements.findIndex(val &#x3D;&gt; val &#x3D;&#x3D;&#x3D; element);
+    this.carouselService.getNextImage(this.currentCategory, element);
+    this.store.dispatch(new SetFocusedSplit(idx));
+  }
+  ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
+  }
+}
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="c-styleData">
+            <pre class="line-numbers"><code class="language-scss">
+    .fab-bottom-left {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      bottom: 50%;
+      z-index: 100;
+    }
+    .fab-bottom-right {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      bottom: 50%;
+      z-index: 100;
+    }
+  
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ng-template [appGridTemplate]="\'element1\'" let-height=height> <!-- to get proper template -->  <div [style.height]="height">    <div>      <button [disabled]="selectedSplit[0]" mat-mini-fab class="fab-bottom-left"              matTooltip="Can use arrow keys"              [matTooltipPosition]="\'above\'"              (click)="onLeftArrowButton(\'element1\')">        <mat-icon>keyboard_arrow_left</mat-icon>      </button>      <button [disabled]="selectedSplit[0]" mat-mini-fab class="fab-bottom-right"              matTooltip="Can use arrow keys"              [matTooltipPosition]="\'above\'"              (click)="onRightArrowButton(\'element1\')">        <mat-icon>keyboard_arrow_right</mat-icon>      </button>    </div>    <app-carousel-main [queryElement]="\'element1\'">  <!-- to make observable of making split window -->    </app-carousel-main>  </div></ng-template><ng-template [appGridTemplate]="\'element2\'" let-height=height>  <div [style.height]="height">    <div>      <button [disabled]="selectedSplit[1]" mat-mini-fab class="fab-bottom-left"              matTooltip="Can use arrow keys"              [matTooltipPosition]="\'above\'"              (click)="onLeftArrowButton(\'element2\')">        <mat-icon>keyboard_arrow_left</mat-icon>      </button>      <button [disabled]="selectedSplit[1]" mat-mini-fab class="fab-bottom-right"              matTooltip="Can use arrow keys"              [matTooltipPosition]="\'above\'"              (click)="onRightArrowButton(\'element2\')">        <mat-icon>keyboard_arrow_right</mat-icon>      </button>    </div>    <app-carousel-main [queryElement]="\'element2\'">    </app-carousel-main>  </div></ng-template><ng-template [appGridTemplate]="\'element3\'" let-height=height>  <div [style.height]="height">    <div>      <button [disabled]="selectedSplit[2]" mat-mini-fab class="fab-bottom-left"              matTooltip="Can use arrow keys"              [matTooltipPosition]="\'above\'"              (click)="onLeftArrowButton(\'element3\')">        <mat-icon>keyboard_arrow_left</mat-icon>      </button>      <button [disabled]="selectedSplit[2]" mat-mini-fab class="fab-bottom-right"              matTooltip="Can use arrow keys"              [matTooltipPosition]="\'above\'"              (click)="onRightArrowButton(\'element3\')">        <mat-icon>keyboard_arrow_right</mat-icon>      </button>    </div>    <app-carousel-main [queryElement]="\'element3\'">    </app-carousel-main>  </div></ng-template><ng-template [appGridTemplate]="\'element4\'" let-height=height>  <div [style.height]="height">    <div>      <button [disabled]="selectedSplit[3]" mat-mini-fab class="fab-bottom-left"              matTooltip="Can use arrow keys"              [matTooltipPosition]="\'above\'"              (click)="onLeftArrowButton(\'element4\')">        <mat-icon>keyboard_arrow_left</mat-icon>      </button>      <button [disabled]="selectedSplit[3]" mat-mini-fab class="fab-bottom-right"              matTooltip="Can use arrow keys"              [matTooltipPosition]="\'above\'"              (click)="onRightArrowButton(\'element4\')">        <mat-icon>keyboard_arrow_right</mat-icon>      </button>    </div>    <app-carousel-main [queryElement]="\'element4\'">    </app-carousel-main>  </div></ng-template></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CarouselMainComponent', 'selector': 'app-carousel-main'},{'name': 'GridComponent', 'selector': 'app-grid'},{'name': 'GridTemplateComponent', 'selector': 'app-grid-template'},{'name': 'SeriesItemComponent', 'selector': 'app-series-item'},{'name': 'SeriesListComponent', 'selector': 'app-series-list'},{'name': 'ThumbItemComponent', 'selector': 'app-thumb-item'},{'name': 'ThumbnailListComponent', 'selector': 'app-thumbnail-list'}];
+    var DIRECTIVES = [{'name': 'GridTemplateDirective', 'selector': '[appGridTemplate]'},{'name': 'SelectColorDirective', 'selector': '[selectColor]'}];
+    var ACTUAL_COMPONENT = {'name': 'GridTemplateComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'GridTemplateComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
